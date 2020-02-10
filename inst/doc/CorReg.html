@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Clément Théry" />
+
+
+<title>How to take advantage of CorReg ?</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">How to take advantage of CorReg ?</h1>
+<h4 class="author"><em>Clément Théry</em></h4>
+<h4 class="date"><em>26 avril 2017</em></h4>
+
+
+
+<div id="corregs-concept" class="section level1">
+<h1>CorReg’s Concept</h1>
+<p>This package was motivated by correlation issues in real datasets, in particular industrial datasets.</p>
+<p>The main idea stands in explicit modeling of the correlations between covariates by a structure of sub-regressions (so it can model complex links, not only correlations between two variables), that simply is a system of linear regressions between the covariates. It points out redundant covariates that can be deleted in a pre-selection step to improve matrix conditioning without significant loss of information and with strong explicative potential because this pre-selection is explained by the structure of sub-regressions, itself easy to interpret. An algorithm to find the sub-regressions structure inherent to the dataset is provided, based on a full generative model and using Monte-Carlo Markov Chain (MCMC) method. This pre-treatment does not depend on a response variable and thus can be used in a more general way with any correlated datasets.</p>
+<p>In a second part, a plug-in estimator is defined to get back the redundant covariates sequentially. Then all the covariates are used but the sequential approach acts as a protection against correlations.</p>
+<p>This package also contains some functions to make statistics easier (see <code>BoxPlot</code> and <code>recursive_tree</code> or <code>matplot_zone</code>).</p>
+<p>In this vignette we explain the main method in CorReg that leads to the <code>correg</code> function. This function allows to make linear regression using sub-regressions structure and/or many variable selection methods (including lasso, ridge, clere, stepwise,…)</p>
+<div id="dataset-generation" class="section level3">
+<h3>Dataset generation</h3>
+<p>We first generate (for this tutorial) a dataset with strong correlations between the covariates. The <code>mixture_generator</code> function gives such a dataset and also a validation sample built with the same parameters. Both contains a response variable generated on some covariates (not all) by linear regression. So we have sub-regressions that make some variables redundent when we know the other variables. Such correlations make the variance of the regression estimators explode. Moreover, dimension is unnecessarily high and interpretation of regression coefficients is dangerous.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">require</span>(CorReg)</code></pre></div>
+<pre><code>## Loading required package: CorReg</code></pre>
+<pre><code>## 
+##                                                                                                                     
+##                                                                                                                     
+##           CCCCCCCCCCCCC                                         RRRRRRRRRRRRRRRRR                                         
+##         CCC::::::::::::C                                        R::::::::::::::::R                                          
+##        CC:::::::::::::::C                                       R::::::RRRRRR:::::R                                         
+##       C:::::CCCCCCCC::::C                                       RR:::::R     R:::::R                                        
+##       C:::::C       CCCCCC   ooooooooooo      rrrrr   rrrrrrrrr   R::::R     R:::::R     eeeeeeeeeeee       ggggggggg   ggggg
+##       C:::::C               oo:::::::::::oo   r::::rrr:::::::::r  R::::R     R:::::R   ee::::::::::::ee    g:::::::::ggg::::g
+##       C:::::C              o:::::::::::::::o  r:::::::::::::::::r R::::RRRRRR:::::R   e::::::eeeee:::::ee g:::::::::::::::::g
+##       C:::::C              o:::::ooooo:::::or r::::::rrrrr::::::r R:::::::::::::RR   e::::::e     e:::::eg::::::ggggg::::::gg
+##       C:::::C              o::::o     o::::o  r:::::r     r:::::r R::::RRRRRR:::::R  e:::::::eeeee::::::eg:::::g     g:::::g 
+##       C:::::C              o::::o     o::::o  r:::::r     rrrrrrr R::::R     R:::::R e:::::::::::::::::e g:::::g     g:::::g 
+##       C:::::C              o::::o     o::::o  r:::::r             R::::R     R:::::R e::::::eeeeeeeeeee  g:::::g     g:::::g 
+##       C:::::C       CCCCCC o::::o     o::::o  r:::::r             R::::R     R:::::R e:::::::e           g::::::g    g:::::g 
+##       C:::::CCCCCCCC::::C  o:::::ooooo:::::o  r:::::r           RR:::::R     R:::::R e::::::::e          g:::::::ggggg:::::g 
+##        CC:::::::::::::::C  o:::::::::::::::o  r:::::r           R::::::R     R:::::R  e::::::::eeeeeeee   g::::::::::::::::g 
+##         CCC::::::::::::C   oo:::::::::::oo    r:::::r           R::::::R     R:::::R   ee:::::::::::::e    gg::::::::::::::g 
+##           CCCCCCCCCCCCC      ooooooooooo      rrrrrrr           RRRRRRRR     RRRRRRR     eeeeeeeeeeeeee      gggggggg::::::g 
+##                                                                                                                      g:::::g 
+##                                                                                                          gggggg      g:::::g 
+##                                                                                                          g:::::gg   gg:::::g 
+##                                                                                                          g::::::ggg:::::::g 
+##                                                                                                           gg:::::::::::::g  
+##                                                                                                              ggg::::::ggg    
+##                                                                                                                 gggggg       
+##           
+##  The Concept, the Method, the Power</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#dataset generation</span>
+    base=<span class="kw">mixture_generator</span>(<span class="dt">n=</span><span class="dv">15</span>,<span class="dt">p=</span><span class="dv">10</span>,<span class="dt">ratio=</span><span class="fl">0.4</span>,<span class="dt">tp1=</span><span class="dv">1</span>,<span class="dt">tp2=</span><span class="dv">1</span>,<span class="dt">tp3=</span><span class="dv">1</span>,<span class="dt">positive=</span><span class="fl">0.5</span>,
+                           <span class="dt">R2Y=</span><span class="fl">0.8</span>,<span class="dt">R2=</span><span class="fl">0.9</span>,<span class="dt">scale=</span><span class="ot">TRUE</span>,<span class="dt">max_compl=</span><span class="dv">3</span>,<span class="dt">lambda=</span><span class="dv">1</span>)
+
+    X_appr=base<span class="op">$</span>X_appr <span class="co">#learning sample</span>
+    Y_appr=base<span class="op">$</span>Y_appr <span class="co">#response variable for the learning sample</span>
+    Y_test=base<span class="op">$</span>Y_test <span class="co">#responsee variable for the validation sample</span>
+    X_test=base<span class="op">$</span>X_test <span class="co">#validation sample</span>
+    TrueZ=base<span class="op">$</span>Z<span class="co">#True generative structure (binary adjacency matrix)</span></code></pre></div>
+<p>We also get an adjacency matrix Z that describes the Directed Acyclic Graph of the links between the covariates. See <a href="https://en.wikipedia.org/wiki/Adjacency_matrix" class="uri">https://en.wikipedia.org/wiki/Adjacency_matrix</a> for more informations on adjacency matrices.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">TrueZ</code></pre></div>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]    0    0    0    1    0    0    0    0    1     0
+##  [2,]    0    0    1    0    0    0    0    1    0     0
+##  [3,]    0    0    0    0    0    0    0    0    0     0
+##  [4,]    0    0    0    0    0    0    0    0    0     0
+##  [5,]    0    0    1    1    0    0    0    1    0     0
+##  [6,]    0    0    0    0    0    0    0    0    0     0
+##  [7,]    0    0    1    1    0    0    0    1    1     0
+##  [8,]    0    0    0    0    0    0    0    0    0     0
+##  [9,]    0    0    0    0    0    0    0    0    0     0
+## [10,]    0    0    0    0    0    0    0    0    1     0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span></code></pre></div>
+<p>We will try to find this structure (in real life we don’t know the true structure).</p>
+</div>
+</div>
+<div id="corregs-method" class="section level1">
+<h1>CorReg’s Method</h1>
+<div id="density-estimation" class="section level3">
+<h3>Density estimation</h3>
+<p>To find the correlation structure we need a global density model that will serve as a null hypothesis. Each variable can be independent (following a certain density we have to estimate) or can be lineary dependent on other covariates. The <code>density_estimation</code> function will provide this null hypothesis for each variable. We use Gaussian Mixture to fit a large scope of density in real life.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#density estimation for the MCMC (with Gaussian Mixtures)</span>
+    density=<span class="kw">density_estimation</span>(<span class="dt">X=</span>X_appr,<span class="dt">nbclustmax=</span><span class="dv">10</span>,<span class="dt">detailed=</span><span class="ot">TRUE</span>,<span class="dt">package =</span> <span class="st">&quot;Rmixmod&quot;</span>)
+    Bic_null_vect=density<span class="op">$</span>BIC_vect<span class="co"># vector of the BIC found (1 value per covariate)</span></code></pre></div>
+<p>Each null hypothesis is associated to a BIC criterion. Complexity is the one of each mixture model.</p>
+</div>
+<div id="mcmc-algorithm" class="section level3">
+<h3>MCMC Algorithm</h3>
+<p>We use a specific MCMC algorithm (<a href="http://www.theses.fr/2015LIL10060" class="uri">http://www.theses.fr/2015LIL10060</a> and <a href="http://www.theses.fr/2015LIL10060/document/" class="uri">http://www.theses.fr/2015LIL10060/document/</a> or <a href="https://hal.archives-ouvertes.fr/hal-01099133/" class="uri">https://hal.archives-ouvertes.fr/hal-01099133/</a>) to find the Adjacency matrix that describes the correlation structure. We use the Bayesian Information Criterion (BIC) to compare null hypothesis and complex correlations structures with many sub-regressions between covariates.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#MCMC to find the structure</span>
+    res=<span class="kw">structureFinder</span>(<span class="dt">X=</span>X_appr,<span class="dt">verbose=</span><span class="dv">0</span>,<span class="dt">reject=</span><span class="dv">0</span>,<span class="dt">Maxiter=</span><span class="dv">1500</span>,
+                <span class="dt">nbini=</span><span class="dv">30</span>,<span class="dt">candidates=</span><span class="op">-</span><span class="dv">1</span>,<span class="dt">Bic_null_vect=</span>Bic_null_vect,<span class="dt">star=</span><span class="ot">TRUE</span>,<span class="dt">p1max=</span><span class="dv">15</span>,<span class="dt">clean=</span><span class="ot">TRUE</span>)
+    hatZ=res<span class="op">$</span>Z_opt <span class="co">#found structure (adjacency matrix)</span>
+    hatBic=res<span class="op">$</span>bic_opt <span class="co">#associated BIC</span></code></pre></div>
+</div>
+</div>
+<div id="corregs-power" class="section level1">
+<h1>CorReg’s Power</h1>
+<p>As we work with a dataset we have generated, we know the true structure so we can compare the result with the true model. In terms of BIC:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#BIC comparison between true and found structure</span>
+    bicopt_vect=<span class="kw">BicZ</span>(<span class="dt">X=</span>X_appr,<span class="dt">Z=</span>hatZ,<span class="dt">Bic_null_vect=</span>Bic_null_vect)
+    bicopt_True=<span class="kw">BicZ</span>(<span class="dt">X=</span>X_appr,<span class="dt">Z=</span>TrueZ,<span class="dt">Bic_null_vect=</span>Bic_null_vect)
+    <span class="kw">sum</span>(bicopt_vect)</code></pre></div>
+<pre><code>## [1] 235.5023</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">sum</span>(bicopt_True)</code></pre></div>
+<pre><code>## [1] 241.3905</code></pre>
+<p>And in terms of structure :</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#Structure comparison</span>
+    compZ=<span class="kw">compare_struct</span>(<span class="dt">trueZ=</span>TrueZ,<span class="dt">Zalgo=</span>hatZ)<span class="co">#qualitative comparison</span>
+    compZ</code></pre></div>
+<pre><code>## $ratio_true1
+## [1] 1
+## 
+## $ratio_true0
+## [1] 0.9431818
+## 
+## $true1
+## [1] 12
+## 
+## $false1
+## [1] 5
+## 
+## $false0
+## [1] 0
+## 
+## $deltadr
+## [1] 0
+## 
+## $true_left
+## [1] 4
+## 
+## $false_left
+## [1] 0</code></pre>
+<p>Then we have a look on the sub-regressions themselves. Each item of the list represents a subregression.</p>
+<p>First element is the R-square.Second element is the variable that is regressed by others (if no names provided it gives the position of the variable in the dataset).</p>
+<p>Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column). The <code>readZ</code> function allows to list them by relevance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#interpretation of found and true structure ordered by increasing R2</span>
+    <span class="kw">readZ</span>(<span class="dt">Z=</span>hatZ,<span class="dt">crit=</span><span class="st">&quot;R2&quot;</span>,<span class="dt">X=</span>X_appr,<span class="dt">output=</span><span class="st">&quot;all&quot;</span>,<span class="dt">order=</span><span class="dv">1</span>)<span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></code></pre></div>
+<pre><code>## [[1]]
+##                coefs       var
+## 1  0.865778645617283        R2
+## 2               &lt;NA&gt;         3
+## 3  0.822129701097824 intercept
+## 4 0.0553653489562641         1
+## 5  0.142917322165884         2
+## 6  0.188042047634943         5
+## 7  0.117728663058953         6
+## 8 -0.565850648726633         7
+## 9 0.0736539731166202        10
+## 
+## [[2]]
+##                 coefs       var
+## 1   0.880218374697899        R2
+## 2                &lt;NA&gt;         9
+## 3  -0.999605512748156 intercept
+## 4  -0.186417154135249         1
+## 5 -0.0873366802905377         5
+## 6   0.234770670800747         7
+## 7  -0.146010523307879        10
+## 
+## [[3]]
+##                coefs       var
+## 1  0.917313513525003        R2
+## 2               &lt;NA&gt;         8
+## 3  0.907085019842587 intercept
+## 4  0.198961227383444         2
+## 5 -0.228962509917204         5
+## 6 0.0575545099970368         6
+## 7  0.320985084505758         7
+## 
+## [[4]]
+##                coefs       var
+## 1  0.928847200032581        R2
+## 2               &lt;NA&gt;         4
+## 3 -0.902974679794493 intercept
+## 4 -0.367396629566935         1
+## 5 -0.183696501657526         5
+## 6 -0.188771496232694         7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">readZ</span>(<span class="dt">Z=</span>TrueZ,<span class="dt">crit=</span><span class="st">&quot;R2&quot;</span>,<span class="dt">X=</span>X_appr,<span class="dt">output=</span><span class="st">&quot;all&quot;</span>,<span class="dt">order=</span><span class="dv">1</span>)<span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></code></pre></div>
+<pre><code>## [[1]]
+##                coefs       var
+## 1  0.803329928029093        R2
+## 2               &lt;NA&gt;         9
+## 3  -1.01422739848629 intercept
+## 4 -0.190843613606193         1
+## 5  0.177620635388937         7
+## 6 -0.147636178583581        10
+## 
+## [[2]]
+##                coefs       var
+## 1  0.829655678574146        R2
+## 2               &lt;NA&gt;         3
+## 3  0.808465107056329 intercept
+## 4 0.0828536588428535         2
+## 5  0.144603974483763         5
+## 6 -0.554811976563074         7
+## 
+## [[3]]
+##                coefs       var
+## 1  0.904460325243156        R2
+## 2               &lt;NA&gt;         8
+## 3  0.905732104566846 intercept
+## 4  0.163099420253017         2
+## 5 -0.256387735748006         5
+## 6  0.331060830093764         7
+## 
+## [[4]]
+##                coefs       var
+## 1  0.928847200032581        R2
+## 2               &lt;NA&gt;         4
+## 3 -0.902974679794493 intercept
+## 4 -0.367396629566935         1
+## 5 -0.183696501657526         5
+## 6 -0.188771496232694         7</code></pre>
+<p>We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models :</p>
+<ul>
+<li>Complete model : without the sub-regression structure</li>
+<li>Explicative model : with the redundant covariates pointed by the sub-regressions</li>
+<li>Predictive model : like the complete model but estimated sequentially to avoid correlation issues, by using the sub-regression structure.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#Regression coefficients estimation</span>
+     select=<span class="st">&quot;NULL&quot;</span><span class="co">#without variable selection (otherwise, choose &quot;lar&quot; for example to use lasso selection)</span>
+    resY=<span class="kw">correg</span>(<span class="dt">X=</span>X_appr,<span class="dt">Y=</span>Y_appr,<span class="dt">Z=</span>hatZ,<span class="dt">compl=</span><span class="ot">TRUE</span>,<span class="dt">expl=</span><span class="ot">TRUE</span>,<span class="dt">pred=</span><span class="ot">TRUE</span>,
+                <span class="dt">select=</span>select,<span class="dt">K=</span><span class="dv">10</span>)</code></pre></div>
+<div id="final-predictive-results-comparison" class="section level3">
+<h3>Final Predictive results comparison</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="co">#MSE computation</span>
+    MSE_complete=<span class="kw">MSE_loc</span>(<span class="dt">Y=</span>Y_test,<span class="dt">X=</span>X_test,<span class="dt">A=</span>resY<span class="op">$</span>compl<span class="op">$</span>A)<span class="co">#classical model on X</span>
+    MSE_marginal=<span class="kw">MSE_loc</span>(<span class="dt">Y=</span>Y_test,<span class="dt">X=</span>X_test,<span class="dt">A=</span>resY<span class="op">$</span>expl<span class="op">$</span>A)<span class="co">#reduced model without correlations</span>
+    MSE_plugin=<span class="kw">MSE_loc</span>(<span class="dt">Y=</span>Y_test,<span class="dt">X=</span>X_test,<span class="dt">A=</span>resY<span class="op">$</span>pred<span class="op">$</span>A)<span class="co">#plug-in model</span>
+    MSE_true=<span class="kw">MSE_loc</span>(<span class="dt">Y=</span>Y_test,<span class="dt">X=</span>X_test,<span class="dt">A=</span>base<span class="op">$</span>A)<span class="co"># True model</span></code></pre></div>
+<p>Then we can compare the MSE obtained for each model.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">  <span class="co">#MSE comparison</span>
+    MSE=<span class="kw">data.frame</span>(MSE_complete,MSE_marginal,MSE_plugin,MSE_true)
+    MSE<span class="co">#estimated structure</span></code></pre></div>
+<pre><code>##   MSE_complete MSE_marginal MSE_plugin MSE_true
+## 1     619.5301     477.3271   645.0799 156.3802</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">barplot</span>(<span class="kw">as.matrix</span>(MSE),<span class="dt">main=</span><span class="st">&quot;MSE on validation dataset&quot;</span>, <span class="dt">sub=</span><span class="kw">paste</span>(<span class="st">&quot;select=&quot;</span>,select),<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)
+   <span class="kw">abline</span>(<span class="dt">h=</span>MSE_complete,<span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

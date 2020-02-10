@@ -1,0 +1,13 @@
+#1.2.14 : print root MSE for regression trees and classical print for decision trees
+#1.2.7 : Purge values to clean the dataset (including blank separators for thousands)
+#1.2.0 : some CPP corrections to fit RcppEigen + add a first vignette
+#1.1.6 : Kruskal-Wallis test to manage non-normal distributions in the BoxPlot function
+#1.1.0 : improved imports for basic functions
+#1.0.7 :
+   remove ridge dependency by using MASS function lm.ridge
+   Add a new BoxPlot function with confidence intervals and anova integrated
+#1.0.5 enhanced documentation
+#0.15.4
+Changing random generator in C to use runif() instead.
+#0.14.3
+bug removal when X was a data.frame in density_estimatione

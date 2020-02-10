@@ -1,0 +1,160 @@
+---
+title: "How to take advantage of CorReg ?"
+author: "Clément Théry"
+date: "26 avril 2017"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to take advantage of CorReg ?}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#CorReg's Concept
+
+
+This package was motivated by correlation issues in real datasets, in particular industrial datasets. 
+
+The main idea stands in explicit modeling of the correlations between covariates by a structure of sub-regressions (so it can model complex links, not only correlations between two variables), that simply is a system of linear regressions between the covariates. It points out redundant covariates that can be deleted in a pre-selection step to improve matrix conditioning without significant loss of information and with strong explicative potential because this pre-selection is explained by the structure of sub-regressions, itself easy to interpret. An algorithm to find the sub-regressions structure inherent to the dataset is provided, based on a full generative model and using Monte-Carlo Markov Chain (MCMC) method. This pre-treatment does not depend on a response variable and thus can be used in a more general way with any correlated datasets. 
+
+In a second part, a plug-in estimator is defined to get back the redundant covariates sequentially. Then all the covariates are used but the sequential approach acts as a protection against correlations. 
+
+This package also contains some functions to make statistics easier (see `BoxPlot` and `recursive_tree` or `matplot_zone`).
+
+In this vignette we explain the main method in CorReg that leads to the `correg` function. This function allows to make linear regression using sub-regressions structure and/or many variable selection methods (including lasso, ridge, clere, stepwise,...)
+
+
+###Dataset generation
+
+We first generate (for this tutorial) a dataset with strong correlations between the covariates.
+The `mixture_generator` function gives such a dataset and also a validation sample built with the same parameters. Both contains a response variable generated on some covariates (not all) by linear regression.
+So we have sub-regressions that make some variables redundent when we know the other variables. Such correlations make the variance of the regression estimators explode. Moreover, dimension is unnecessarily high and interpretation of regression coefficients is dangerous. 
+````{r}
+require(CorReg)
+    #dataset generation
+    base=mixture_generator(n=15,p=10,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
+                           R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
+
+    X_appr=base$X_appr #learning sample
+    Y_appr=base$Y_appr #response variable for the learning sample
+    Y_test=base$Y_test #responsee variable for the validation sample
+    X_test=base$X_test #validation sample
+    TrueZ=base$Z#True generative structure (binary adjacency matrix)
+
+```
+We also get an adjacency matrix Z that describes the Directed Acyclic Graph of the links between the covariates.
+See <https://en.wikipedia.org/wiki/Adjacency_matrix> for more informations on adjacency matrices.
+```{r }
+TrueZ
+    #TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]
+```
+We will try to find this structure (in real life we don't know the true structure).
+
+
+#CorReg's Method
+
+###Density estimation
+To find the correlation structure we need a global density model that will serve as a null hypothesis. Each variable can be independent (following a certain density we have to estimate) or can be lineary dependent on other covariates.
+The `density_estimation` function will provide this null hypothesis for each variable. We use Gaussian Mixture to fit a large scope of density in real life.
+
+```{r}   
+    #density estimation for the MCMC (with Gaussian Mixtures)
+    density=density_estimation(X=X_appr,nbclustmax=10,detailed=TRUE,package = "Rmixmod")
+    Bic_null_vect=density$BIC_vect# vector of the BIC found (1 value per covariate)
+    
+```
+Each null hypothesis is associated to a BIC criterion. Complexity is the one of each mixture model.
+
+
+
+###MCMC Algorithm
+
+We use a specific MCMC algorithm (<http://www.theses.fr/2015LIL10060> and <http://www.theses.fr/2015LIL10060/document/> or <https://hal.archives-ouvertes.fr/hal-01099133/>) to find the Adjacency matrix that describes the correlation structure. We use the Bayesian Information Criterion (BIC) to compare null hypothesis and complex correlations structures with many sub-regressions between covariates.
+```{r}
+    
+    #MCMC to find the structure
+    res=structureFinder(X=X_appr,verbose=0,reject=0,Maxiter=1500,
+                nbini=30,candidates=-1,Bic_null_vect=Bic_null_vect,star=TRUE,p1max=15,clean=TRUE)
+    hatZ=res$Z_opt #found structure (adjacency matrix)
+    hatBic=res$bic_opt #associated BIC
+   
+```
+
+
+#CorReg's Power
+
+As we work with a dataset we have generated, we know the true structure so we can compare the result with the true model. In terms of BIC:
+```{r}
+    #BIC comparison between true and found structure
+    bicopt_vect=BicZ(X=X_appr,Z=hatZ,Bic_null_vect=Bic_null_vect)
+    bicopt_True=BicZ(X=X_appr,Z=TrueZ,Bic_null_vect=Bic_null_vect)
+    sum(bicopt_vect)
+    sum(bicopt_True)
+
+```
+
+And in terms of structure :
+
+```{r}
+    #Structure comparison
+    compZ=compare_struct(trueZ=TrueZ,Zalgo=hatZ)#qualitative comparison
+    compZ
+
+```
+
+Then we have a look on the sub-regressions themselves. Each item of the list represents a subregression. 
+
+First element is the R-square.Second element is the variable that is regressed by others (if no names provided it gives the position of the variable in the dataset).
+
+Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column). The `readZ` function allows to list them by relevance.
+``` {r}   
+    #interpretation of found and true structure ordered by increasing R2
+    readZ(Z=hatZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
+    readZ(Z=TrueZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
+  
+```
+ We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models : 
+ 
+* Complete model : without the sub-regression structure 
+* Explicative model : with the redundant covariates pointed by the sub-regressions
+* Predictive model : like the complete model but estimated sequentially to avoid correlation issues, by using the sub-regression structure.
+   
+``` {r}
+    #Regression coefficients estimation
+     select="NULL"#without variable selection (otherwise, choose "lar" for example to use lasso selection)
+    resY=correg(X=X_appr,Y=Y_appr,Z=hatZ,compl=TRUE,expl=TRUE,pred=TRUE,
+                select=select,K=10)
+
+
+```    
+
+
+###Final Predictive results comparison
+
+
+```{r}
+    #MSE computation
+    MSE_complete=MSE_loc(Y=Y_test,X=X_test,A=resY$compl$A)#classical model on X
+    MSE_marginal=MSE_loc(Y=Y_test,X=X_test,A=resY$expl$A)#reduced model without correlations
+    MSE_plugin=MSE_loc(Y=Y_test,X=X_test,A=resY$pred$A)#plug-in model
+    MSE_true=MSE_loc(Y=Y_test,X=X_test,A=base$A)# True model
+ 
+```   
+
+
+
+Then we can compare the MSE obtained for each model.
+
+```{r }
+  #MSE comparison
+    MSE=data.frame(MSE_complete,MSE_marginal,MSE_plugin,MSE_true)
+    MSE#estimated structure
+barplot(as.matrix(MSE),main="MSE on validation dataset", sub=paste("select=",select),col="blue")
+   abline(h=MSE_complete,col="red")
+
+````
