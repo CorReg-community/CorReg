@@ -4,8 +4,15 @@
 \alias{BicZ}
 \title{Compute the BIC of a given structure}
 \usage{
-BicZ(X = X, Z = Z, Bic_null_vect = NULL, Bic_old = NULL,
-  methode = 1, Zold = NULL, star = FALSE)
+BicZ(
+  X = X,
+  Z = Z,
+  Bic_null_vect = NULL,
+  Bic_old = NULL,
+  methode = 1,
+  Zold = NULL,
+  star = FALSE
+)
 }
 \arguments{
 \item{X}{the dataset}
@@ -29,7 +36,6 @@ The vector of the BICs associated to each covariate (conditionnal distribution) 
 Compute the BIC of a given structure
 }
 \examples{
-   require(CorReg)
 data=mixture_generator(n=15,p=5,valid=0)#dataset generation
 Z=data$Z #binary adjacency matrix that describes correlations within the dataset
 X=data$X_appr

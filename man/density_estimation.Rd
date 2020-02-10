@@ -4,10 +4,18 @@
 \alias{density_estimation}
 \title{BIC of estimated  marginal gaussian mixture densities}
 \usage{
-density_estimation(X = X, nbclustmax = 10, nbclustmin = 1,
-  verbose = FALSE, detailed = FALSE, max = TRUE,
-  package = c("mclust", "Rmixmod"), nbini = 20, matshape = FALSE,
-  ...)
+density_estimation(
+  X = X,
+  nbclustmax = 10,
+  nbclustmin = 1,
+  verbose = FALSE,
+  detailed = FALSE,
+  max = TRUE,
+  package = c("mclust", "Rmixmod"),
+  nbini = 20,
+  matshape = FALSE,
+  ...
+)
 }
 \arguments{
 \item{X}{the dataset (matrix)}
@@ -42,9 +50,8 @@ Estimates the density of each covariates with gaussian mixture models and then g
 }
 \examples{
 \donttest{
-  rm(list=ls())#clean the workspace
+  #rm(list=ls())#clean the workspace
   
-require(CorReg)
    #dataset generation
    base=mixture_generator(n=150,p=10,valid=0,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
                           R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)

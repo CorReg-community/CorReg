@@ -9,8 +9,6 @@
 # ' @export
 # ' 
 # '@examples
-
-# '    require(CorReg)
 # ' data=mixture_generator(n=15,p=5,valid=0,ratio=0,Amax=3)#dataset generation
 # ' X=as.matrix(data$X_appr)
 # ' Y=as.matrix(data$Y_appr)

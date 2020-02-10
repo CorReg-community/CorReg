@@ -22,14 +22,14 @@ the matrix with missing values.
 Destructing values to have missing ones
 }
 \examples{
-   \donttest{
-  rm(list=ls())#clean the workspace
-  
-   data<-mtcars
-   require(CorReg)
-  datamiss=Terminator(target = data,wrath=0.05)#5\% of missing values
-  showdata(datamiss)#plot positions of the missing values
-  datamiss=Terminator(target = data,diag=1)#diag of missing values
-  showdata(datamiss)#plot positions of the missing values (no full individuals, no full variable)
-    }
+data <- mtcars
+
+# add 5\% of missing values
+datamiss <- Terminator(target = data, wrath = 0.05)
+showdata(datamiss) # plot positions of the missing values
+
+# create a diagonal of missing values
+datamiss <- Terminator(target = data, diag = 1)
+showdata(datamiss) #plot positions of the missing values (no full individuals, no full variable)
+   
 }

@@ -1,10 +1,4 @@
 
-.onLoad <- function(libname, pkgname) 
-{
-  library.dynam("CorReg", pkgname, libname)
-}
-
-
 CorRegStartupMessage <- function(){
    
    sentences_list=c("You have successfully unleashed the Power of CorReg.",

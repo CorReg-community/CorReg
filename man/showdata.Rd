@@ -19,7 +19,6 @@ Plot the dataset with marks where there are missing value. It allows to have a q
 \examples{
 \donttest{
    data<-mtcars
-   require(CorReg)
   datamiss=Terminator(target = data,wrath=0.05)#5\% of missing values
   showdata(datamiss)#plot positions of the missing values
   

@@ -10,8 +10,6 @@
 #' @return The vector of the BICs associated to each covariate (conditionnal distribution) according to the sub-regression structure.
 #' 
 #' @examples
-
-#'    require(CorReg)
 #' data=mixture_generator(n=15,p=5,valid=0)#dataset generation
 #'Z=data$Z #binary adjacency matrix that describes correlations within the dataset
 #'X=data$X_appr

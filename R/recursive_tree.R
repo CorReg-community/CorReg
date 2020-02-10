@@ -16,9 +16,7 @@
 #'\item{modele}{ vector of the names of the covariates the tree could have used} 
 #'\item{tree}{ the regression tree as an "rpart" object} 
 #' @examples
-
 #'    data<-mtcars
-#'    require(CorReg)
 #' main="Regression tree of cars consumption (in mpg)"
 #'   mytree=recursive_tree(data = data,Y ="mpg" ,main=main,verbose=FALSE)
 #'    #want to try without cylinder and disp

@@ -4,9 +4,15 @@
 \alias{readZ}
 \title{read the structure and explain it}
 \usage{
-readZ(Z = Z, B = NULL, crit = c("none", "R2", "F", "sigmaX"),
-  varnames = NULL, output = c("index", "names", "all"), X = NULL,
-  order = 1)
+readZ(
+  Z = Z,
+  B = NULL,
+  crit = c("none", "R2", "F", "sigmaX"),
+  varnames = NULL,
+  output = c("index", "names", "all"),
+  X = NULL,
+  order = 1
+)
 }
 \arguments{
 \item{Z}{binary adjacency matrix of the structure (size p)}

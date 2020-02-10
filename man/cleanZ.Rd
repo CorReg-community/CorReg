@@ -4,8 +4,15 @@
 \alias{cleanZ}
 \title{clean the structure of correlations Z (if BIC improved)}
 \usage{
-cleanZ(X = X, Z = Z, Bic_null_vect = Bic_null_vect, methode = 1,
-  plot = F, verbose = 1, star = FALSE)
+cleanZ(
+  X = X,
+  Z = Z,
+  Bic_null_vect = Bic_null_vect,
+  methode = 1,
+  plot = FALSE,
+  verbose = 1,
+  star = FALSE
+)
 }
 \arguments{
 \item{X}{the dataset}

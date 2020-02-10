@@ -4,7 +4,7 @@
 \alias{MSE_loc}
 \title{Simple MSE function}
 \usage{
-MSE_loc(Y = Y, X = X, A = A, intercept = T)
+MSE_loc(Y = Y, X = X, A = A, intercept = TRUE)
 }
 \arguments{
 \item{Y}{the response variable (vector)}
@@ -17,9 +17,11 @@ MSE_loc(Y = Y, X = X, A = A, intercept = T)
 }
 \value{
 the Mean Squared Error observed on \code{X} when using \code{A} coefficients to predict \code{Y}.
-
- @examples
- require(CorReg)
+}
+\description{
+This function computes the MSE (Mean Squared Error) of prediction associated to a vector of coefficients \code{A} used to predict a response variable \code{Y} by linear regression on \code{X}, with an intercept or not.
+}
+\examples{
    #dataset generation
    base=mixture_generator(n=15,p=5,valid=100,scale=TRUE)
    X_appr=base$X_appr #learning sample
@@ -29,7 +31,4 @@ the Mean Squared Error observed on \code{X} when using \code{A} coefficients to 
    A=lm(Y_appr~X_appr)$coefficients
 MSE_loc(Y=Y_appr,X=X_appr,A=A)#MSE on the learning dataset
 MSE_loc(Y=Y_test,X=X_test,A=A)#MSE on the validation sample
-}
-\description{
-This function computes the MSE (Mean Squared Error) of prediction associated to a vector of coefficients \code{A} used to predict a response variable \code{Y} by linear regression on \code{X}, with an intercept or not.
 }

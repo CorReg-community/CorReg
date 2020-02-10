@@ -15,8 +15,6 @@
 #' @export
 #' @examples
 #'     \donttest{
-
-#' require(CorReg)
 #' n=15
 #' x=1:n
 #' y=cbind(c(rnorm(5,0,1),rnorm(5,1,1),rnorm(5,2,1)),

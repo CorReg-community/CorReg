@@ -4,8 +4,14 @@
 \alias{Conan}
 \title{Removes missing values (rows and column to obtain a large full matrix)}
 \usage{
-Conan(X = X, nbstep = Inf, std = FALSE, verbose = FALSE,
-  coercing = NULL, Xout = TRUE)
+Conan(
+  X = X,
+  nbstep = Inf,
+  std = FALSE,
+  verbose = FALSE,
+  coercing = NULL,
+  Xout = TRUE
+)
 }
 \arguments{
 \item{X}{the dataset (matrix) with missing values}
@@ -30,7 +36,6 @@ Removes missing values (rows and column alternatively) to obtain a large full ma
 }
 \examples{
    data<-mtcars
-   require(CorReg)
   datamiss=Terminator(target = data,wrath=0.05)#5\% of missing values
   datamiss
   showdata(datamiss)#plot positions of the missing values

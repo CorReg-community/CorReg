@@ -9,7 +9,6 @@
 #' @return the Mean Squared Error observed on \code{X} when using \code{A} coefficients to predict \code{Y}.
 #' 
 #' @examples
-#'  require(CorReg)
 #'    #dataset generation
 #'    base=mixture_generator(n=15,p=5,valid=100,scale=TRUE)
 #'    X_appr=base$X_appr #learning sample

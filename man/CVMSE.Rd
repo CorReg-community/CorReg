@@ -4,8 +4,7 @@
 \alias{CVMSE}
 \title{Cross validation}
 \usage{
-CVMSE(X = X, Y = Y, K = K, intercept = TRUE, methode = 1,
-  groupe = NULL)
+CVMSE(X = X, Y = Y, K = K, intercept = TRUE, methode = 1, groupe = NULL)
 }
 \arguments{
 \item{X}{covariates matrix (double)}

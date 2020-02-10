@@ -4,11 +4,28 @@
 \alias{structureFinder}
 \title{MCMC algorithm to find a structure between the covariates}
 \usage{
-structureFinder(X = X, Z = NULL, Bic_null_vect = NULL,
-  candidates = -1, reject = 0, methode = 1, p1max = 5,
-  p2max = NULL, Maxiter = 1, plot = FALSE, best = TRUE,
-  better = FALSE, random = TRUE, verbose = 1, nb_opt_max = NULL,
-  exact = TRUE, nbini = NULL, star = TRUE, clean = TRUE, ...)
+structureFinder(
+  X = X,
+  Z = NULL,
+  Bic_null_vect = NULL,
+  candidates = -1,
+  reject = 0,
+  methode = 1,
+  p1max = 5,
+  p2max = NULL,
+  Maxiter = 1,
+  plot = FALSE,
+  best = TRUE,
+  better = FALSE,
+  random = TRUE,
+  verbose = 1,
+  nb_opt_max = NULL,
+  exact = TRUE,
+  nbini = NULL,
+  star = TRUE,
+  clean = TRUE,
+  ...
+)
 }
 \arguments{
 \item{X}{the matrix of the dataset containing p correlated covariates (with n individuals)}
@@ -72,9 +89,8 @@ To avoid local extrema we allow constraints relaxation. If a modification is not
 }
 \examples{
 \donttest{
-  rm(list=ls())#clean the workspace
+  #rm(list=ls())#clean the workspace
   
-require(CorReg)
    #dataset generation
    base=mixture_generator(n=15,p=10,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
                           R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
@@ -96,15 +112,15 @@ require(CorReg)
    hatBic=res$bic_opt #associated BIC
    
    #looking inside the walk
-  
-par(mar=c(5,4,4,5)+.1)
-plot(res$bic_step,type="l",col="red",ylab="BIC",
-    sub="blue: complexity, red: BIC", main="Evolution of BIC and complexity during the walk")
-par(new=TRUE)
-plot(res$complexity_step,type="l",col="blue",xaxt="n",yaxt="n",xlab="",ylab="")
-axis(4)
-mtext("Complexity",side=4,line=3)
-#legend("topleft",col=c("red","blue"),lty=1,legend=c("BIC","Complexity"))
+   old_par<-par()
+   par(mar=c(5,4,4,5)+.1)
+   plot(res$bic_step,type="l",col="red",ylab="BIC",
+     sub="blue: complexity, red: BIC", main="Evolution of BIC and complexity during the walk")
+   par(new=TRUE)
+   plot(res$complexity_step,type="l",col="blue",xaxt="n",yaxt="n",xlab="",ylab="")
+   axis(4)
+   mtext("Complexity",side=4,line=3)
+   #legend("topleft",col=c("red","blue"),lty=1,legend=c("BIC","Complexity"))
    
    #BIC comparison between true and found structure
    bicopt_vect=BicZ(X=X_appr,Z=hatZ,Bic_null_vect=Bic_null_vect)
@@ -117,6 +133,8 @@ mtext("Complexity",side=4,line=3)
    #interpretation of found and true structure ordered by increasing R2
    readZ(Z=hatZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
    readZ(Z=TrueZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
+   
+   par(old_par)
   } 
 
 

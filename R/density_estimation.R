@@ -21,7 +21,6 @@
 #' \donttest{
 #'   #rm(list=ls())#clean the workspace
 #'   
-#' require(CorReg)
 #'    #dataset generation
 #'    base=mixture_generator(n=150,p=10,valid=0,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
 #'                           R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)

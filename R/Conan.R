@@ -11,17 +11,13 @@
 #' \item{individus_restants}{Index of remaining individuals}
 #' \item{variables_restantes}{Index of remaining variables}
 #' \item{X}{If Xout=TRUE, the reduced dataset without missing values}
-
 #' @examples
-
 #'    data<-mtcars
-#'    require(CorReg)
 #'   datamiss=Terminator(target = data,wrath=0.05)#5% of missing values
 #'   datamiss
 #'   showdata(datamiss)#plot positions of the missing values
 #'   reduced=Conan(X=datamiss)
 #'   reduced
-
 
 Conan<-function(X=X,nbstep=Inf,std=FALSE,verbose=FALSE,coercing=NULL,Xout=TRUE){
    steploc=1 

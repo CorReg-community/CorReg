@@ -4,10 +4,26 @@
 \alias{correg}
 \title{Linear regression using CorReg's method, with variable selection.}
 \usage{
-correg(X = NULL, Y = NULL, Z = NULL, B = NULL, compl = TRUE,
-  expl = FALSE, pred = FALSE, select = "lar", criterion = c("MSE",
-  "BIC"), X_test = NULL, Y_test = NULL, intercept = TRUE, K = 10,
-  groupe = NULL, Amax = NULL, lambda = 1, alpha = NULL, g = 5)
+correg(
+  X = NULL,
+  Y = NULL,
+  Z = NULL,
+  B = NULL,
+  compl = TRUE,
+  expl = FALSE,
+  pred = FALSE,
+  select = "lar",
+  criterion = c("MSE", "BIC"),
+  X_test = NULL,
+  Y_test = NULL,
+  intercept = TRUE,
+  K = 10,
+  groupe = NULL,
+  Amax = NULL,
+  lambda = 1,
+  alpha = NULL,
+  g = 5
+)
 }
 \arguments{
 \item{X}{The data matrix (covariates) without the intercept}
@@ -61,11 +77,11 @@ Computes three regression models: Complete (regression on the wole dataset X), m
 with a regression on the residuals of the marginal model by the residuals of the sub-regressions). Each regression can be computed with variable selection (for example the lasso).
 }
 \examples{
-\dontrun{
-require(CorReg)
+\donttest{
    #dataset generation
    base=mixture_generator(n=15,p=10,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
                           R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
+                          
    X_appr=base$X_appr #learning sample
    Y_appr=base$Y_appr #response variable for the learning sample
    Y_test=base$Y_test #responsee variable for the validation sample
@@ -91,5 +107,6 @@ require(CorReg)
    
   barplot(as.matrix(MSE),main="MSE on validation dataset", sub=paste("select=",select))
   abline(h=MSE_complete,col="red")
-   }
+}
+   
 }

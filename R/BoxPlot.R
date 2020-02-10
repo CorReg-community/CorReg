@@ -10,8 +10,6 @@
 #' @param ... Other graphical parameters 
 #' @export
 #' @examples
-
-#' require(CorReg)
 #' repart=c(20,40,40)
 #' X=data.frame(num=c(rnorm(repart[1],10,1),rnorm(repart[2],11,1),rnorm(repart[3],10,1)),
 #' grp=c(rep("A",times=repart[1]),rep("B",times=repart[2]),rep("C",times=repart[3])))

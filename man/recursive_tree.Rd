@@ -4,10 +4,20 @@
 \alias{recursive_tree}
 \title{decision tree in a recursive way}
 \usage{
-recursive_tree(data = data, Y = "Y", modele = NULL, kill = NULL,
-  index = NULL, verbose = TRUE, plot = TRUE, main = NULL,
-  sub = NULL, lang = c("en", "fr"), all = FALSE,
-  digits = getOption("digits") - 3)
+recursive_tree(
+  data = data,
+  Y = "Y",
+  modele = NULL,
+  kill = NULL,
+  index = NULL,
+  verbose = TRUE,
+  plot = TRUE,
+  main = NULL,
+  sub = NULL,
+  lang = c("en", "fr"),
+  all = FALSE,
+  digits = getOption("digits") - 3
+)
 }
 \arguments{
 \item{data}{the dataset including the response}
@@ -44,7 +54,6 @@ decision tree in a recursive way
 }
 \examples{
    data<-mtcars
-   require(CorReg)
 main="Regression tree of cars consumption (in mpg)"
   mytree=recursive_tree(data = data,Y ="mpg" ,main=main,verbose=FALSE)
    #want to try without cylinder and disp

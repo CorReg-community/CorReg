@@ -4,8 +4,7 @@
 \alias{compare_struct}
 \title{To compare sub-regression structures}
 \usage{
-compare_struct(trueZ = trueZ, Zalgo = Zalgo, all = TRUE,
-  mode = "NULL")
+compare_struct(trueZ = trueZ, Zalgo = Zalgo, all = TRUE, mode = "NULL")
 }
 \arguments{
 \item{trueZ}{first structure (binary adjacency matrix)}

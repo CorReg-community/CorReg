@@ -41,7 +41,6 @@
 #' \item{sigma_Y}{Standard deviation of the residual of the regression that generates \code{Y_appr} and \code{Y_test}.}
 #' \item{nbcomp}{vector of the number of components for covariates that are not explained by others.}
 #' @examples
-#' require(CorReg)
 #'    #dataset generation
 #'    base=mixture_generator(n=250,p=4,valid=0)
 #'    X_appr=base$X_appr #learning sample

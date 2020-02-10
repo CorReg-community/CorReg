@@ -11,7 +11,6 @@
 # ' @export 
 # ' 
 # ' # '@examples
-# '    require(CorReg)
 # ' n=c(3000,1500,45)
 # ' prop=c(0.12,0.15,0.11)
 # ' confint_coef( n = n, prop = prop, mean = mean(prop),alpha = 0.05)
