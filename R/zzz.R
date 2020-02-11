@@ -1,27 +1,43 @@
+.onAttach <- function(lib, pkg)
+{
+  # unlock .mclust variable allowing its modification
+  # unlockBinding(".mclust", asNamespace("CorReg")) 
+  # startup message
+  msg <- CorRegStartupMessage()
+  # msg <- CorRegStartupMessage1()
+  # msg <- CorRegStartupMessage2()
+  
+  packageStartupMessage(msg)      
+  invisible()
+}
+
 
 CorRegStartupMessage <- function(){
-   
-   sentences_list=c("You have successfully unleashed the Power of CorReg.",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "CorReg: The Concept, the Method, the Power",
-                    "No scientists were harmed during the development of this package",
-                    "Whosoever loads this package, if he be worthy, shall possess the power of CorReg",
-                    "One package to rule them all, one package to find them; One package to bring them all and in the darkness decorrelate them.",
-                    "All those correlations will be lost in time, like... tears in rain",
-                    "CorReg, son histoire, mudafuckaz, CorReg, CorReg, CorReg, CorReg, oh CorReg...",
-                    "The first rule of CorReg is: You talk about CorReg"
-                    )
-   return(sentences_list[runif(1)%/% ( 1/length(sentences_list))])
+  
+  sentences_list <- c("You have successfully unleashed the Power of CorReg.",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "CorReg: The Concept, the Method, the Power",
+                      "No scientists were harmed during the development of this package",
+                      "Whosoever loads this package, if he be worthy, shall possess the power of CorReg",
+                      "One package to rule them all, one package to find them; One package to bring them all and in the darkness decorrelate them.",
+                      "All those correlations will be lost in time, like... tears in rain",
+                      "CorReg, son histoire, mudafuckaz, CorReg, CorReg, CorReg, CorReg, oh CorReg,...",
+                      "The first rule of CorReg is: You talk about CorReg"
+  )
+  
+  return(sample(sentences_list, 1))
 }
+
+
 
 CorRegStartupMessage1 <- function(){
   msg<-c(paste0("
@@ -52,18 +68,8 @@ CorRegStartupMessage1 <- function(){
                                                                                                                 gggggg       
           "
   ),"\n The Concept, the Method, the Power")
-  return(msg)
-}
-
-.onAttach <- function(lib, pkg)
-{
-  # unlock .mclust variable allowing its modification
-  # unlockBinding(".mclust", asNamespace("CorReg")) 
-  # startup message
-  msg <- CorRegStartupMessage()
   
-  packageStartupMessage(msg)      
-  invisible()
+  return(msg)
 }
 
 
@@ -92,6 +98,7 @@ CorRegStartupMessage2 <- function(){
   
           "
   ),"\n The Concept, the Method, the Power")
+  
   return(msg)
 }
 
