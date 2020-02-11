@@ -49,7 +49,6 @@
 #' density <- density_estimation(X = X_appr, nbclustmax = 8, detailed = TRUE)
 #' Bic_null_vect <- density$BIC_vect # vector of the BIC found (1 value per covariate)
 #'    
-#' \donttest{
 #' # MCMC to find the structure
 #' res = structureFinder(X = X_appr, verbose = 0, reject = 0, Maxiter = 900, nbini = 20,
 #'                       candidates = -1, Bic_null_vect = Bic_null_vect, star = TRUE, 
@@ -67,8 +66,9 @@
 #' compZ = compare_struct(trueZ = TrueZ, Zalgo = hatZ) # qualitative comparison
 #' 
 #' # interpretation of found and true structure ordered by increasing R2
-#' readZ(Z = hatZ, crit = "R2", X = X_appr, output = "all", order = 1) # <NA>line: name of subregressed covariate
-#' readZ(Z = TrueZ, crit = "R2", X = X_appr, output = "all", order = 1) # <NA>line: name of subregressed covariate
+#' # <NA>line: name of subregressed covariate
+#' readZ(Z = hatZ, crit = "R2", X = X_appr, output = "all", order = 1) 
+#' readZ(Z = TrueZ, crit = "R2", X = X_appr, output = "all", order = 1)
 #' 
 #' # Regression coefficients estimation
 #' select = "NULL" # without variable selection (otherwise,  choose "lar" for example)
@@ -91,6 +91,6 @@
 #' barplot(as.matrix(MSE), main = "MSE on validation dataset",  
 #'         sub = "Results obtained without selection method (lasso and other are available)")
 #' abline(h = MSE_complete, col = "red")
-#' }
+#' 
 NULL
 # la puissance CorReg!!!!!!!!!

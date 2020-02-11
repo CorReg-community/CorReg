@@ -12,7 +12,8 @@ correg(
   compl = TRUE,
   expl = FALSE,
   pred = FALSE,
-  select = "lar",
+  select = c("lar", "lasso", "forward.stagewise", "stepwise", "elasticnet", "NULL",
+    "ridge", "adalasso", "clere", "spikeslab"),
   criterion = c("MSE", "BIC"),
   X_test = NULL,
   Y_test = NULL,
@@ -77,36 +78,33 @@ Computes three regression models: Complete (regression on the wole dataset X), m
 with a regression on the residuals of the marginal model by the residuals of the sub-regressions). Each regression can be computed with variable selection (for example the lasso).
 }
 \examples{
-\donttest{
-   #dataset generation
-   base=mixture_generator(n=15,p=10,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
-                          R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
-                          
-   X_appr=base$X_appr #learning sample
-   Y_appr=base$Y_appr #response variable for the learning sample
-   Y_test=base$Y_test #responsee variable for the validation sample
-   X_test=base$X_test #validation sample
-   TrueZ=base$Z#True generative structure (binary adjacency matrix)
-   
-   #Regression coefficients estimation
-    select="lar"#variable selection with lasso (using lar algorithm)
-   resY=correg(X=X_appr,Y=Y_appr,Z=TrueZ,compl=TRUE,expl=TRUE,pred=TRUE,
-               select=select,K=10)
-   
-   #MSE computation
-   MSE_complete=MSE_loc(Y=Y_test,X=X_test,A=resY$compl$A)#classical model on X
-   MSE_marginal=MSE_loc(Y=Y_test,X=X_test,A=resY$expl$A)#reduced model without correlations
-   MSE_plugin=MSE_loc(Y=Y_test,X=X_test,A=resY$pred$A)#plug-in model
-   MSE_true=MSE_loc(Y=Y_test,X=X_test,A=base$A)# True model
-   
-   
-   #MSE comparison
-   MSE=data.frame(MSE_complete,MSE_marginal,MSE_plugin,MSE_true)
-   MSE#estimated structure
-   compZ$true_left;compZ$false_left
-   
-  barplot(as.matrix(MSE),main="MSE on validation dataset", sub=paste("select=",select))
-  abline(h=MSE_complete,col="red")
-}
+# dataset generation
+base = mixture_generator(n = 15, p = 10, ratio = 0.4, tp1 = 1, tp2 = 1, tp3 = 1, positive = 0.5, 
+                         R2Y = 0.8, R2 = 0.9, scale = TRUE, max_compl = 3, lambda = 1)
+                       
+X_appr = base$X_appr # learning sample
+Y_appr = base$Y_appr # response variable for the learning sample
+Y_test = base$Y_test # responsee variable for the validation sample
+X_test = base$X_test # validation sample
+TrueZ = base$Z # True generative structure (binary adjacency matrix)
+
+# Regression coefficients estimation
+select = "lar" # variable selection with lasso (using lar algorithm)
+resY = correg(X = X_appr, Y = Y_appr, Z = TrueZ, compl = TRUE, expl = TRUE, pred = TRUE, 
+              select = select, K = 10)
+
+# MSE computation
+MSE_complete = MSE_loc(Y = Y_test, X = X_test, A = resY$compl$A) # classical model on X
+MSE_marginal = MSE_loc(Y = Y_test, X = X_test, A = resY$expl$A) # reduced model without correlations
+MSE_plugin = MSE_loc(Y = Y_test, X = X_test, A = resY$pred$A) # plug-in model
+MSE_true = MSE_loc(Y = Y_test, X = X_test, A = base$A) # True model
+
+
+# MSE comparison
+MSE = data.frame(MSE_complete, MSE_marginal, MSE_plugin, MSE_true)
+MSE # estimated structure
+
+barplot(as.matrix(MSE), main = "MSE on validation dataset", sub = paste("select =", select))
+abline(h = MSE_complete, col = "red")
    
 }
