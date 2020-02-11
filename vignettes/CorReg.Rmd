@@ -12,7 +12,7 @@ vignette: >
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center", fig.width = 7, fig.height = 5)
 ```
 
 
@@ -34,7 +34,7 @@ In this vignette we explain the main method in CorReg that leads to the `correg`
 We first generate (for this tutorial) a dataset with strong correlations between the covariates.
 The `mixture_generator` function gives such a dataset and also a validation sample built with the same parameters. Both contains a response variable generated on some covariates (not all) by linear regression.
 So we have sub-regressions that make some variables redundent when we know the other variables. Such correlations make the variance of the regression estimators explode. Moreover, dimension is unnecessarily high and interpretation of regression coefficients is dangerous. 
-````{r}
+```{r}
 library(CorReg)
 
 # dataset generation
@@ -149,11 +149,11 @@ MSE_true <- MSE_loc(Y = Y_test, X = X_test, A = base$A) # True model
 
 Then we can compare the MSE obtained for each model.
 
-```{r }
+```{r}
 # MSE comparison
 MSE <- data.frame(MSE_complete, MSE_marginal, MSE_plugin, MSE_true)
 MSE # estimated structure
 barplot(as.matrix(MSE), main = "MSE on validation dataset", sub = paste("select=", select), col = "blue")
 abline(h = MSE_complete, col = "red")
 
-````
+```
