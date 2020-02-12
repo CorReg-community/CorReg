@@ -34,7 +34,7 @@ structureFinder(
 
 \item{Bic_null_vect}{p-sized vector of the BIC values of the null hypothesis (used for independent variables). If NULL then it would be computed based on Gausian Mitures hypothesis.}
 
-\item{candidates}{strategy to define a neighourhood (list of candidates). Each new candidate is a modification of the current model as an adjacency matrix. So candidates are defined by the position that will be modified in Z. One modification for each candidate. We have then several neighbourhood to propose. 0:row and column (randomly chosen),-1:column only (randomly chosen), int>0:random int candidates at each step, -2 : all (but the diagonal) so \code{p^2-p} candidates, -3 : non-zeros (at each step we test all possible link removal). Each strategy gives a distinct number of candidates at each step.}
+\item{candidates}{strategy to define a neighourhood (list of candidates). Each new candidate is a modification of the current model as an adjacency matrix. So candidates are defined by the position that will be modified in Z. One modification for each candidate. We have then several neighbourhood to propose. 0:row and column (randomly chosen),-1:column only (randomly chosen), int>0:random int candidates at each step, -2: all (but the diagonal) so \code{p^2-p} candidates, -3: non-zeros (at each step we test all possible link removal). Each strategy gives a distinct number of candidates at each step.}
 
 \item{reject}{0: constraint relaxation (if a candidate is not feasible then we modify it to make it feasible by deleting not compatible links), 1: reject mode (if a candidate is not feasible, we don't look at it).}
 
@@ -60,9 +60,9 @@ structureFinder(
 
 \item{exact}{(boolean) If exact sub-regression is found it gives its content (another verbose mode). One of the covariates can then be deleted manually by the user without loss of information.}
 
-\item{nbini}{Number of initialisations (using initialisation based on correlation matrix if Z is NULL). if NULL and Z is NULL : only one chain starting with zero matrix (model without any sub-regression)}
+\item{nbini}{Number of initialisations (using initialisation based on correlation matrix if Z is NULL). if NULL and Z is NULL: only one chain starting with zero matrix (model without any sub-regression)}
 
-\item{star}{(boolean) to compute BIC* instead of BIC (stronger penalization of the complexity based on a hierarchical uniform hypothesis on the probability of each structure). WARNING : star=TRUE implies p2max<=p/2.}
+\item{star}{(boolean) to compute BIC* instead of BIC (stronger penalization of the complexity based on a hierarchical uniform hypothesis on the probability of each structure). WARNING: star=TRUE implies p2max<=p/2.}
 
 \item{clean}{(boolean) if TRUE then we add cleaning steps at the end of the walk (testing each remainging 1 for removal). So it is only few additional steps with \code{candidates=-3}}
 
@@ -88,54 +88,53 @@ At each step we compare several candidates that are the local structure modified
 To avoid local extrema we allow constraints relaxation. If a modification is not feasible (it generates cycles for example) then the candidate is not rejected but modified. In fact, if we want to modify \code{Z[i,j]} then we modify Z at each position that makes the modification of \code{Z[i,j]} not feasible. It is like allowing several steps in one, a kind of simulated anhealing but without parameter to tune.
 }
 \examples{
-\donttest{
-  #rm(list=ls())#clean the workspace
-  
-   #dataset generation
-   base=mixture_generator(n=15,p=10,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
-                          R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
-   X_appr=base$X_appr #learning sample
-   Y_appr=base$Y_appr #response variable for the learning sample
-   Y_test=base$Y_test #responsee variable for the validation sample
-   X_test=base$X_test #validation sample
-   
-   TrueZ=base$Z#True generative structure (binary adjacency matrix)
-   
-   #density estimation for the MCMC (with Gaussian Mixtures)
-   density=density_estimation(X=X_appr,nbclustmax=10,detailed=TRUE)
-   Bic_null_vect=density$BIC_vect# vector of the BIC found (1 value per covariate)
-   
-   #MCMC to find the structure
-   res=structureFinder(X=X_appr,verbose=0,reject=0,Maxiter=900,plot=TRUE,
-               nbini=20,candidates=-1,Bic_null_vect=Bic_null_vect,star=TRUE,p1max=15,clean=TRUE)
-   hatZ=res$Z_opt #found structure (adjacency matrix)
-   hatBic=res$bic_opt #associated BIC
-   
-   #looking inside the walk
-   old_par<-par()
-   par(mar=c(5,4,4,5)+.1)
-   plot(res$bic_step,type="l",col="red",ylab="BIC",
-     sub="blue: complexity, red: BIC", main="Evolution of BIC and complexity during the walk")
-   par(new=TRUE)
-   plot(res$complexity_step,type="l",col="blue",xaxt="n",yaxt="n",xlab="",ylab="")
-   axis(4)
-   mtext("Complexity",side=4,line=3)
-   #legend("topleft",col=c("red","blue"),lty=1,legend=c("BIC","Complexity"))
-   
-   #BIC comparison between true and found structure
-   bicopt_vect=BicZ(X=X_appr,Z=hatZ,Bic_null_vect=Bic_null_vect)
-   bicopt_vrai=BicZ(X=X_appr,Z=TrueZ,Bic_null_vect=Bic_null_vect)
-   sum(bicopt_vect);sum(bicopt_vrai)
-   
-   #Structure comparison
-   compZ=compare_struct(trueZ=TrueZ,Zalgo=hatZ)#qualitative comparison
-   
-   #interpretation of found and true structure ordered by increasing R2
-   readZ(Z=hatZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
-   readZ(Z=TrueZ,crit="R2",X=X_appr,output="all",order=1)# <NA>line : name of subregressed covariate
-   
-   par(old_par)
-  } 
+# dataset generation
+base = mixture_generator(n = 15, p = 10, ratio = 0.4, tp1 = 1, tp2 = 1, tp3 = 1, positive = 0.5, 
+                         R2Y = 0.8, R2 = 0.9, scale = TRUE, max_compl = 3, lambda = 1)
+X_appr = base$X_appr # learning sample
+Y_appr = base$Y_appr # response variable for the learning sample
+Y_test = base$Y_test # responsee variable for the validation sample
+X_test = base$X_test # validation sample
+
+TrueZ = base$Z # True generative structure (binary adjacency matrix)
+
+# density estimation for the MCMC (with Gaussian Mixtures)
+density = density_estimation(X = X_appr, nbclustmax = 10, detailed = TRUE)
+Bic_null_vect = density$BIC_vect # vector of the BIC found (1 value per covariate)
+
+# MCMC to find the structure
+res = structureFinder(X = X_appr, verbose = 0, reject = 0, Maxiter = 900, plot = TRUE, 
+                      nbini = 20, candidates = -1, Bic_null_vect = Bic_null_vect, star = TRUE, 
+                      p1max = 15, clean = TRUE)
+hatZ = res$Z_opt # found structure (adjacency matrix)
+hatBic = res$bic_opt # associated BIC
+
+# looking inside the walk
+old_par<-par()
+par(mar = c(5, 4, 4, 5)+.1)
+plot(res$bic_step, type = "l", col = "red", ylab = "BIC", sub = "blue: complexity, red: BIC",
+     main = "Evolution of BIC and complexity during the walk")
+par(new = TRUE)
+plot(res$complexity_step, type = "l", col = "blue", xaxt = "n", yaxt = "n", xlab = "", ylab = "")
+axis(4)
+mtext("Complexity", side = 4, line = 3)
+# legend("topleft", col = c("red", "blue"), lty = 1, legend = c("BIC", "Complexity"))
+
+# BIC comparison between true and found structure
+bicopt_vect = BicZ(X = X_appr, Z = hatZ, Bic_null_vect = Bic_null_vect)
+bicopt_vrai = BicZ(X = X_appr, Z = TrueZ, Bic_null_vect = Bic_null_vect)
+sum(bicopt_vect)
+sum(bicopt_vrai)
+
+# Structure comparison
+compZ = compare_struct(trueZ = TrueZ, Zalgo = hatZ) # qualitative comparison
+
+# interpretation of found and true structure ordered by increasing R2
+# <NA>line: name of subregressed covariate
+readZ(Z = hatZ, crit = "R2", X = X_appr, output = "all", order = 1)
+readZ(Z = TrueZ, crit = "R2", X = X_appr, output = "all", order = 1)
+
+par(old_par)
 
 
 }

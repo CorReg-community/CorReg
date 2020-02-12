@@ -17,20 +17,16 @@ showdata(X = X, what = c("miss", "correl"), pch = 7)
 Plot the dataset with marks where there are missing value. It allows to have a quick idea of the structure of missing values (Missing at Random or not for example).
 }
 \examples{
-\donttest{
-   data<-mtcars
-  datamiss=Terminator(target = data,wrath=0.05)#5\% of missing values
-  showdata(datamiss)#plot positions of the missing values
-  
-  #missing values with a structure
-  datamiss=Terminator(target = data,diag=1)#diag of missing values
-  showdata(datamiss)#plot positions of the missing values (no full individuals, no full variable)
-  
-  opar=par(no.readonly = TRUE)
-  showdata(X=cor(data),what="correl")
-  par(opar)
+data <- mtcars
+datamiss = Terminator(target = data, wrath = 0.05) # 5\% of missing values
+showdata(datamiss) # plot positions of the missing values
 
-}
+# missing values with a structure
+datamiss = Terminator(target = data, diag = 1) # diag of missing values
+showdata(datamiss) # plot positions of the missing values (no full individuals, no full variable)
 
+opar = par(no.readonly = TRUE)
+showdata(X = cor(data), what = "correl")
+par(opar)
 
 }
