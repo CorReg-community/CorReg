@@ -11,7 +11,7 @@ naive_model(proba_1 = 0.8, effectif = 100, nb_1 = NULL)
 
 \item{effectif}{The global effective of the population}
 
-\item{nb_1}{The number of 1 in the population.If not NULL proba_1 is not read.default=NULL}
+\item{nb_1}{The number of 1 in the population. If not NULL proba_1 is not read.default=NULL}
 }
 \description{
 Describe the result of a naive binary discriminant model
