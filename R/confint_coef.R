@@ -23,7 +23,7 @@ confint_coef <- function(n = NULL, prop = NULL, mean = NULL, alpha = 0.05, label
       confint = confint.default(modele)
       coef = cbind(modele$coefficients, confint)
       colnames(coef) = c("values", "borne inf IC", "borne sup IC")
-      plot(rstudent(modele), type = "p", cex = 0.5, ylab = "standardized residuals", main = "analyse des residus", sub = "95pourcent des points doivent se trouver entre les lignes horizontales")
+      plot(rstudent(modele), type = "p", cex = 0.5, ylab = "standardized residuals", main = "analyse des residus", sub = "95 pour cent des points doivent se trouver entre les lignes horizontales")
       abline(h = c(-2, 2), col = "red")
       barplot(modele$coefficients, ylim = c(0, max(coef[, 3])), col = "cyan", main = "Intervalle de confiance des coefficients", sub = "Interpretation: ils ne doivent pas contenir 0")
       x0 = seq(from = 1, length.out = nrow(coef), by = 1.2) - 0.3
