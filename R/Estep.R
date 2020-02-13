@@ -22,7 +22,7 @@ Estep <- function(X = X, alpha = alpha, M = NULL, Z = NULL, mixmod = NULL, Zc = 
    # on liste tout ce qu'il faut (on verra apres comment extraire ca pour optimiser)
    nbmank = nrow(quimank)
    Z = alpha[-1, ];Z[Z != 0] = 1
-   Z = methods::as(Matrix(Z, sparse = TRUE), "nsparseMatrix")
+   Z = as(Matrix(Z, sparse = TRUE), "nsparseMatrix")
    Zc = Matrix(colSums(Z))
    X = fillmiss(X = X, X1 = FALSE, mixmod = FALSE)
    
