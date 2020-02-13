@@ -1,50 +1,52 @@
 #' Clean Z's columns based on p-values (coefficients or global)
+#' 
 #' @description This function cleans the structure of correlations by setting to 0 the coefficients in the sub-regressions that are associated to a p-value below the "pvalmin" threshold.
 #' @param Z the binary matrix describing the sub-regression structure (as given by the "structureFinder" function).
 #' @param X the dataset on which we have the sub-regression structure Z.
 #' @param pvalmin the threshold on coefficients p-valuesto clean the structure.
 #' @param global boolean. If TRUE the threshold is only on the F statistic for each sub-regression, not on each coefficients. So it will only remove entire sub-regressions.
 #' @param bonferroni boolean to use bonferroni correction on the pvalmin parameter to avoid multiple testing issues.
+#' 
 #' @export
-cleanZtest<-function (Z = Z, X = X, pvalmin = 0.05, global=FALSE,bonferroni=FALSE) 
+cleanZtest <- function(Z = Z, X = X, pvalmin = 0.05, global = FALSE, bonferroni = FALSE)
 {
-  if(global){
-    if(bonferroni){
-      pvalmin=pvalmin/length(quicol)
+  if (global) {
+    if (bonferroni) {
+      pvalmin = pvalmin / length(quicol)
     }
     quicol = which(colSums(Z) != 0)
     for (i in quicol) {
       qui = which(Z[, i] != 0)
       Xloc = X[, qui]
       Yloc = X[, i]
-      lmloc=lm(Yloc~.,data=data.frame(Xloc))
-      summar=summary(lmloc)
-      global_pval=pf(summar$fstatistic[1],summar$fstatistic[2],summar$fstatistic[3],lower.tail=FALSE)   
-      if (global_pval>pvalmin) {#equation pourrie, on la supprime
+      lmloc = lm(Yloc ~ ., data = data.frame(Xloc))
+      summar = summary(lmloc)
+      global_pval = pf(summar$fstatistic[1], summar$fstatistic[2], summar$fstatistic[3], lower.tail = FALSE)
+      if (global_pval > pvalmin) { # equation pourrie, on la supprime
         Z[, i] = 0
       }
     }
-     }else{#on regarde chaque coef donc on boucle jusqu'a stabilite
-    pvalminini=pvalmin
-    change=(colSums(Z) != 0)#colonnes a regarder
-    quicol=which(change)
-    while(length(quicol)>0 ){
-      if(bonferroni){pvalmin=pvalminini/sum(Z[,quicol])}
-      for (i in quicol) {#nettoyage
+  } else { # on regarde chaque coef donc on boucle jusqu' 'a stabilite
+    pvalminini = pvalmin
+    change = (colSums(Z) != 0) # colonnes a regarder
+    quicol = which(change)
+    while (length(quicol) > 0) {
+      if (bonferroni) {pvalmin = pvalminini / sum(Z[, quicol])}
+      for (i in quicol) { # nettoyage
         qui = which(Z[, i] != 0)
         Xloc = X[, qui]
         Yloc = X[, i]
-        lmloc=lm(Yloc~.,data=data.frame(Xloc))
-        summar=summary(lmloc)
-        coefs_pval=coef(summar)[,4]#p-values des coefficients
-        #on elague juste les coefs pourris
-        if(length(Z[qui,i][coefs_pval[-1]>pvalmin])>0){#on a des choses a changer
-          Z[qui,i][coefs_pval[-1]>pvalmin]=0#on supprime
-        }else{#rien n'a change donc on marque la colonne
-          change[i]=FALSE
-        }         
+        lmloc = lm(Yloc ~ ., data = data.frame(Xloc))
+        summar = summary(lmloc)
+        coefs_pval = coef(summar)[, 4] # p-values des coefficients
+        # on elague juste les coefs pourris
+        if (length(Z[qui, i][coefs_pval[-1] > pvalmin]) > 0) { # on a des choses a changer
+          Z[qui, i][coefs_pval[-1] > pvalmin] = 0 # on supprime
+        } else { # rien n' 'a change donc on marque la colonne
+          change[i] = FALSE
+        }
       }
-      quicol=which(change & (colSums(Z) != 0))#on doit reverifier les colonnes modifiees encore non nulles
+      quicol = which(change & (colSums(Z) != 0)) # on doit reverifier les colonnes modifiees encore non nulles
     }
   }
   

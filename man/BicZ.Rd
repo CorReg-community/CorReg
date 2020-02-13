@@ -36,11 +36,12 @@ The vector of the BICs associated to each covariate (conditionnal distribution) 
 Compute the BIC of a given structure
 }
 \examples{
-data=mixture_generator(n=15,p=5,valid=0)#dataset generation
-Z=data$Z #binary adjacency matrix that describes correlations within the dataset
-X=data$X_appr
-Bic_null_vect=density_estimation(X=X)$BIC_vect
-#Computes the BIC associated to each covariate (optional, BicZ can do it if not given as an input)
-#computes the BIC associated to the structure
-res=BicZ(X = X,Z = Z,Bic_null_vect=Bic_null_vect)
+data = mixture_generator(n = 15, p = 5, valid = 0) # dataset generation
+Z = data$Z # binary adjacency matrix that describes correlations within the dataset
+X = data$X_appr
+Bic_null_vect = density_estimation(X = X)$BIC_vect
+# Computes the BIC associated to each covariate (optional, BicZ can do it if not given as an input)
+# computes the BIC associated to the structure
+res = BicZ(X = X, Z = Z, Bic_null_vect = Bic_null_vect)
+
 }

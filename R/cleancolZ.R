@@ -7,8 +7,8 @@
 # '@param plot if TRUE returns the vector of BIC for each step
 # '@param verbose 0:none, 1:BIC,step and complexity when best BIC found 2:BIC, step, complexity, nb candidates and best candidate when best BIC found
 # '@export
-cleancolZ<-function(X=X,Z=Z,Bic_null_vect=Bic_null_vect,methode_BIC=1,plot=FALSE,verbose=1,star=FALSE){
-   X=1*as.matrix(X)
-   res=.Call( "cleancolZ",X,Z,Bic_null_vect,methode_BIC,plot,verbose,star, PACKAGE = "CorReg")
+cleancolZ <- function(X = X, Z = Z, Bic_null_vect = Bic_null_vect, methode_BIC = 1, plot = FALSE, verbose = 1, star = FALSE) {
+  X = 1 * as.matrix(X)
+  res = .Call("cleancolZ", X, Z, Bic_null_vect, methode_BIC, plot, verbose, star, PACKAGE = "CorReg")
   return(res)
 }
