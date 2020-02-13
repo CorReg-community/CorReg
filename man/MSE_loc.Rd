@@ -22,13 +22,14 @@ the Mean Squared Error observed on \code{X} when using \code{A} coefficients to 
 This function computes the MSE (Mean Squared Error) of prediction associated to a vector of coefficients \code{A} used to predict a response variable \code{Y} by linear regression on \code{X}, with an intercept or not.
 }
 \examples{
-   #dataset generation
-   base=mixture_generator(n=15,p=5,valid=100,scale=TRUE)
-   X_appr=base$X_appr #learning sample
-   Y_appr=base$Y_appr#response variable
-   X_test=base$X_test#validation sample
-   Y_test=base$Y_test#response variable (validation sample)
-   A=lm(Y_appr~X_appr)$coefficients
-MSE_loc(Y=Y_appr,X=X_appr,A=A)#MSE on the learning dataset
-MSE_loc(Y=Y_test,X=X_test,A=A)#MSE on the validation sample
+# dataset generation
+base = mixture_generator(n = 15, p = 5, valid = 100, scale = TRUE)
+X_appr = base$X_appr # learning sample
+Y_appr = base$Y_appr # response variable
+X_test = base$X_test # validation sample
+Y_test = base$Y_test # response variable (validation sample)
+A = lm(Y_appr ~ X_appr)$coefficients
+MSE_loc(Y = Y_appr, X = X_appr, A = A) # MSE on the learning dataset
+MSE_loc(Y = Y_test, X = X_test, A = A) # MSE on the validation sample
+
 }

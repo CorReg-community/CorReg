@@ -45,16 +45,15 @@ matplot_zone(
 Plot the columns of one matrix against the columns of another, with conditionnal background for easier comparison of curves.
 }
 \examples{
-    \donttest{
-n=15
-x=1:n
-y=cbind(c(rnorm(5,0,1),rnorm(5,1,1),rnorm(5,2,1)),
-         c(rnorm(5,0,1),rnorm(5,1,1),rnorm(5,4,1)),
-         c(rnorm(5,1,3),rnorm(5,1,2),rnorm(5,1,1)))
-matplot_zone(x,y,type="l",what=which.max,main="Highest curve")
-#background color follows color of the highest curve
-matplot_zone(x,y,type="l",what=which.min,main="Lowest curve")
-#background color follows color of the lowest curve
+n = 15
+x = 1:n
+y = cbind(c(rnorm(5, 0, 1), rnorm(5, 1, 1), rnorm(5, 2, 1)),
+          c(rnorm(5, 0, 1), rnorm(5, 1, 1), rnorm(5, 4, 1)),
+          c(rnorm(5, 1, 3), rnorm(5, 1, 2), rnorm(5, 1, 1)))
+matplot_zone(x, y, type = "l", what = which.max, main = "Highest curve")
+# background color follows color of the highest curve
+matplot_zone(x, y, type = "l", what = which.min, main = "Lowest curve")
+# background color follows color of the lowest curve
 
-}
+
 }

@@ -30,7 +30,7 @@ density_estimation(
 
 \item{max}{boolean. Use an heuristic to shrink nbclustmax according to the number of individuals in the dataset}
 
-\item{package}{package to use (Rmixmod,mclust)}
+\item{package}{package to use ("Rmixmod", "mclust")}
 
 \item{nbini}{number of initial points for Rmixmod}
 
@@ -49,18 +49,15 @@ a list that contains:
 Estimates the density of each covariates with gaussian mixture models and then gives the associated BIC.
 }
 \examples{
-\donttest{
-  #rm(list=ls())#clean the workspace
-  
-   #dataset generation
-   base=mixture_generator(n=150,p=10,valid=0,ratio=0.4,tp1=1,tp2=1,tp3=1,positive=0.5,
-                          R2Y=0.8,R2=0.9,scale=TRUE,max_compl=3,lambda=1)
-   X_appr=base$X_appr #learning sample
- density=density_estimation(X = X_appr, detailed = TRUE)#estimation of the marginal densities
-density$BIC_vect #vector of the BIC (one per variable)
-density$BIC #global value of the BIC (sum of the BICs)
-density$nbclust #vector of the numbers of components.
-density$details #matrices that describe each Gaussian Mixture (proportions, means and variances)
+# dataset generation
+base = mixture_generator(n = 150, p = 10, valid = 0, ratio = 0.4, tp1 = 1, tp2 = 1, tp3 = 1, 
+                         positive = 0.5, R2Y = 0.8, R2 = 0.9, scale = TRUE, max_compl = 3, 
+                         lambda = 1)
+X_appr = base$X_appr # learning sample
+density = density_estimation(X = X_appr, detailed = TRUE) # estimation of the marginal densities
+density$BIC_vect # vector of the BIC (one per variable)
+density$BIC # global value of the BIC (sum of the BICs)
+density$nbclust # vector of the numbers of components.
+density$details # matrices that describe each Gaussian Mixture (proportions, means and variances)
 
-   }
 }

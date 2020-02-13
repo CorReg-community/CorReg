@@ -13,6 +13,7 @@
 #' \item{individus_restants}{Index of remaining individuals}
 #' \item{variables_restantes}{Index of remaining variables}
 #' \item{X}{If \code{Xout=TRUE}, the reduced dataset without missing values}
+#' 
 #' @examples
 #' data <- mtcars
 #' datamiss = Terminator(target = data, wrath = 0.05) # 5% of missing values
@@ -21,7 +22,7 @@
 #' reduced = Conan(X = datamiss)
 #' reduced
 #'   
-#'   @export
+#' @export
 Conan <- function(X = X, nbstep = Inf, std = FALSE, verbose = FALSE, coercing = NULL, Xout = TRUE) {
    steploc = 1
    nloc = nrow(X)

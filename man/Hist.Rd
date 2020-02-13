@@ -25,7 +25,7 @@ Hist(
 
 \item{mode}{one of c("classical","cumsum","density")}
 
-\item{breaks}{by default : "Sturges"}
+\item{breaks}{by default: "Sturges"}
 
 \item{...}{further arguments and graphical parameters passed to plot.histogram and thence to title and axis.}
 }
@@ -33,7 +33,8 @@ Hist(
 Histograms with clusters
 }
 \examples{
-x<-c(rnorm(50,0,1),rnorm(50,1,1))
-classes<-rep(1:2,each=50)
-Hist(x,classes)
+x <- c(rnorm(50, 0, 1), rnorm(50, 1, 1))
+classes <- rep(1:2, each = 50)
+Hist(x, classes)
+
 }

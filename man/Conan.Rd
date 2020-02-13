@@ -42,5 +42,4 @@ showdata(datamiss) # plot positions of the missing values
 reduced = Conan(X = datamiss)
 reduced
   
-  @export
 }

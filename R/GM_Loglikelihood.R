@@ -7,13 +7,11 @@
 # ' @param mixmod is result of calcul_BIC_mixmod2.0(X=dataset,nbclustmax=nbclustmax,details=TRUE)
 # ' @param log boolean to define if you want the likelihood or the log-likelihood
 # ' @param intercept boolean to define if there is an intercept in the model (default=TRUE)
-GM_Loglikelihood<-function(Y=Y,X=X,B=B,sigma=sigma,M=NULL,mixmod,log=TRUE,intercept=TRUE){
-  if(is.null(M)){
-    M=0*X
-    M[is.na(M)]=1
-    X[is.na(X)]=0
+GM_Loglikelihood <- function(Y = Y, X = X, B = B, sigma = sigma, M = NULL, mixmod, log = TRUE, intercept = TRUE) {
+  if (is.null(M)) {
+    M = 0 * X
+    M[is.na(M)] = 1
+    X[is.na(X)] = 0
   }
-  return(.Call( "GM_likelihood",Y,X,B,sigma,M,mixmod$nbclust,mixmod$details,log,intercept, PACKAGE = "CorReg"))
+  return(.Call("GM_likelihood", Y, X, B, sigma, M, mixmod$nbclust, mixmod$details, log, intercept, PACKAGE = "CorReg"))
 }
-
-
