@@ -2,6 +2,7 @@
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CorReg)](https://cran.r-project.org/package=CorReg) [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/CorReg?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/CorReg) [![Downloads](https://cranlogs.r-pkg.org/badges/CorReg)](https://cran.rstudio.com/web/packages/CorReg/index.html)
 
+The code was originally on an [R-forge repository](https://r-forge.r-project.org/projects/correg/).
 
 ## CorReg's Concept
 
@@ -27,3 +28,18 @@ Once the package is installed, a vignette showing an example is available using 
 ```
 RShowDoc("CorReg", package = "CorReg")
 ```
+
+## Credits
+
+**CorReg** is developed by Clément Théry with contributions from Christophe Biernacki, Gaétan Loridant, Florian Watrin and the A106 team: Quentin Grimonprez, Vincent Kubicki, Samuel Blanck, Jérémie Kellner.
+
+Copyright ArcelorMittal
+
+## Licence
+
+[CeCILL](https://cecill.info/licences/Licence_CeCILL_V2.1-en.txt)
+
+## References
+
+Model-based covariable decorrelation in linear regression (CorReg): application to missing data and to steel industry. C Thery - 2015, http://www.theses.fr/2015LIL10060
+
