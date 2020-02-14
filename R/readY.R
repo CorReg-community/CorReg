@@ -7,17 +7,17 @@
 # ' @param verbose boolean to print ANOVA if computed
 # ' @param Y the response variable if ANOVA is computed
 # '@export
-readY<-function(A=A,labels=NULL,X=NULL,intercept=TRUE,ANOVA=FALSE,verbose=FALSE,Y=NULL){
-   if(is.null(labels)){
-      labels=names(X)
+readY <- function(A = A, labels = NULL, X = NULL, intercept = TRUE, ANOVA = FALSE, verbose = FALSE, Y = NULL) {
+   if (is.null(labels)) {
+      labels = names(X)
    }
-   if(intercept){labels=c("intercept",labels)}
-   interp=cbind(A[A!=0],labels[A!=0])
-   if(ANOVA & !is.null(X) & !is.null(Y)){
-      Xred=X[,A[-intercept]!=0]
-      reslm=lm(Y~.,data=data.frame(Xred))
-      interp=summary(reslm) 
+   if (intercept) {labels = c("intercept", labels)}
+   interp = cbind(A[A != 0], labels[A != 0])
+   if (ANOVA & !is.null(X) & !is.null(Y)) {
+      Xred = X[, A[-intercept] != 0]
+      reslm = lm(Y ~ ., data = data.frame(Xred))
+      interp = summary(reslm)
    }
-   if(verbose){print(interp)}
+   if (verbose) {print(interp)}
    return(interp)
 }

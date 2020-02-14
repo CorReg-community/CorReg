@@ -2,7 +2,7 @@
 % Please edit documentation in R/readZ.R
 \name{readZ}
 \alias{readZ}
-\title{read the structure and explain it}
+\title{Read the structure and explain it}
 \usage{
 readZ(
   Z = Z,
@@ -30,7 +30,7 @@ readZ(
 \item{order}{define the order used (0: none, -1: decreasing, 1: growing) for printing}
 }
 \value{
-a list containing the sub-regressions details. Each item of the list represents 
+a list containing the sub-regressions details. Each item of the list represents
 a subregression. First element is the R-square.Second element is the variable that is regressed by others.
 Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column).
 }
@@ -38,16 +38,14 @@ Then comes the list of the explicative variables in the subgression and the asso
 This function describes the structure of sub-regression given by an adjacency matrix. It computes the associated regression coefficients and R-squared for each sub-regression.
 }
 \examples{
-\donttest{
+data <- mtcars
+# we first search a sub-regression structure
+res <- structureFinder(X = data, nbini = 30, verbose = 0)
+# then we can try to interpret it
+readZ(Z = res$Z_opt, crit = "R2", output = "all", X = data)
+# each component is a sub-regression
+# First line: The adjusted R-squared is given
+# Second line: the name of the covariate that is regressed by others
+# other lines: Coefficients of sub-regression and name of the associated covariate
 
-data<-mtcars
-#we first search a sub-regression structure
-res=structureFinder(X = data,nbini = 30,verbose=0)
-#then we can try to interpret it
-readZ(Z = res$Z_opt,crit = "R2",output = "all",X = data)
-#each component is a sub-regression
-#First line : The adjusted R-squared is given
-#Second line : the name of the covariate that is regressed by others
-#other lines : Coefficients of sub-regression and name of the associated covariate
-}
 }

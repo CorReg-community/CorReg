@@ -2,7 +2,7 @@
 % Please edit documentation in R/recursive_tree.R
 \name{recursive_tree}
 \alias{recursive_tree}
-\title{decision tree in a recursive way}
+\title{Decision tree in a recursive way}
 \usage{
 recursive_tree(
   data = data,
@@ -46,18 +46,18 @@ recursive_tree(
 }
 \value{
 returns the tree as an "rpart" object and the modele as a vector of the names of the covariates the tree could have used (to give as an input of the function).
-\item{modele}{ vector of the names of the covariates the tree could have used} 
+\item{modele}{ vector of the names of the covariates the tree could have used}
 \item{tree}{ the regression tree as an "rpart" object}
 }
 \description{
-decision tree in a recursive way
+Decision tree in a recursive way
 }
 \examples{
-   data<-mtcars
-main="Regression tree of cars consumption (in mpg)"
-  mytree=recursive_tree(data = data,Y ="mpg" ,main=main,verbose=FALSE)
-   #want to try without cylinder and disp
-  mytree2=recursive_tree(data = data,Y ="mpg" ,kill=c("cyl","disp"),
-  modele=mytree$modele,main=main,verbose=FALSE)
-  
+data <- mtcars
+main = "Regression tree of cars consumption (in mpg)"
+mytree = recursive_tree(data = data, Y = "mpg", main = main, verbose = FALSE)
+# want to try without cylinder and disp
+mytree2 = recursive_tree(data = data, Y = "mpg", kill = c("cyl", "disp"),
+modele = mytree$modele, main = main, verbose = FALSE)
+
 }
