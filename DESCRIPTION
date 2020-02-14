@@ -16,7 +16,7 @@ Description: Linear regression based on a recursive structural equation model
     (explicit multiples correlations) found by a M.C.M.C.(Markov Chain Monte Carlo) algorithm. 
     It permits to face highly correlated variables. Variable selection is included (by lasso,
     elastic net, etc.). It also provides some graphical tools for basic statistics. 
-    For more information about the method, read the PhD thesis of Clément Théry (2015) in the link below.
+    For more information about the method, read the PhD thesis of Clement Thery (2015) in the link below.
 License: CeCILL
 Copyright: ArcelorMittal
 URL: http://www.correg.org, http://www.theses.fr/2015LIL10060
