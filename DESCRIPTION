@@ -20,6 +20,7 @@ Description: Linear regression based on a recursive structural equation model
 License: CeCILL
 Copyright: ArcelorMittal
 URL: http://www.correg.org, http://www.theses.fr/2015LIL10060
+
 Imports: Rcpp(>= 0.11.0), lars(>= 1.2), 
         elasticnet(>= 1.1), corrplot(>= 0.73), Matrix(>= 1.1), rpart(>=
         4.1-5), glmnet(>= 2.0-2), MASS(>= 7.3-30), mvtnorm(>= 0.9),
