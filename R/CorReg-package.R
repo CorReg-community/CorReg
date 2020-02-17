@@ -1,10 +1,10 @@
-#' @import Rcpp Rmixmod lars glmnet elasticnet Matrix
+#' @import Rcpp lars glmnet elasticnet Matrix
 #' @import glmnet MASS rpart corrplot mvtnorm
 # ' @import parcor clere spikeslab rtkpp
 #' @rawNamespace import(mclust, except = "dmvnorm")
 #' @importFrom grDevices col2rgb gray rgb colors
 #' @importFrom utils install.packages
-#' @importFrom graphics abline arrows boxplot legend matplot par points rect text title
+#' @importFrom graphics abline arrows barplot boxplot hist legend matplot par plot points rect text title
 #' @importFrom stats AIC BIC aov as.formula chisq.test coef confint.default kruskal.test cor dnorm lm pf predict qnorm qt rbinom rgamma rmultinom rnorm rpois rstudent runif sd var
 #' @importFrom methods as
 #' 

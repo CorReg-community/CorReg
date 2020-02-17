@@ -20,14 +20,13 @@ Description: Linear regression based on a recursive structural equation model
 License: CeCILL
 Copyright: ArcelorMittal
 URL: http://www.correg.org, http://www.theses.fr/2015LIL10060
-BugReports: https://github.com/CorReg/CorReg/issues
-Imports: Rcpp(>= 0.11.0), lars(>= 1.2), Rmixmod(>= 2.0.1),
+Imports: Rcpp(>= 0.11.0), lars(>= 1.2), 
         elasticnet(>= 1.1), corrplot(>= 0.73), Matrix(>= 1.1), rpart(>=
         4.1-5), glmnet(>= 2.0-2), MASS(>= 7.3-30), mvtnorm(>= 0.9),
         mclust(>= 4.2), methods
 LinkingTo: Rcpp, RcppEigen
 Suggests: clere(>= 1.1.2), spikeslab(>= 1.1.5), parcor(>= 0.2), missMDA
-        (>= 1.7.3), tuneR, knitr, rmarkdown
+        (>= 1.7.3), tuneR, knitr, rmarkdown, Rmixmod(>= 2.0.1)
 VignetteBuilder: knitr
 RoxygenNote: 7.0.2
 Encoding: UTF-8
