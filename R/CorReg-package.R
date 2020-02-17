@@ -1,4 +1,4 @@
-#' @import Rcpp Rmixmod lars glmnet elasticnet Matrix
+#' @import Rcpp lars glmnet elasticnet Matrix
 #' @import glmnet MASS rpart corrplot mvtnorm
 # ' @import parcor clere spikeslab rtkpp
 #' @rawNamespace import(mclust, except = "dmvnorm")
