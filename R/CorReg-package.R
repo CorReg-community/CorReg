@@ -4,7 +4,7 @@
 #' @rawNamespace import(mclust, except = "dmvnorm")
 #' @importFrom grDevices col2rgb gray rgb colors
 #' @importFrom utils install.packages
-#' @importFrom graphics abline arrows boxplot legend matplot par points rect text title
+#' @importFrom graphics abline arrows boxplot legend matplot par points rect text title barplot hist plot
 #' @importFrom stats AIC BIC aov as.formula chisq.test coef confint.default kruskal.test cor dnorm lm pf predict qnorm qt rbinom rgamma rmultinom rnorm rpois rstudent runif sd var
 #' @importFrom methods as
 #' 
