@@ -20,7 +20,7 @@ This package also contains some functions to make statistics easier.
 
 ```
 library(devtools)
-install_github("Quentin62/CorReg", build_vignettes = TRUE)
+install_github("CorReg/CorReg", build_vignettes = TRUE)
 ```
 
 ## Vignette
