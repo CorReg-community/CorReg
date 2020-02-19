@@ -21,7 +21,7 @@
 #' We first search for an explicit model of correlations within the covariates by linear regression, 
 #' then this structure is interpreted and used to reduce dimension and correlations for the main regression on the response variable.
 #'
-#' @details CorReg: see \url{www.correg.org} for article and Phd Thesis about CorReg.
+#' @details CorReg: see \url{http://www.correg.org} for article and Phd Thesis about CorReg.
 #' 
 #' @author Clement THERY <clement.thery@@arcelormittal.com>
 #'
