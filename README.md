@@ -18,7 +18,7 @@ This package also contains some functions to make statistics easier.
 
 ## Installation
 
-```
+``` r
 library(devtools)
 install_github("CorReg/CorReg", build_vignettes = TRUE)
 ```
@@ -27,7 +27,7 @@ install_github("CorReg/CorReg", build_vignettes = TRUE)
 
 Once the package is installed, a vignette showing an example is available using the R command:
 
-```
+``` r
 RShowDoc("CorReg", package = "CorReg")
 ```
 
