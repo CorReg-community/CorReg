@@ -1,5 +1,5 @@
-#ifndef _CorReg_OLS_H
-#define _CorReg_OLS_H
+#ifndef _CorReg_rechercheZ_rejet_H
+#define _CorReg_rechercheZ_rejet_H
 
 #include <RcppEigen.h>
 using namespace Rcpp ;
