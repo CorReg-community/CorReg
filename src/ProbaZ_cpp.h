@@ -1,5 +1,5 @@
-#ifndef _CorReg_BicLoc_cpp_H
-#define _CorReg_BicLoc_cpp_H
+#ifndef _CorReg_ProbaZ_cpp_H
+#define _CorReg_ProbaZ_cpp_H
 
 #include <RcppEigen.h>
 #include <math.h>
