@@ -1,8 +1,8 @@
 Package: CorReg
 Type: Package
 Title: Linear Regression Based on Linear Structure Between Variables
-Version: 1.2.18
-Date: 2020-04-03
+Version: 1.2.19
+Date: 2020-04-28
 Authors@R: c(person("Clement", "Thery", role = c("aut", "cre"), email = "corregeous@correg.org"),
     person("Christophe", "Biernacki", role = "ths"),
     person("Gaetan", "Loridant", role = "ths"),
@@ -28,5 +28,5 @@ LinkingTo: Rcpp, RcppEigen
 Suggests: clere(>= 1.1.2), spikeslab(>= 1.1.5), parcor(>= 0.2), missMDA
         (>= 1.7.3), tuneR, knitr, rmarkdown, Rmixmod(>= 2.0.1)
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Encoding: UTF-8
