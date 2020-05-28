@@ -4,11 +4,11 @@
 #include <R_ext/Rdynload.h>
 
 /* FIXME: 
-Check these declarations against the C/Fortran source code.
-*/
+ Check these declarations against the C/Fortran source code.
+ */
 
 /* .Call calls */
-extern SEXP BicLoc_cpp(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+extern SEXP BicLoc_cpp(SEXP, SEXP, SEXP, SEXP);
 extern SEXP BicTheta(SEXP, SEXP, SEXP, SEXP);
 extern SEXP BicZ(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP BICZsparse(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
@@ -23,7 +23,7 @@ extern SEXP rechercheZ_relax(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEX
 extern SEXP rechercheZ_sparse_relax(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-   {"BicLoc_cpp",              (DL_FUNC) &BicLoc_cpp,               6},
+   {"BicLoc_cpp",              (DL_FUNC) &BicLoc_cpp,               4},
    {"BicTheta",                (DL_FUNC) &BicTheta,                 4},
    {"BicZ",                    (DL_FUNC) &BicZ,                     6},
    {"BICZsparse",              (DL_FUNC) &BICZsparse,               8},
