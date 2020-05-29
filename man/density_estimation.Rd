@@ -30,7 +30,7 @@ density_estimation(
 
 \item{max}{boolean. Use an heuristic to shrink nbclustmax according to the number of individuals in the dataset}
 
-\item{package}{package to use ("Rmixmod", "mclust")}
+\item{package}{package to use ("mclust","Rmixmod" )}
 
 \item{nbini}{number of initial points for Rmixmod}
 

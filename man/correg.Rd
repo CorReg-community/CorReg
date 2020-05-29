@@ -13,7 +13,7 @@ correg(
   expl = FALSE,
   pred = FALSE,
   select = c("lar", "lasso", "forward.stagewise", "stepwise", "elasticnet", "NULL",
-    "ridge", "adalasso", "clere", "spikeslab"),
+    "ridge", "clere", "spikeslab"),
   criterion = c("MSE", "BIC"),
   X_test = NULL,
   Y_test = NULL,
@@ -41,7 +41,7 @@ correg(
 
 \item{pred}{(boolean) to decide if the predictive model is computed}
 
-\item{select}{selection method in ("lar","lasso","forward.stagewise","stepwise", "elasticnet", "NULL","ridge","adalasso","clere","spikeslab")}
+\item{select}{selection method in ("lar","lasso","forward.stagewise","stepwise", "elasticnet", "NULL","ridge","clere","spikeslab")}
 
 \item{criterion}{the criterion used to compare the models}
 
@@ -74,14 +74,14 @@ a list that contains:
 \item{compl$CVMSE}{Cross-validated MSE associated to the model (also have expl$A) }
 }
 \description{
-Computes three regression models: Complete (regression on the wole dataset X), marginal (regression using only independant covariates: \code{X[,colSums(Z)==0]}) and plug-in (sequential regression based on the marginal model and then use redundant covariates by plug-in, 
+Computes three regression models: Complete (regression on the wole dataset X), marginal (regression using only independant covariates: \code{X[,colSums(Z)==0]}) and plug-in (sequential regression based on the marginal model and then use redundant covariates by plug-in,
 with a regression on the residuals of the marginal model by the residuals of the sub-regressions). Each regression can be computed with variable selection (for example the lasso).
 }
 \examples{
 # dataset generation
-base = mixture_generator(n = 15, p = 10, ratio = 0.4, tp1 = 1, tp2 = 1, tp3 = 1, positive = 0.5, 
+base = mixture_generator(n = 15, p = 10, ratio = 0.4, tp1 = 1, tp2 = 1, tp3 = 1, positive = 0.5,
                          R2Y = 0.8, R2 = 0.9, scale = TRUE, max_compl = 3, lambda = 1)
-                       
+
 X_appr = base$X_appr # learning sample
 Y_appr = base$Y_appr # response variable for the learning sample
 Y_test = base$Y_test # responsee variable for the validation sample
@@ -90,7 +90,7 @@ TrueZ = base$Z # True generative structure (binary adjacency matrix)
 
 # Regression coefficients estimation
 select = "lar" # variable selection with lasso (using lar algorithm)
-resY = correg(X = X_appr, Y = Y_appr, Z = TrueZ, compl = TRUE, expl = TRUE, pred = TRUE, 
+resY = correg(X = X_appr, Y = Y_appr, Z = TrueZ, compl = TRUE, expl = TRUE, pred = TRUE,
               select = select, K = 10)
 
 # MSE computation
@@ -106,5 +106,5 @@ MSE # estimated structure
 
 barplot(as.matrix(MSE), main = "MSE on validation dataset", sub = paste("select =", select))
 abline(h = MSE_complete, col = "red")
-   
+
 }
