@@ -1,6 +1,6 @@
 # CorReg
 
- [![Travis build status](https://travis-ci.com/CorReg-community/CorReg.svg?branch=master)](https://travis-ci.com/CorReg-community/CorReg) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/CorReg-community/CorReg?branch=master&svg=true)](https://ci.appveyor.com/project/CorReg-community/CorReg)
+ [![Travis build status](https://travis-ci.com/CorReg-community/CorReg.svg?branch=master)](https://travis-ci.com/CorReg-community/CorReg) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/CorReg-community/CorReg?branch=master&svg=true)](https://ci.appveyor.com/project/Quentin62/correg-rjw4n)
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/CorReg)](https://cran.r-project.org/package=CorReg) [![Total Downloads](http://cranlogs.r-pkg.org/badges/grand-total/CorReg?color=blue)](http://cranlogs.r-pkg.org/badges/grand-total/CorReg) [![Downloads](https://cranlogs.r-pkg.org/badges/CorReg)](https://cran.rstudio.com/web/packages/CorReg/index.html)
 
