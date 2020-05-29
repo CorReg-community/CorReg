@@ -8,7 +8,7 @@
 # ' @param X1 boolean to say if dependent variables on the right will be filled based on the structure
 # ' @param Bt the matrix used for X1 if X1=TRUE
 # ' @param B the matrix of the coefficients for sub-regressions
-# ' @param package package to use (Rmixmod,mclust,rtkpp) to estimate the Gaussian mixtures if mixmod=TRUE.
+# ' @param package package to use (Rmixmod,mclust) to estimate the Gaussian mixtures if mixmod=TRUE.
 # ' @export
 
 fillmiss <- function(X = X, Z = NULL, mixmod = FALSE, B = NULL, Bt = NULL, res_mixmod = NULL, nbclustmax = 10, X1 = FALSE) {

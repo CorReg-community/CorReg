@@ -11,7 +11,7 @@
 #' @param compl (boolean) to decide if the complete modele is computed
 #' @param expl (boolean) to decide if the explicative model is in the output
 #' @param pred (boolean) to decide if the predictive model is computed
-#' @param select selection method in ("lar","lasso","forward.stagewise","stepwise", "elasticnet", "NULL","ridge","adalasso","clere","spikeslab")
+#' @param select selection method in ("lar","lasso","forward.stagewise","stepwise", "elasticnet", "NULL","ridge","clere","spikeslab")
 #' @param criterion the criterion used to compare the models
 #' @param K the number of clusters for cross-validation
 #' @param groupe a vector of integer to define the groups used for cross-validation (to obtain a reproductible result)

@@ -9,7 +9,7 @@
 #' @param detailed boolean to give the details of the mixtures found
 #' @param matshape boolean to give the detail in matricial shape
 #' @param max boolean. Use an heuristic to shrink nbclustmax according to the number of individuals in the dataset
-#' @param package package to use ("Rmixmod", "mclust")
+#' @param package package to use ("mclust","Rmixmod" )
 #' @param nbini number of initial points for Rmixmod
 #' @param ... additional parameters
 #' 
@@ -41,10 +41,6 @@ density_estimation <- function(X = X, nbclustmax = 10, nbclustmin = 1, verbose =
   if (max) {
     nbclustmax = round(min(nbclustmax, 1 + n^(0.3)))
     nbclustmin = round(min(nbclustmin, 1 + n^(0.3)))
-  }
-  
-  if (package == "rtkpp") {
-    package = "Rmixmod"
   }
   
   p = ncol(X)
