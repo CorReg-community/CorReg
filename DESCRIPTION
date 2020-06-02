@@ -2,7 +2,7 @@ Package: CorReg
 Type: Package
 Title: Linear Regression Based on Linear Structure Between Variables
 Version: 1.2.19
-Date: 2020-04-28
+Date: 2020-05-28
 Authors@R: c(person("Clement", "Thery", role = c("aut", "cre"), email = "corregeous@correg.org"),
     person("Christophe", "Biernacki", role = "ths"),
     person("Gaetan", "Loridant", role = "ths"),
