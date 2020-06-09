@@ -1,3 +1,6 @@
 year <- sub("-.*", "", meta$Date) 
 note <- sprintf("R package version %s", meta$Version) 
+
 bibentry(bibtype = "Manual", title = "{CorReg}: Linear Regression Based on Linear Structure Between Covariates", author = c(person("Clement", "Thery")), year = year, note = note, url = "https://CRAN.R-project.org/package=CorReg")
+
+bibentry(bibtype = "PhdThesis", title = "Model-based covariable decorrelation in linear regression ({CorReg}): application to missing data and to steel industry", author = c(person("Clement", "Thery")), school = "Lille University - Inria Lille - ArcelorMittal", year = "2015", url = "http://www.theses.fr/2015LIL10060")
