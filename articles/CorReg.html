@@ -108,16 +108,16 @@
 <p>We also get an adjacency matrix Z that describes the Directed Acyclic Graph of the links between the covariates. See <a href="https://en.wikipedia.org/wiki/Adjacency_matrix" class="uri">https://en.wikipedia.org/wiki/Adjacency_matrix</a> for more informations on adjacency matrices.</p>
 <div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">TrueZ</span></pre></body></html></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    0    0    0    1    0    0    1    1    0     0
-##  [2,]    0    0    0    1    1    0    0    0    0     0
-##  [3,]    0    0    0    0    0    0    0    1    0     0
-##  [4,]    0    0    0    0    0    0    0    0    0     0
-##  [5,]    0    0    0    0    0    0    0    0    0     0
-##  [6,]    0    0    0    0    1    0    1    0    0     0
+##  [1,]    0    0    1    0    0    0    0    1    0     0
+##  [2,]    0    0    0    0    0    0    0    0    0     0
+##  [3,]    0    0    0    0    0    0    0    0    0     0
+##  [4,]    0    1    1    0    0    0    0    0    0     0
+##  [5,]    0    1    0    0    0    1    0    1    0     0
+##  [6,]    0    0    0    0    0    0    0    0    0     0
 ##  [7,]    0    0    0    0    0    0    0    0    0     0
 ##  [8,]    0    0    0    0    0    0    0    0    0     0
-##  [9,]    0    0    0    0    1    0    1    0    0     0
-## [10,]    0    0    0    1    0    0    0    1    0     0</code></pre>
+##  [9,]    0    1    1    0    0    1    0    0    0     0
+## [10,]    0    0    0    0    0    1    0    1    0     0</code></pre>
 <div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span></pre></body></html></div>
 <p>We will try to find this structure (in real life we don’t know the true structure).</p>
 </div>
@@ -153,9 +153,9 @@
 <span class="no">bicopt_vect</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">hatZ</span>, <span class="kw">Bic_null_vect</span> <span class="kw">=</span> <span class="no">Bic_null_vect</span>)
 <span class="no">bicopt_True</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">Bic_null_vect</span> <span class="kw">=</span> <span class="no">Bic_null_vect</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">bicopt_vect</span>)</pre></body></html></div>
-<pre><code>## [1] 288.7975</code></pre>
+<pre><code>## [1] 296.1449</code></pre>
 <div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">bicopt_True</span>)</pre></body></html></div>
-<pre><code>## [1] 296.1501</code></pre>
+<pre><code>## [1] 297.3172</code></pre>
 <p>And in terms of structure:</p>
 <div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># Structure comparison</span>
 <span class="no">compZ</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compare_struct.html">compare_struct</a></span>(<span class="kw">trueZ</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">Zalgo</span> <span class="kw">=</span> <span class="no">hatZ</span>) <span class="co"># qualitative comparison</span>
@@ -164,113 +164,100 @@
 ## [1] 0.9166667
 ## 
 ## $ratio_true0
-## [1] 0.9204545
+## [1] 1
 ## 
 ## $true1
 ## [1] 11
 ## 
 ## $false1
-## [1] 7
+## [1] 0
 ## 
 ## $false0
 ## [1] 1
 ## 
 ## $deltadr
-## [1] -1
+## [1] 0
 ## 
 ## $true_left
 ## [1] 4
 ## 
 ## $false_left
-## [1] 1</code></pre>
+## [1] 0</code></pre>
 <p>Then we have a look on the sub-regressions themselves. Each item of the list represents a subregression.</p>
 <p>First element is the R-square.Second element is the variable that is regressed by others (if no names provided it gives the position of the variable in the dataset).</p>
 <p>Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column). The <code>readZ</code> function allows to list them by relevance.</p>
 <div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># interpretation of found and true structure ordered by increasing R2</span>
 <span class="fu"><a href="../reference/readZ.html">readZ</a></span>(<span class="kw">Z</span> <span class="kw">=</span> <span class="no">hatZ</span>, <span class="kw">crit</span> <span class="kw">=</span> <span class="st">"R2"</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">order</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></pre></body></html></div>
 <pre><code>## [[1]]
-##               coefs       var
-## 1 0.567322744199706        R2
-## 2              &lt;NA&gt;         3
-## 3 0.435893866120974 intercept
-## 4 0.804716896679571         2
-## 5 0.414652362504844         6
-## 6 0.661246982971935         9
+##                coefs       var
+## 1  0.707024860979052        R2
+## 2               &lt;NA&gt;         6
+## 3 -0.749238310422486 intercept
+## 4   0.25410134590796         5
+## 5  0.377591704623786        10
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.872482054895899        R2
-## 2               &lt;NA&gt;         5
-## 3  0.829264126456245 intercept
-## 4  -0.34899316718634         2
-## 5 -0.219694340470397         6
-## 6 -0.190260550232461         9
+## 1  0.801825284764386        R2
+## 2               &lt;NA&gt;         8
+## 3  0.672630670457708 intercept
+## 4  0.431038480894904         1
+## 5 -0.324254834137574         5
+## 6 -0.163087384095184        10
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.910543601152018        R2
-## 2               &lt;NA&gt;         7
-## 3 -0.951033061919844 intercept
-## 4 -0.248001131274265         1
-## 5  0.220485173061672         6
-## 6 -0.190907029430882         9
+## 1  0.937733913698371        R2
+## 2               &lt;NA&gt;         3
+## 3 -0.744276505827456 intercept
+## 4 -0.474645555258217         1
+## 5 -0.389151196723414         4
+## 6   -0.4737220041433         9
 ## 
 ## [[4]]
 ##                coefs       var
-## 1   0.92147013820383        R2
-## 2               &lt;NA&gt;         8
-## 3  -1.00266635432194 intercept
-## 4 -0.205292429904384         1
-## 5  -0.17202654528121         2
-## 6 -0.109216169107915         6
-## 7 -0.223264948303337         9
-## 8 -0.329321486134212        10
-## 
-## [[5]]
-##                coefs       var
-## 1  0.948220719212576        R2
-## 2               &lt;NA&gt;         4
-## 3 -0.830425609099564 intercept
-## 4  -0.19204326535837         1
-## 5 -0.478773556136541         2
-## 6 0.0798765750199434         9
-## 7 -0.270517698797826        10</code></pre>
+## 1  0.954964818929163        R2
+## 2               &lt;NA&gt;         2
+## 3 -0.845145072340077 intercept
+## 4   0.32377945669726         4
+## 5 -0.357855814253986         5
+## 6  0.447564045039641         9</code></pre>
 <div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/readZ.html">readZ</a></span>(<span class="kw">Z</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">crit</span> <span class="kw">=</span> <span class="st">"R2"</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">order</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></pre></body></html></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.872482054895899        R2
-## 2               &lt;NA&gt;         5
-## 3  0.829264126456245 intercept
-## 4  -0.34899316718634         2
-## 5 -0.219694340470397         6
-## 6 -0.190260550232461         9
+## 1  0.713596948110685        R2
+## 2               &lt;NA&gt;         6
+## 3 -0.758961646597799 intercept
+## 4  0.350066580386525         5
+## 5  0.129092235555786         9
+## 6  0.407171066398935        10
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.910543601152018        R2
-## 2               &lt;NA&gt;         7
-## 3 -0.951033061919844 intercept
-## 4 -0.248001131274265         1
-## 5  0.220485173061672         6
-## 6 -0.190907029430882         9
+## 1  0.801825284764386        R2
+## 2               &lt;NA&gt;         8
+## 3  0.672630670457708 intercept
+## 4  0.431038480894904         1
+## 5 -0.324254834137574         5
+## 6 -0.163087384095184        10
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.912431818391348        R2
-## 2               &lt;NA&gt;         8
-## 3 -0.921462709456143 intercept
-## 4 -0.179653221894149         1
-## 5 -0.193221862801228         3
-## 6 -0.329831867551059        10
+## 1  0.937733913698371        R2
+## 2               &lt;NA&gt;         3
+## 3 -0.744276505827456 intercept
+## 4 -0.474645555258217         1
+## 5 -0.389151196723414         4
+## 6   -0.4737220041433         9
 ## 
 ## [[4]]
 ##                coefs       var
-## 1  0.944615432544629        R2
-## 2               &lt;NA&gt;         4
-## 3 -0.820532260931932 intercept
-## 4 -0.209324901533773         1
-## 5 -0.504820270347851         2
-## 6 -0.271566622251727        10</code></pre>
+## 1  0.954964818929163        R2
+## 2               &lt;NA&gt;         2
+## 3 -0.845145072340077 intercept
+## 4   0.32377945669726         4
+## 5 -0.357855814253986         5
+## 6  0.447564045039641         9</code></pre>
 <p>We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models :</p>
 <ul>
 <li>Complete model : without the sub-regression structure</li>
@@ -294,7 +281,7 @@
 <span class="no">MSE</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">MSE_complete</span>, <span class="no">MSE_marginal</span>, <span class="no">MSE_plugin</span>, <span class="no">MSE_true</span>)
 <span class="no">MSE</span> <span class="co"># estimated structure</span></pre></body></html></div>
 <pre><code>##   MSE_complete MSE_marginal MSE_plugin MSE_true
-## 1     942.4538     247.9808   925.5327 110.6313</code></pre>
+## 1     547.3818      250.496   292.3663 168.4759</code></pre>
 <div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">MSE</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="st">"MSE on validation dataset"</span>, <span class="kw">sub</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"select="</span>, <span class="no">select</span>), <span class="kw">col</span> <span class="kw">=</span> <span class="st">"blue"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(<span class="kw">h</span> <span class="kw">=</span> <span class="no">MSE_complete</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>)</pre></body></html></div>
 <p><img src="CorReg_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
