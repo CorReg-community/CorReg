@@ -121,17 +121,17 @@
     </div>
 
     <pre class="usage"><span class='fu'>matplot_zone</span>(
-  <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>,
-  <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>6</span>,
-  <span class='kw'>alpha</span> <span class='kw'>=</span> <span class='fl'>0.2</span>,
-  <span class='kw'>what</span> <span class='kw'>=</span> <span class='no'>which.min</span>,
-  <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
+  x = <span class='kw'>x</span>,
+  y = <span class='kw'>y</span>,
+  col = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>,
+  alpha = <span class='fl'>0.2</span>,
+  what = <span class='kw'>which.min</span>,
+  ylim = <span class='kw'>NULL</span>,
+  xlim = <span class='kw'>NULL</span>,
+  type = <span class='st'>"p"</span>,
+  xlab = <span class='kw'>NULL</span>,
+  ylab = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -185,13 +185,15 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>n</span> <span class='kw'>=</span> <span class='fl'>15</span>
-<span class='no'>x</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='no'>n</span>
-<span class='no'>y</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>2</span>, <span class='fl'>1</span>)),
+    <pre class="examples"><div class='input'><span class='kw'>n</span> <span class='op'>=</span> <span class='fl'>15</span>
+<span class='kw'>x</span> <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='kw'>n</span>
+<span class='kw'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>2</span>, <span class='fl'>1</span>)),
           <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>1</span>)),
           <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>2</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>5</span>, <span class='fl'>1</span>, <span class='fl'>1</span>)))
-<span class='fu'>matplot_zone</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='no'>which.max</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Highest curve"</span>)</div><div class='img'><img src='matplot_zone-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># background color follows color of the highest curve</span>
-<span class='fu'>matplot_zone</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='no'>which.min</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"Lowest curve"</span>)</div><div class='img'><img src='matplot_zone-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># background color follows color of the lowest curve</span></div></pre>
+<span class='fu'>matplot_zone</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, type = <span class='st'>"l"</span>, what = <span class='kw'>which.max</span>, main = <span class='st'>"Highest curve"</span>)</div><div class='img'><img src='matplot_zone-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># background color follows color of the highest curve</span>
+<span class='fu'>matplot_zone</span>(<span class='kw'>x</span>, <span class='kw'>y</span>, type = <span class='st'>"l"</span>, what = <span class='kw'>which.min</span>, main = <span class='st'>"Lowest curve"</span>)</div><div class='img'><img src='matplot_zone-2.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># background color follows color of the lowest curve</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

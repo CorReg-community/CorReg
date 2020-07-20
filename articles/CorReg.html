@@ -67,7 +67,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="CorReg_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>How to take advantage of CorReg ?</h1>
@@ -94,31 +94,39 @@
 <h3 class="hasAnchor">
 <a href="#dataset-generation" class="anchor"></a>Dataset generation</h3>
 <p>We first generate (for this tutorial) a dataset with strong correlations between the covariates. The <code>mixture_generator</code> function gives such a dataset and also a validation sample built with the same parameters. Both contains a response variable generated on some covariates (not all) by linear regression. So we have sub-regressions that make some variables redundent when we know the other variables. Such correlations make the variance of the regression estimators explode. Moreover, dimension is unnecessarily high and interpretation of regression coefficients is dangerous.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">CorReg</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://www.correg.org">CorReg</a></span>)
+</pre></div>
 <pre><code>## CorReg: The Concept, the Method, the Power</code></pre>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># dataset generation</span>
-<span class="no">base</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/mixture_generator.html">mixture_generator</a></span>(<span class="kw">n</span> <span class="kw">=</span> <span class="fl">15</span>, <span class="kw">p</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">ratio</span> <span class="kw">=</span> <span class="fl">0.4</span>, <span class="kw">tp1</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">tp2</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">tp3</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">positive</span> <span class="kw">=</span> <span class="fl">0.5</span>,
-                          <span class="kw">R2Y</span> <span class="kw">=</span> <span class="fl">0.8</span>, <span class="kw">R2</span> <span class="kw">=</span> <span class="fl">0.9</span>, <span class="kw">scale</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">max_compl</span> <span class="kw">=</span> <span class="fl">3</span>, <span class="kw">lambda</span> <span class="kw">=</span> <span class="fl">1</span>)
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># dataset generation</span>
+<span class="kw">base</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mixture_generator.html">mixture_generator</a></span>(n = <span class="fl">15</span>, p = <span class="fl">10</span>, ratio = <span class="fl">0.4</span>, tp1 = <span class="fl">1</span>, tp2 = <span class="fl">1</span>, tp3 = <span class="fl">1</span>, positive = <span class="fl">0.5</span>,
+                          R2Y = <span class="fl">0.8</span>, R2 = <span class="fl">0.9</span>, scale = <span class="fl">TRUE</span>, max_compl = <span class="fl">3</span>, lambda = <span class="fl">1</span>)
 
-<span class="no">X_appr</span> <span class="kw">&lt;-</span> <span class="no">base</span>$<span class="no">X_appr</span> <span class="co"># learning sample</span>
-<span class="no">Y_appr</span> <span class="kw">&lt;-</span> <span class="no">base</span>$<span class="no">Y_appr</span> <span class="co"># response variable for the learning sample</span>
-<span class="no">Y_test</span> <span class="kw">&lt;-</span> <span class="no">base</span>$<span class="no">Y_test</span> <span class="co"># response variable for the validation sample</span>
-<span class="no">X_test</span> <span class="kw">&lt;-</span> <span class="no">base</span>$<span class="no">X_test</span> <span class="co"># validation sample</span>
-<span class="no">TrueZ</span> <span class="kw">&lt;-</span> <span class="no">base</span>$<span class="no">Z</span> <span class="co"># True generative structure (binary adjacency matrix)</span></pre></body></html></div>
+<span class="kw">X_appr</span> <span class="op">&lt;-</span> <span class="kw">base</span><span class="op">$</span><span class="kw">X_appr</span> <span class="co"># learning sample</span>
+<span class="kw">Y_appr</span> <span class="op">&lt;-</span> <span class="kw">base</span><span class="op">$</span><span class="kw">Y_appr</span> <span class="co"># response variable for the learning sample</span>
+<span class="kw">Y_test</span> <span class="op">&lt;-</span> <span class="kw">base</span><span class="op">$</span><span class="kw">Y_test</span> <span class="co"># response variable for the validation sample</span>
+<span class="kw">X_test</span> <span class="op">&lt;-</span> <span class="kw">base</span><span class="op">$</span><span class="kw">X_test</span> <span class="co"># validation sample</span>
+<span class="kw">TrueZ</span> <span class="op">&lt;-</span> <span class="kw">base</span><span class="op">$</span><span class="kw">Z</span> <span class="co"># True generative structure (binary adjacency matrix)</span>
+</pre></div>
 <p>We also get an adjacency matrix Z that describes the Directed Acyclic Graph of the links between the covariates. See <a href="https://en.wikipedia.org/wiki/Adjacency_matrix" class="uri">https://en.wikipedia.org/wiki/Adjacency_matrix</a> for more informations on adjacency matrices.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="no">TrueZ</span></pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">TrueZ</span>
+</pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ##  [1,]    0    0    0    0    0    0    0    0    0     0
-##  [2,]    0    0    0    0    1    0    0    0    0     0
-##  [3,]    1    0    0    1    0    0    0    0    0     0
+##  [2,]    1    0    0    1    0    0    0    0    0     0
+##  [3,]    0    0    0    0    0    0    0    0    0     0
 ##  [4,]    0    0    0    0    0    0    0    0    0     0
-##  [5,]    0    0    0    0    0    0    0    0    0     0
-##  [6,]    0    0    0    0    1    0    0    0    0     0
-##  [7,]    1    0    0    0    1    0    0    0    1     0
-##  [8,]    1    0    0    1    0    0    0    0    1     0
-##  [9,]    0    0    0    0    0    0    0    0    0     0
-## [10,]    0    0    0    1    0    0    0    0    1     0</code></pre>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span></pre></body></html></div>
+##  [5,]    0    0    0    1    0    1    0    0    0     0
+##  [6,]    0    0    0    0    0    0    0    0    0     0
+##  [7,]    0    0    0    1    0    1    0    0    0     0
+##  [8,]    1    0    1    0    0    0    0    0    0     0
+##  [9,]    0    0    1    0    0    0    0    0    0     0
+## [10,]    1    0    1    0    0    1    0    0    0     0</code></pre>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="co"># TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span>
+</pre></div>
 <p>We will try to find this structure (in real life we don’t know the true structure).</p>
 </div>
 </div>
@@ -129,48 +137,58 @@
 <h3 class="hasAnchor">
 <a href="#density-estimation" class="anchor"></a>Density estimation</h3>
 <p>To find the correlation structure we need a global density model that will serve as a null hypothesis. Each variable can be independent (following a certain density we have to estimate) or can be lineary dependent on other covariates. The <code>density_estimation</code> function will provide this null hypothesis for each variable. We use Gaussian Mixture to fit a large scope of density in real life.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="co"># density estimation for the MCMC (with Gaussian Mixtures)</span>
-<span class="no">density</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/density_estimation.html">density_estimation</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">nbclustmax</span> <span class="kw">=</span> <span class="fl">10</span>, <span class="kw">detailed</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"Rmixmod"</span>)
-<span class="no">Bic_null_vect</span> <span class="kw">&lt;-</span> <span class="no">density</span>$<span class="no">BIC_vect</span> <span class="co"># vector of the BIC found (1 value per covariate)</span></pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="co"># density estimation for the MCMC (with Gaussian Mixtures)</span>
+<span class="kw">density</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/density_estimation.html">density_estimation</a></span>(X = <span class="kw">X_appr</span>, nbclustmax = <span class="fl">10</span>, detailed = <span class="fl">TRUE</span>, package = <span class="st">"Rmixmod"</span>)
+<span class="kw">Bic_null_vect</span> <span class="op">&lt;-</span> <span class="kw">density</span><span class="op">$</span><span class="kw">BIC_vect</span> <span class="co"># vector of the BIC found (1 value per covariate)</span>
+</pre></div>
 <p>Each null hypothesis is associated to a BIC criterion. Complexity is the one of each mixture model.</p>
 </div>
 <div id="mcmc-algorithm" class="section level3">
 <h3 class="hasAnchor">
 <a href="#mcmc-algorithm" class="anchor"></a>MCMC Algorithm</h3>
 <p>We use a specific MCMC algorithm (<a href="http://www.theses.fr/2015LIL10060" class="uri">http://www.theses.fr/2015LIL10060</a> and <a href="http://www.theses.fr/2015LIL10060/document/" class="uri">http://www.theses.fr/2015LIL10060/document/</a> or <a href="https://hal.archives-ouvertes.fr/hal-01099133/" class="uri">https://hal.archives-ouvertes.fr/hal-01099133/</a>) to find the Adjacency matrix that describes the correlation structure. We use the Bayesian Information Criterion (BIC) to compare null hypothesis and complex correlations structures with many sub-regressions between covariates.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># MCMC to find the structure</span>
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/structureFinder.html">structureFinder</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">verbose</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">reject</span> <span class="kw">=</span> <span class="fl">0</span>, <span class="kw">Maxiter</span> <span class="kw">=</span> <span class="fl">1500</span>, <span class="kw">nbini</span> <span class="kw">=</span> <span class="fl">30</span>,
-                       <span class="kw">candidates</span> <span class="kw">=</span> -<span class="fl">1</span>, <span class="kw">Bic_null_vect</span> <span class="kw">=</span> <span class="no">Bic_null_vect</span>, <span class="kw">star</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">p1max</span> <span class="kw">=</span> <span class="fl">15</span>, <span class="kw">clean</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="no">hatZ</span> <span class="kw">&lt;-</span> <span class="no">res</span>$<span class="no">Z_opt</span> <span class="co"># found structure (adjacency matrix)</span>
-<span class="no">hatBic</span> <span class="kw">&lt;-</span> <span class="no">res</span>$<span class="no">bic_opt</span> <span class="co"># associated BIC</span></pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="co"># MCMC to find the structure</span>
+<span class="kw">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/structureFinder.html">structureFinder</a></span>(X = <span class="kw">X_appr</span>, verbose = <span class="fl">0</span>, reject = <span class="fl">0</span>, Maxiter = <span class="fl">1500</span>, nbini = <span class="fl">30</span>, 
+                       candidates = <span class="op">-</span><span class="fl">1</span>, Bic_null_vect = <span class="kw">Bic_null_vect</span>, star = <span class="fl">TRUE</span>, p1max = <span class="fl">15</span>, clean = <span class="fl">TRUE</span>)
+<span class="kw">hatZ</span> <span class="op">&lt;-</span> <span class="kw">res</span><span class="op">$</span><span class="kw">Z_opt</span> <span class="co"># found structure (adjacency matrix)</span>
+<span class="kw">hatBic</span> <span class="op">&lt;-</span> <span class="kw">res</span><span class="op">$</span><span class="kw">bic_opt</span> <span class="co"># associated BIC</span>
+</pre></div>
 </div>
 </div>
 <div id="corregs-power" class="section level1">
 <h1 class="hasAnchor">
 <a href="#corregs-power" class="anchor"></a>CorReg’s Power</h1>
 <p>As we work with a dataset we have generated, we know the true structure so we can compare the result with the true model. In terms of BIC:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># BIC comparison between true and found structure</span>
-<span class="no">bicopt_vect</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">hatZ</span>, <span class="kw">Bic_null_vect</span> <span class="kw">=</span> <span class="no">Bic_null_vect</span>)
-<span class="no">bicopt_True</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">Bic_null_vect</span> <span class="kw">=</span> <span class="no">Bic_null_vect</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">bicopt_vect</span>)</pre></body></html></div>
-<pre><code>## [1] 253.6465</code></pre>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">bicopt_True</span>)</pre></body></html></div>
-<pre><code>## [1] 257.9055</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="co"># BIC comparison between true and found structure</span>
+<span class="kw">bicopt_vect</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(X = <span class="kw">X_appr</span>, Z = <span class="kw">hatZ</span>, Bic_null_vect = <span class="kw">Bic_null_vect</span>)
+<span class="kw">bicopt_True</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(X = <span class="kw">X_appr</span>, Z = <span class="kw">TrueZ</span>, Bic_null_vect = <span class="kw">Bic_null_vect</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_vect</span>)
+</pre></div>
+<pre><code>## [1] 227.6764</code></pre>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_True</span>)
+</pre></div>
+<pre><code>## [1] 233.2099</code></pre>
 <p>And in terms of structure:</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="co"># Structure comparison</span>
-<span class="no">compZ</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/compare_struct.html">compare_struct</a></span>(<span class="kw">trueZ</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">Zalgo</span> <span class="kw">=</span> <span class="no">hatZ</span>) <span class="co"># qualitative comparison</span>
-<span class="no">compZ</span></pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="co"># Structure comparison</span>
+<span class="kw">compZ</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/compare_struct.html">compare_struct</a></span>(trueZ = <span class="kw">TrueZ</span>, Zalgo = <span class="kw">hatZ</span>) <span class="co"># qualitative comparison</span>
+<span class="kw">compZ</span>
+</pre></div>
 <pre><code>## $ratio_true1
 ## [1] 1
 ## 
 ## $ratio_true0
-## [1] 0.9659091
+## [1] 0.9545455
 ## 
 ## $true1
 ## [1] 12
 ## 
 ## $false1
-## [1] 3
+## [1] 4
 ## 
 ## $false0
 ## [1] 0
@@ -186,108 +204,121 @@
 <p>Then we have a look on the sub-regressions themselves. Each item of the list represents a subregression.</p>
 <p>First element is the R-square.Second element is the variable that is regressed by others (if no names provided it gives the position of the variable in the dataset).</p>
 <p>Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column). The <code>readZ</code> function allows to list them by relevance.</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="co"># interpretation of found and true structure ordered by increasing R2</span>
-<span class="fu"><a href="../reference/readZ.html">readZ</a></span>(<span class="kw">Z</span> <span class="kw">=</span> <span class="no">hatZ</span>, <span class="kw">crit</span> <span class="kw">=</span> <span class="st">"R2"</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">order</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="co"># interpretation of found and true structure ordered by increasing R2</span>
+<span class="fu"><a href="../reference/readZ.html">readZ</a></span>(Z = <span class="kw">hatZ</span>, crit = <span class="st">"R2"</span>, X = <span class="kw">X_appr</span>, output = <span class="st">"all"</span>, order = <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span>
+</pre></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.921348869557997        R2
-## 2               &lt;NA&gt;         5
-## 3  0.734016797557454 intercept
-## 4  0.288067329747745         2
-## 5 -0.416232222969756         6
-## 6   0.31659907117329         7
-## 
-## [[2]]
-##                 coefs       var
-## 1   0.928204653148986        R2
-## 2                &lt;NA&gt;         4
-## 3   0.785264047819999 intercept
-## 4  -0.509082028958668         3
-## 5 -0.0482061560239742         7
-## 6   0.174881462639553         8
-## 7   0.354051207719472        10
-## 
-## [[3]]
-##                coefs       var
-## 1   0.94582961448159        R2
-## 2               &lt;NA&gt;         9
-## 3  0.935809506793086 intercept
-## 4  0.118972793951954         3
-## 5  0.424037867939549         7
-## 6   0.13559388302782         8
-## 7 -0.483110454739872        10
-## 
-## [[4]]
-##                 coefs       var
-## 1   0.948502643332299        R2
-## 2                &lt;NA&gt;         1
-## 3   0.979247013852801 intercept
-## 4 -0.0507478208813005         2
-## 5   0.184607066447057         3
-## 6  -0.207512992506758         7
-## 7  -0.213868501402092         8</code></pre>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="../reference/readZ.html">readZ</a></span>(<span class="kw">Z</span> <span class="kw">=</span> <span class="no">TrueZ</span>, <span class="kw">crit</span> <span class="kw">=</span> <span class="st">"R2"</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">output</span> <span class="kw">=</span> <span class="st">"all"</span>, <span class="kw">order</span> <span class="kw">=</span> <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span></pre></body></html></div>
-<pre><code>## [[1]]
-##                coefs       var
-## 1  0.918974190998608        R2
+## 1  0.905302595584971        R2
 ## 2               &lt;NA&gt;         4
-## 3   0.80801339593515 intercept
-## 4 -0.483004774934427         3
-## 5   0.18008982140543         8
-## 6  0.330190912323893        10
+## 3  0.981219872307572 intercept
+## 4 -0.277569618384601         2
+## 5 0.0945502926966467         5
+## 6 -0.171054947290337         7
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.921348869557997        R2
-## 2               &lt;NA&gt;         5
-## 3  0.734016797557454 intercept
-## 4  0.288067329747745         2
-## 5 -0.416232222969756         6
-## 6   0.31659907117329         7
+## 1  0.907567834051185        R2
+## 2               &lt;NA&gt;         1
+## 3  0.892233597917733 intercept
+## 4  0.223625420844007         2
+## 5 -0.111417616517923         5
+## 6   -0.4718838923871         8
+## 7 -0.177055117129054        10
+## 
+## [[3]]
+##                 coefs       var
+## 1   0.938121354437143        R2
+## 2                &lt;NA&gt;         3
+## 3  -0.968183343936041 intercept
+## 4  0.0398632482158008         5
+## 5 -0.0707438589137363         7
+## 6   0.180105812907588         8
+## 7   -0.20912608705339         9
+## 8   0.143202426195564        10
+## 
+## [[4]]
+##                 coefs       var
+## 1   0.938144505431584        R2
+## 2                &lt;NA&gt;         6
+## 3   0.761085417109667 intercept
+## 4   0.153944493505098         5
+## 5  -0.307403103180281         7
+## 6 -0.0940984316116053         8
+## 7  -0.378086141542167        10</code></pre>
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="fu"><a href="../reference/readZ.html">readZ</a></span>(Z = <span class="kw">TrueZ</span>, crit = <span class="st">"R2"</span>, X = <span class="kw">X_appr</span>, output = <span class="st">"all"</span>, order = <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span>
+</pre></div>
+<pre><code>## [[1]]
+##                coefs       var
+## 1  0.892451318844894        R2
+## 2               &lt;NA&gt;         1
+## 3  0.867896817776469 intercept
+## 4  0.218661546659828         2
+## 5 -0.418534234820174         8
+## 6 -0.192633313577997        10
+## 
+## [[2]]
+##                coefs       var
+## 1  0.905302595584971        R2
+## 2               &lt;NA&gt;         4
+## 3  0.981219872307572 intercept
+## 4 -0.277569618384601         2
+## 5 0.0945502926966467         5
+## 6 -0.171054947290337         7
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.927458211985066        R2
-## 2               &lt;NA&gt;         9
-## 3  0.863572267489901 intercept
-## 4  0.404428018481023         7
-## 5  0.119938188547297         8
-## 6 -0.474126556840529        10
+## 1  0.914611799786458        R2
+## 2               &lt;NA&gt;         3
+## 3 -0.958085769919971 intercept
+## 4     0.195424035616         8
+## 5 -0.205455772455344         9
+## 6  0.167314016771718        10
 ## 
 ## [[4]]
 ##                coefs       var
-## 1  0.938000131342126        R2
-## 2               &lt;NA&gt;         1
-## 3  0.978526029301132 intercept
-## 4   0.20006526700053         3
-## 5 -0.199854963219789         7
-## 6 -0.220255115651367         8</code></pre>
+## 1  0.916153518310744        R2
+## 2               &lt;NA&gt;         6
+## 3  0.745977853563873 intercept
+## 4  0.189123661705078         5
+## 5 -0.280398656442478         7
+## 6 -0.384416015598936        10</code></pre>
 <p>We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models :</p>
 <ul>
 <li>Complete model : without the sub-regression structure</li>
 <li>Explicative model : with the redundant covariates pointed by the sub-regressions</li>
 <li>Predictive model : like the complete model but estimated sequentially to avoid correlation issues, by using the sub-regression structure.</li>
 </ul>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="co"># Regression coefficients estimation</span>
-<span class="no">select</span> <span class="kw">=</span> <span class="st">"NULL"</span> <span class="co"># without variable selection (otherwise, choose "lar" for example to use lasso selection)</span>
-<span class="no">resY</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/correg.html">correg</a></span>(<span class="kw">X</span> <span class="kw">=</span> <span class="no">X_appr</span>, <span class="kw">Y</span> <span class="kw">=</span> <span class="no">Y_appr</span>, <span class="kw">Z</span> <span class="kw">=</span> <span class="no">hatZ</span>, <span class="kw">compl</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">expl</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">pred</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-               <span class="kw">select</span> <span class="kw">=</span> <span class="no">select</span>, <span class="kw">K</span> <span class="kw">=</span> <span class="fl">10</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit">
+<span class="co"># Regression coefficients estimation</span>
+<span class="kw">select</span> <span class="op">=</span> <span class="st">"NULL"</span> <span class="co"># without variable selection (otherwise, choose "lar" for example to use lasso selection)</span>
+<span class="kw">resY</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/correg.html">correg</a></span>(X = <span class="kw">X_appr</span>, Y = <span class="kw">Y_appr</span>, Z = <span class="kw">hatZ</span>, compl = <span class="fl">TRUE</span>, expl = <span class="fl">TRUE</span>, pred = <span class="fl">TRUE</span>,
+               select = <span class="kw">select</span>, K = <span class="fl">10</span>)
+</pre></div>
 <div id="final-predictive-results-comparison" class="section level3">
 <h3 class="hasAnchor">
 <a href="#final-predictive-results-comparison" class="anchor"></a>Final Predictive results comparison</h3>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="co"># MSE computation</span>
-<span class="no">MSE_complete</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(<span class="kw">Y</span> <span class="kw">=</span> <span class="no">Y_test</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_test</span>, <span class="kw">A</span> <span class="kw">=</span> <span class="no">resY</span>$<span class="no">compl</span>$<span class="no">A</span>) <span class="co"># classical model on X</span>
-<span class="no">MSE_marginal</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(<span class="kw">Y</span><span class="kw">=</span><span class="no">Y_test</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_test</span>, <span class="kw">A</span> <span class="kw">=</span> <span class="no">resY</span>$<span class="no">expl</span>$<span class="no">A</span>) <span class="co"># reduced model without correlations</span>
-<span class="no">MSE_plugin</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(<span class="kw">Y</span> <span class="kw">=</span> <span class="no">Y_test</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_test</span>, <span class="kw">A</span> <span class="kw">=</span> <span class="no">resY</span>$<span class="no">pred</span>$<span class="no">A</span>) <span class="co"># plug-in model</span>
-<span class="no">MSE_true</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(<span class="kw">Y</span> <span class="kw">=</span> <span class="no">Y_test</span>, <span class="kw">X</span> <span class="kw">=</span> <span class="no">X_test</span>, <span class="kw">A</span> <span class="kw">=</span> <span class="no">base</span>$<span class="no">A</span>) <span class="co"># True model</span></pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit">
+<span class="co"># MSE computation</span>
+<span class="kw">MSE_complete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(Y = <span class="kw">Y_test</span>, X = <span class="kw">X_test</span>, A = <span class="kw">resY</span><span class="op">$</span><span class="kw">compl</span><span class="op">$</span><span class="kw">A</span>) <span class="co"># classical model on X</span>
+<span class="kw">MSE_marginal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(Y=<span class="kw">Y_test</span>, X = <span class="kw">X_test</span>, A = <span class="kw">resY</span><span class="op">$</span><span class="kw">expl</span><span class="op">$</span><span class="kw">A</span>) <span class="co"># reduced model without correlations</span>
+<span class="kw">MSE_plugin</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(Y = <span class="kw">Y_test</span>, X = <span class="kw">X_test</span>, A = <span class="kw">resY</span><span class="op">$</span><span class="kw">pred</span><span class="op">$</span><span class="kw">A</span>) <span class="co"># plug-in model</span>
+<span class="kw">MSE_true</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/MSE_loc.html">MSE_loc</a></span>(Y = <span class="kw">Y_test</span>, X = <span class="kw">X_test</span>, A = <span class="kw">base</span><span class="op">$</span><span class="kw">A</span>) <span class="co"># True model</span>
+</pre></div>
 <p>Then we can compare the MSE obtained for each model.</p>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="co"># MSE comparison</span>
-<span class="no">MSE</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">MSE_complete</span>, <span class="no">MSE_marginal</span>, <span class="no">MSE_plugin</span>, <span class="no">MSE_true</span>)
-<span class="no">MSE</span> <span class="co"># estimated structure</span></pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit">
+<span class="co"># MSE comparison</span>
+<span class="kw">MSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">MSE_complete</span>, <span class="kw">MSE_marginal</span>, <span class="kw">MSE_plugin</span>, <span class="kw">MSE_true</span>)
+<span class="kw">MSE</span> <span class="co"># estimated structure</span>
+</pre></div>
 <pre><code>##   MSE_complete MSE_marginal MSE_plugin MSE_true
-## 1     2199.664     549.7292   1963.071   260.53</code></pre>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">MSE</span>), <span class="kw">main</span> <span class="kw">=</span> <span class="st">"MSE on validation dataset"</span>, <span class="kw">sub</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"select="</span>, <span class="no">select</span>), <span class="kw">col</span> <span class="kw">=</span> <span class="st">"blue"</span>)
-<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(<span class="kw">h</span> <span class="kw">=</span> <span class="no">MSE_complete</span>, <span class="kw">col</span> <span class="kw">=</span> <span class="st">"red"</span>)</pre></body></html></div>
+## 1     563.8752     247.5795   326.2315 118.2991</code></pre>
+<div class="sourceCode" id="cb23"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="kw">MSE</span>), main = <span class="st">"MSE on validation dataset"</span>, sub = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"select="</span>, <span class="kw">select</span>), col = <span class="st">"blue"</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(h = <span class="kw">MSE_complete</span>, col = <span class="st">"red"</span>)
+</pre></div>
 <p><img src="CorReg_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;"></p>
 </div>
 </div>

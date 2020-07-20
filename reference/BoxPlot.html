@@ -121,14 +121,14 @@
     </div>
 
     <pre class="usage"><span class='fu'>BoxPlot</span>(
-  <span class='no'>num</span>,
-  <span class='kw'>grp</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>AnoVa</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>risk</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
-  <span class='kw'>lang</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"fr"</span>),
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>...</span>
+  <span class='kw'>num</span>,
+  grp = <span class='kw'>NULL</span>,
+  data = <span class='kw'>NULL</span>,
+  AnoVa = <span class='fl'>TRUE</span>,
+  risk = <span class='fl'>0.05</span>,
+  lang = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"fr"</span>),
+  verbose = <span class='fl'>TRUE</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,12 +170,12 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>repart</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>40</span>)
-<span class='no'>X</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>num</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>repart</span>[<span class='fl'>1</span>], <span class='fl'>10</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>repart</span>[<span class='fl'>2</span>], <span class='fl'>11</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='no'>repart</span>[<span class='fl'>3</span>], <span class='fl'>10</span>, <span class='fl'>1</span>)),
-               <span class='kw'>grp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>), <span class='no'>repart</span>))
+    <pre class="examples"><div class='input'><span class='kw'>repart</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>40</span>)
+<span class='kw'>X</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(num = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>1</span>], <span class='fl'>10</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>2</span>], <span class='fl'>11</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>3</span>], <span class='fl'>10</span>, <span class='fl'>1</span>)),
+               grp = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>), <span class='kw'>repart</span>))
 
 
-<span class='fu'>BoxPlot</span>(<span class='no'>X</span>$<span class='no'>num</span>, <span class='no'>X</span>$<span class='no'>grp</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>X</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='st'>"num"</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='st'>"boxplot with confidence intervals"</span>)</div><div class='img'><img src='BoxPlot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $stats
+<span class='fu'>BoxPlot</span>(<span class='kw'>X</span><span class='op'>$</span><span class='kw'>num</span>, <span class='kw'>X</span><span class='op'>$</span><span class='kw'>grp</span>, data = <span class='kw'>X</span>, ylab = <span class='st'>"num"</span>, main = <span class='st'>"boxplot with confidence intervals"</span>)</div><div class='img'><img src='BoxPlot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $stats
 #&gt;           [,1]      [,2]      [,3]
 #&gt; [1,]  8.546154  8.567889  8.534136
 #&gt; [2,]  9.520118 10.077296  9.565248
@@ -211,7 +211,8 @@
 #&gt; 
 #&gt; $risk
 #&gt; [1] 0.05
-#&gt; </div><div class='input'><span class='co'># Confidence interval in red with mean in blue.</span></div></pre>
+#&gt; </div><div class='input'><span class='co'># Confidence interval in red with mean in blue.</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

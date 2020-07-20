@@ -121,13 +121,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>Hist</span>(
-  <span class='no'>x</span>,
-  <span class='kw'>classes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>plot</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>2</span>:<span class='fl'>10</span>,
-  <span class='kw'>mode</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classical"</span>, <span class='st'>"cumsum"</span>, <span class='st'>"density"</span>),
-  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='st'>"Sturges"</span>,
-  <span class='no'>...</span>
+  <span class='kw'>x</span>,
+  classes = <span class='kw'>NULL</span>,
+  plot = <span class='fl'>TRUE</span>,
+  col = <span class='fl'>2</span><span class='op'>:</span><span class='fl'>10</span>,
+  mode = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classical"</span>, <span class='st'>"cumsum"</span>, <span class='st'>"density"</span>),
+  breaks = <span class='st'>"Sturges"</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -165,14 +165,13 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
-<span class='no'>classes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>50</span>)
-<span class='fu'>Hist</span>(<span class='no'>x</span>, <span class='no'>classes</span>)</div><div class='img'><img src='Hist-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $counts
+    <pre class="examples"><div class='input'><span class='kw'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>0</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>50</span>, <span class='fl'>1</span>, <span class='fl'>1</span>))
+<span class='kw'>classes</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, each = <span class='fl'>50</span>)
+<span class='fu'>Hist</span>(<span class='kw'>x</span>, <span class='kw'>classes</span>)</div><div class='img'><img src='Hist-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $counts
 #&gt;     [,1] [,2] [,3] [,4] [,5] [,6] [,7]
 #&gt; hvi    1   14   13   15    6    1    0
 #&gt; hvi    0    1    2   19   20    7    1
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

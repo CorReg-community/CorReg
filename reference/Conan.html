@@ -121,12 +121,12 @@
     </div>
 
     <pre class="usage"><span class='fu'>Conan</span>(
-  <span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>X</span>,
-  <span class='kw'>nbstep</span> <span class='kw'>=</span> <span class='fl'>Inf</span>,
-  <span class='kw'>std</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>coercing</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>Xout</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  X = <span class='kw'>X</span>,
+  nbstep = <span class='fl'>Inf</span>,
+  std = <span class='fl'>FALSE</span>,
+  verbose = <span class='fl'>FALSE</span>,
+  coercing = <span class='kw'>NULL</span>,
+  Xout = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -168,9 +168,9 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span>
-<span class='no'>datamiss</span> <span class='kw'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>wrath</span> <span class='kw'>=</span> <span class='fl'>0.05</span>) <span class='co'># 5% of missing values</span>
-<span class='no'>datamiss</span></div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
+<span class='kw'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(target = <span class='kw'>data</span>, wrath = <span class='fl'>0.05</span>) <span class='co'># 5% of missing values</span>
+<span class='kw'>datamiss</span></div><div class='output co'>#&gt;                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 #&gt; Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 #&gt; Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
 #&gt; Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61 NA  1    4    1
@@ -202,8 +202,8 @@
 #&gt; Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
 #&gt; Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5   NA
 #&gt; Maserati Bora       15.0  NA    NA 335 3.54 3.570 14.60  0  1    5    8
-#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</div><div class='input'><span class='fu'><a href='showdata.html'>showdata</a></span>(<span class='no'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='Conan-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='no'>reduced</span> <span class='kw'>=</span> <span class='fu'>Conan</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>datamiss</span>)
-<span class='no'>reduced</span></div><div class='output co'>#&gt; $X
+#&gt; Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</div><div class='input'><span class='fu'><a href='showdata.html'>showdata</a></span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='Conan-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='kw'>reduced</span> <span class='op'>=</span> <span class='fu'>Conan</span>(X = <span class='kw'>datamiss</span>)
+<span class='kw'>reduced</span></div><div class='output co'>#&gt; $X
 #&gt;                    mpg cyl  disp  hp drat    wt  qsec am gear carb
 #&gt; Mazda RX4         21.0   6 160.0 110 3.90 2.620 16.46  1    4    4
 #&gt; Mazda RX4 Wag     21.0   6 160.0 110 3.90 2.875 17.02  1    4    4
@@ -231,8 +231,7 @@
 #&gt; 
 #&gt; $variables_restantes
 #&gt;  [1]  1  2  3  4  5  6  7  9 10 11
-#&gt; </div><div class='input'>  
-</div></pre>
+#&gt; </div><div class='input'>  </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

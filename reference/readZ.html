@@ -121,13 +121,13 @@
     </div>
 
     <pre class="usage"><span class='fu'>readZ</span>(
-  <span class='kw'>Z</span> <span class='kw'>=</span> <span class='no'>Z</span>,
-  <span class='kw'>B</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>crit</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"R2"</span>, <span class='st'>"F"</span>, <span class='st'>"sigmaX"</span>),
-  <span class='kw'>varnames</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>output</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"index"</span>, <span class='st'>"names"</span>, <span class='st'>"all"</span>),
-  <span class='kw'>X</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>order</span> <span class='kw'>=</span> <span class='fl'>1</span>
+  Z = <span class='kw'>Z</span>,
+  B = <span class='kw'>NULL</span>,
+  crit = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"R2"</span>, <span class='st'>"F"</span>, <span class='st'>"sigmaX"</span>),
+  varnames = <span class='kw'>NULL</span>,
+  output = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"index"</span>, <span class='st'>"names"</span>, <span class='st'>"all"</span>),
+  X = <span class='kw'>NULL</span>,
+  order = <span class='fl'>1</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -170,10 +170,10 @@ a subregression. First element is the R-square.Second element is the variable th
 Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span>
+    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
 <span class='co'># we first search a sub-regression structure</span>
-<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>nbini</span> <span class='kw'>=</span> <span class='fl'>30</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt; convergence atteinte</div><div class='input'><span class='co'># then we can try to interpret it</span>
-<span class='fu'>readZ</span>(<span class='kw'>Z</span> <span class='kw'>=</span> <span class='no'>res</span>$<span class='no'>Z_opt</span>, <span class='kw'>crit</span> <span class='kw'>=</span> <span class='st'>"R2"</span>, <span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>data</span>)</div><div class='output co'>#&gt; [[1]]
+<span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span>(X = <span class='kw'>data</span>, nbini = <span class='fl'>30</span>, verbose = <span class='fl'>0</span>)</div><div class='output co'>#&gt; convergence atteinte</div><div class='input'><span class='co'># then we can try to interpret it</span>
+<span class='fu'>readZ</span>(Z = <span class='kw'>res</span><span class='op'>$</span><span class='kw'>Z_opt</span>, crit = <span class='st'>"R2"</span>, output = <span class='st'>"all"</span>, X = <span class='kw'>data</span>)</div><div class='output co'>#&gt; [[1]]
 #&gt;               coefs       var
 #&gt; 1 0.301934038255522        R2
 #&gt; 2              &lt;NA&gt;      carb
@@ -207,7 +207,8 @@ Then comes the list of the explicative variables in the subgression and the asso
 #&gt; </div><div class='input'><span class='co'># each component is a sub-regression</span>
 <span class='co'># First line: The adjusted R-squared is given</span>
 <span class='co'># Second line: the name of the covariate that is regressed by others</span>
-<span class='co'># other lines: Coefficients of sub-regression and name of the associated covariate</span></div></pre>
+<span class='co'># other lines: Coefficients of sub-regression and name of the associated covariate</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

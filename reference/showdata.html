@@ -120,7 +120,7 @@
     <p>Plot the dataset with marks where there are missing value. It allows to have a quick idea of the structure of missing values (Missing at Random or not for example).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>showdata</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='no'>X</span>, <span class='kw'>what</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"miss"</span>, <span class='st'>"correl"</span>), <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>7</span>)</pre>
+    <pre class="usage"><span class='fu'>showdata</span>(X = <span class='kw'>X</span>, what = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"miss"</span>, <span class='st'>"correl"</span>), pch = <span class='fl'>7</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,14 +141,15 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>data</span> <span class='kw'>&lt;-</span> <span class='no'>mtcars</span>
-<span class='no'>datamiss</span> <span class='kw'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>wrath</span> <span class='kw'>=</span> <span class='fl'>0.05</span>) <span class='co'># 5% of missing values</span>
-<span class='fu'>showdata</span>(<span class='no'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='showdata-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
+<span class='kw'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(target = <span class='kw'>data</span>, wrath = <span class='fl'>0.05</span>) <span class='co'># 5% of missing values</span>
+<span class='fu'>showdata</span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='showdata-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># missing values with a structure</span>
-<span class='no'>datamiss</span> <span class='kw'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(<span class='kw'>target</span> <span class='kw'>=</span> <span class='no'>data</span>, <span class='kw'>diag</span> <span class='kw'>=</span> <span class='fl'>1</span>) <span class='co'># diag of missing values</span>
-<span class='fu'>showdata</span>(<span class='no'>datamiss</span>) <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span></div><div class='img'><img src='showdata-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='no'>opar</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>no.readonly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'>showdata</span>(<span class='kw'>X</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='no'>data</span>), <span class='kw'>what</span> <span class='kw'>=</span> <span class='st'>"correl"</span>)</div><div class='img'><img src='showdata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='no'>opar</span>)</div></pre>
+<span class='kw'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(target = <span class='kw'>data</span>, diag = <span class='fl'>1</span>) <span class='co'># diag of missing values</span>
+<span class='fu'>showdata</span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span></div><div class='img'><img src='showdata-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'>opar</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(no.readonly = <span class='fl'>TRUE</span>)
+<span class='fu'>showdata</span>(X = <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>data</span>), what = <span class='st'>"correl"</span>)</div><div class='img'><img src='showdata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>opar</span>)
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

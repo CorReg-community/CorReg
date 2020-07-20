@@ -135,13 +135,13 @@ current individual.</p>
     </div>
 
     <pre class="usage"><span class='fu'>counting_events_group</span>(
-  <span class='kw'>events</span> <span class='kw'>=</span> <span class='no'>events</span>,
-  <span class='kw'>group</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>base</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>suffix</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>clean</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>keep</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  events = <span class='kw'>events</span>,
+  group = <span class='kw'>NULL</span>,
+  base = <span class='kw'>NULL</span>,
+  prefix = <span class='kw'>NULL</span>,
+  suffix = <span class='kw'>NULL</span>,
+  clean = <span class='fl'>TRUE</span>,
+  keep = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -185,9 +185,9 @@ be added to the resulting data.frame</p></td>
     <p>a data.frame which number of rows is the length of events</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>events</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'a'</span>, <span class='st'>'b'</span>, <span class='st'>'c'</span>), <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>20</span>)
-<span class='no'>group</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'A'</span>, <span class='st'>'B'</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>8</span>)), <span class='kw'>times</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='fu'>counting_events_group</span>(<span class='no'>events</span>, <span class='no'>group</span>)</div><div class='output co'>#&gt;    a b c
+    <pre class="examples"><div class='input'><span class='kw'>events</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'a'</span>, <span class='st'>'b'</span>, <span class='st'>'c'</span>), times = <span class='fl'>20</span>)
+<span class='kw'>group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'A'</span>, <span class='st'>'B'</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>12</span>, <span class='fl'>8</span>)), times = <span class='fl'>3</span>)
+<span class='fu'>counting_events_group</span>(<span class='kw'>events</span>, <span class='kw'>group</span>)</div><div class='output co'>#&gt;    a b c
 #&gt; 1  0 0 0
 #&gt; 2  1 0 0
 #&gt; 3  1 1 0
@@ -247,8 +247,7 @@ be added to the resulting data.frame</p></td>
 #&gt; 57 1 2 1
 #&gt; 58 1 2 2
 #&gt; 59 2 2 2
-#&gt; 60 2 3 2</div><div class='input'>
-</div></pre>
+#&gt; 60 2 3 2</div><div class='input'></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
