@@ -114,16 +114,16 @@
 <span class="kw">TrueZ</span>
 </pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    0    0    0    0    0    0    0    0    0     0
-##  [2,]    1    0    0    1    0    0    0    0    0     0
+##  [1,]    0    0    1    0    0    0    0    0    0     1
+##  [2,]    0    0    1    1    0    0    0    0    0     0
 ##  [3,]    0    0    0    0    0    0    0    0    0     0
 ##  [4,]    0    0    0    0    0    0    0    0    0     0
-##  [5,]    0    0    0    1    0    1    0    0    0     0
-##  [6,]    0    0    0    0    0    0    0    0    0     0
-##  [7,]    0    0    0    1    0    1    0    0    0     0
-##  [8,]    1    0    1    0    0    0    0    0    0     0
-##  [9,]    0    0    1    0    0    0    0    0    0     0
-## [10,]    1    0    1    0    0    1    0    0    0     0</code></pre>
+##  [5,]    0    0    0    0    0    0    1    0    0     1
+##  [6,]    0    0    0    1    0    0    0    0    0     0
+##  [7,]    0    0    0    0    0    0    0    0    0     0
+##  [8,]    0    0    1    0    0    0    1    0    0     0
+##  [9,]    0    0    0    1    0    0    1    0    0     1
+## [10,]    0    0    0    0    0    0    0    0    0     0</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="co"># TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span>
 </pre></div>
@@ -167,11 +167,11 @@
 <span class="kw">bicopt_True</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(X = <span class="kw">X_appr</span>, Z = <span class="kw">TrueZ</span>, Bic_null_vect = <span class="kw">Bic_null_vect</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_vect</span>)
 </pre></div>
-<pre><code>## [1] 227.6764</code></pre>
+<pre><code>## [1] 273.0651</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_True</span>)
 </pre></div>
-<pre><code>## [1] 233.2099</code></pre>
+<pre><code>## [1] 276.1992</code></pre>
 <p>And in terms of structure:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="co"># Structure comparison</span>
@@ -182,13 +182,13 @@
 ## [1] 1
 ## 
 ## $ratio_true0
-## [1] 0.9545455
+## [1] 0.9772727
 ## 
 ## $true1
 ## [1] 12
 ## 
 ## $false1
-## [1] 4
+## [1] 2
 ## 
 ## $false0
 ## [1] 0
@@ -210,81 +210,79 @@
 </pre></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.905302595584971        R2
+## 1  0.770254484410887        R2
 ## 2               &lt;NA&gt;         4
-## 3  0.981219872307572 intercept
-## 4 -0.277569618384601         2
-## 5 0.0945502926966467         5
-## 6 -0.171054947290337         7
+## 3  0.927209047371781 intercept
+## 4 0.0909994621625222         1
+## 5 -0.318960585755456         2
+## 6 -0.143155725688536         6
+## 7  0.160642819600556         9
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.907567834051185        R2
-## 2               &lt;NA&gt;         1
-## 3  0.892233597917733 intercept
-## 4  0.223625420844007         2
-## 5 -0.111417616517923         5
-## 6   -0.4718838923871         8
-## 7 -0.177055117129054        10
+## 1  0.849329874325053        R2
+## 2               &lt;NA&gt;         3
+## 3  0.903207153799854 intercept
+## 4  0.282619213418507         1
+## 5 -0.236695559149609         2
+## 6 -0.282862124046081         8
 ## 
 ## [[3]]
-##                 coefs       var
-## 1   0.938121354437143        R2
-## 2                &lt;NA&gt;         3
-## 3  -0.968183343936041 intercept
-## 4  0.0398632482158008         5
-## 5 -0.0707438589137363         7
-## 6   0.180105812907588         8
-## 7   -0.20912608705339         9
-## 8   0.143202426195564        10
+##                coefs       var
+## 1  0.873951041262118        R2
+## 2               &lt;NA&gt;        10
+## 3  0.874880380971486 intercept
+## 4 -0.267466775279407         1
+## 5  0.223642892596363         5
+## 6  0.159291841556598         9
 ## 
 ## [[4]]
-##                 coefs       var
-## 1   0.938144505431584        R2
-## 2                &lt;NA&gt;         6
-## 3   0.761085417109667 intercept
-## 4   0.153944493505098         5
-## 5  -0.307403103180281         7
-## 6 -0.0940984316116053         8
-## 7  -0.378086141542167        10</code></pre>
+##                coefs       var
+## 1  0.950243742319607        R2
+## 2               &lt;NA&gt;         7
+## 3  -0.81097656953334 intercept
+## 4 0.0987859016391619         1
+## 5  0.255834436558966         5
+## 6  0.227524211697805         8
+## 7 -0.523210693222845         9</code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="fu"><a href="../reference/readZ.html">readZ</a></span>(Z = <span class="kw">TrueZ</span>, crit = <span class="st">"R2"</span>, X = <span class="kw">X_appr</span>, output = <span class="st">"all"</span>, order = <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span>
 </pre></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.892451318844894        R2
-## 2               &lt;NA&gt;         1
-## 3  0.867896817776469 intercept
-## 4  0.218661546659828         2
-## 5 -0.418534234820174         8
-## 6 -0.192633313577997        10
+## 1  0.705246198911452        R2
+## 2               &lt;NA&gt;         4
+## 3  0.916760972343471 intercept
+## 4 -0.285050702939507         2
+## 5 -0.159417966637693         6
+## 6  0.151922873880951         9
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.905302595584971        R2
-## 2               &lt;NA&gt;         4
-## 3  0.981219872307572 intercept
-## 4 -0.277569618384601         2
-## 5 0.0945502926966467         5
-## 6 -0.171054947290337         7
+## 1  0.849329874325053        R2
+## 2               &lt;NA&gt;         3
+## 3  0.903207153799854 intercept
+## 4  0.282619213418507         1
+## 5 -0.236695559149609         2
+## 6 -0.282862124046081         8
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.914611799786458        R2
-## 2               &lt;NA&gt;         3
-## 3 -0.958085769919971 intercept
-## 4     0.195424035616         8
-## 5 -0.205455772455344         9
-## 6  0.167314016771718        10
+## 1  0.873951041262118        R2
+## 2               &lt;NA&gt;        10
+## 3  0.874880380971486 intercept
+## 4 -0.267466775279407         1
+## 5  0.223642892596363         5
+## 6  0.159291841556598         9
 ## 
 ## [[4]]
 ##                coefs       var
-## 1  0.916153518310744        R2
-## 2               &lt;NA&gt;         6
-## 3  0.745977853563873 intercept
-## 4  0.189123661705078         5
-## 5 -0.280398656442478         7
-## 6 -0.384416015598936        10</code></pre>
+## 1    0.9409684614774        R2
+## 2               &lt;NA&gt;         7
+## 3 -0.805397879309927 intercept
+## 4  0.289728729581925         5
+## 5  0.242607352738877         8
+## 6 -0.513040709121454         9</code></pre>
 <p>We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models :</p>
 <ul>
 <li>Complete model : without the sub-regression structure</li>
@@ -314,7 +312,7 @@
 <span class="kw">MSE</span> <span class="co"># estimated structure</span>
 </pre></div>
 <pre><code>##   MSE_complete MSE_marginal MSE_plugin MSE_true
-## 1     563.8752     247.5795   326.2315 118.2991</code></pre>
+## 1     367.3665     303.1355   353.9045 127.3062</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="kw">MSE</span>), main = <span class="st">"MSE on validation dataset"</span>, sub = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"select="</span>, <span class="kw">select</span>), col = <span class="st">"blue"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(h = <span class="kw">MSE_complete</span>, col = <span class="st">"red"</span>)
