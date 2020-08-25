@@ -3,7 +3,7 @@
 language: r
 cache: packages
 cran: http://cran.rstudio.com
-dist: bionic
+dist: focal
 warnings_are_errors: true
 
 os:
