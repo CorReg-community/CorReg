@@ -97,7 +97,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="http://www.correg.org">CorReg</a></span>)
 </pre></div>
-<pre><code>## CorReg: The Concept, the Method, the Power</code></pre>
+<pre><code>## The first rule of CorReg is: You talk about CorReg</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># dataset generation</span>
 <span class="kw">base</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mixture_generator.html">mixture_generator</a></span>(n = <span class="fl">15</span>, p = <span class="fl">10</span>, ratio = <span class="fl">0.4</span>, tp1 = <span class="fl">1</span>, tp2 = <span class="fl">1</span>, tp3 = <span class="fl">1</span>, positive = <span class="fl">0.5</span>,
@@ -114,16 +114,16 @@
 <span class="kw">TrueZ</span>
 </pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
-##  [1,]    0    0    1    0    0    0    0    0    0     1
-##  [2,]    0    0    1    1    0    0    0    0    0     0
-##  [3,]    0    0    0    0    0    0    0    0    0     0
+##  [1,]    0    0    0    1    0    0    1    0    0     0
+##  [2,]    0    0    0    1    0    0    0    1    0     0
+##  [3,]    0    0    0    1    1    0    1    0    0     0
 ##  [4,]    0    0    0    0    0    0    0    0    0     0
-##  [5,]    0    0    0    0    0    0    1    0    0     1
-##  [6,]    0    0    0    1    0    0    0    0    0     0
+##  [5,]    0    0    0    0    0    0    0    0    0     0
+##  [6,]    0    0    0    0    0    0    0    0    0     0
 ##  [7,]    0    0    0    0    0    0    0    0    0     0
-##  [8,]    0    0    1    0    0    0    1    0    0     0
-##  [9,]    0    0    0    1    0    0    1    0    0     1
-## [10,]    0    0    0    0    0    0    0    0    0     0</code></pre>
+##  [8,]    0    0    0    0    0    0    0    0    0     0
+##  [9,]    0    0    0    0    1    0    1    1    0     0
+## [10,]    0    0    0    0    1    0    0    1    0     0</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="co"># TrueZ[i,j]==1 means that X[,j] linearly depends on X[,i]</span>
 </pre></div>
@@ -167,11 +167,11 @@
 <span class="kw">bicopt_True</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/BicZ.html">BicZ</a></span>(X = <span class="kw">X_appr</span>, Z = <span class="kw">TrueZ</span>, Bic_null_vect = <span class="kw">Bic_null_vect</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_vect</span>)
 </pre></div>
-<pre><code>## [1] 273.0651</code></pre>
+<pre><code>## [1] 232.5486</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="kw">bicopt_True</span>)
 </pre></div>
-<pre><code>## [1] 276.1992</code></pre>
+<pre><code>## [1] 233.126</code></pre>
 <p>And in terms of structure:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="co"># Structure comparison</span>
@@ -182,13 +182,13 @@
 ## [1] 1
 ## 
 ## $ratio_true0
-## [1] 0.9772727
+## [1] 0.9659091
 ## 
 ## $true1
 ## [1] 12
 ## 
 ## $false1
-## [1] 2
+## [1] 3
 ## 
 ## $false0
 ## [1] 0
@@ -210,79 +210,80 @@
 </pre></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.770254484410887        R2
-## 2               &lt;NA&gt;         4
-## 3  0.927209047371781 intercept
-## 4 0.0909994621625222         1
-## 5 -0.318960585755456         2
-## 6 -0.143155725688536         6
-## 7  0.160642819600556         9
+## 1  0.763627779582872        R2
+## 2               &lt;NA&gt;         7
+## 3  -0.95096668874617 intercept
+## 4 -0.215351971542605         1
+## 5 -0.275957639038572         3
+## 6  0.213997532231663         9
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.849329874325053        R2
-## 2               &lt;NA&gt;         3
-## 3  0.903207153799854 intercept
-## 4  0.282619213418507         1
-## 5 -0.236695559149609         2
-## 6 -0.282862124046081         8
+## 1  0.875981735637462        R2
+## 2               &lt;NA&gt;         8
+## 3 -0.794300165850345 intercept
+## 4 -0.250169963376396         2
+## 5  0.331338716207297         9
+## 6 -0.347877530911985        10
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.873951041262118        R2
-## 2               &lt;NA&gt;        10
-## 3  0.874880380971486 intercept
-## 4 -0.267466775279407         1
-## 5  0.223642892596363         5
-## 6  0.159291841556598         9
+## 1  0.891424203727649        R2
+## 2               &lt;NA&gt;         4
+## 3   0.81599150070669 intercept
+## 4    0.2895836937414         1
+## 5 -0.231311915539413         2
+## 6  -0.19616025344866         3
+## 7 0.0295495642271822         6
+## 8  0.055446454310391         9
+## 9 0.0487765856349273        10
 ## 
 ## [[4]]
 ##                coefs       var
-## 1  0.950243742319607        R2
-## 2               &lt;NA&gt;         7
-## 3  -0.81097656953334 intercept
-## 4 0.0987859016391619         1
-## 5  0.255834436558966         5
-## 6  0.227524211697805         8
-## 7 -0.523210693222845         9</code></pre>
+## 1  0.912689176443977        R2
+## 2               &lt;NA&gt;         5
+## 3 -0.952878559141843 intercept
+## 4  0.117374260074963         3
+## 5 -0.330429556712803         9
+## 6 -0.301499754625944        10</code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="fu"><a href="../reference/readZ.html">readZ</a></span>(Z = <span class="kw">TrueZ</span>, crit = <span class="st">"R2"</span>, X = <span class="kw">X_appr</span>, output = <span class="st">"all"</span>, order = <span class="fl">1</span>) <span class="co"># &lt;NA&gt;line : name of subregressed covariate</span>
 </pre></div>
 <pre><code>## [[1]]
 ##                coefs       var
-## 1  0.705246198911452        R2
-## 2               &lt;NA&gt;         4
-## 3  0.916760972343471 intercept
-## 4 -0.285050702939507         2
-## 5 -0.159417966637693         6
-## 6  0.151922873880951         9
+## 1  0.763627779582872        R2
+## 2               &lt;NA&gt;         7
+## 3  -0.95096668874617 intercept
+## 4 -0.215351971542605         1
+## 5 -0.275957639038572         3
+## 6  0.213997532231663         9
 ## 
 ## [[2]]
 ##                coefs       var
-## 1  0.849329874325053        R2
-## 2               &lt;NA&gt;         3
-## 3  0.903207153799854 intercept
-## 4  0.282619213418507         1
-## 5 -0.236695559149609         2
-## 6 -0.282862124046081         8
+## 1  0.852984642098211        R2
+## 2               &lt;NA&gt;         4
+## 3  0.778212622801879 intercept
+## 4  0.280860510930914         1
+## 5  -0.25239181283297         2
+## 6 -0.175167200460096         3
 ## 
 ## [[3]]
 ##                coefs       var
-## 1  0.873951041262118        R2
-## 2               &lt;NA&gt;        10
-## 3  0.874880380971486 intercept
-## 4 -0.267466775279407         1
-## 5  0.223642892596363         5
-## 6  0.159291841556598         9
+## 1  0.875981735637462        R2
+## 2               &lt;NA&gt;         8
+## 3 -0.794300165850345 intercept
+## 4 -0.250169963376396         2
+## 5  0.331338716207297         9
+## 6 -0.347877530911985        10
 ## 
 ## [[4]]
 ##                coefs       var
-## 1    0.9409684614774        R2
-## 2               &lt;NA&gt;         7
-## 3 -0.805397879309927 intercept
-## 4  0.289728729581925         5
-## 5  0.242607352738877         8
-## 6 -0.513040709121454         9</code></pre>
+## 1  0.912689176443977        R2
+## 2               &lt;NA&gt;         5
+## 3 -0.952878559141843 intercept
+## 4  0.117374260074963         3
+## 5 -0.330429556712803         9
+## 6 -0.301499754625944        10</code></pre>
 <p>We can finally use the correg function to make linear regression using the sub-regression structure learnt above. We get three models :</p>
 <ul>
 <li>Complete model : without the sub-regression structure</li>
@@ -312,7 +313,7 @@
 <span class="kw">MSE</span> <span class="co"># estimated structure</span>
 </pre></div>
 <pre><code>##   MSE_complete MSE_marginal MSE_plugin MSE_true
-## 1     367.3665     303.1355   353.9045 127.3062</code></pre>
+## 1     1568.283     1209.953   1197.164 285.2366</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html">barplot</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="kw">MSE</span>), main = <span class="st">"MSE on validation dataset"</span>, sub = <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="st">"select="</span>, <span class="kw">select</span>), col = <span class="st">"blue"</span>)
 <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html">abline</a></span>(h = <span class="kw">MSE_complete</span>, col = <span class="st">"red"</span>)
