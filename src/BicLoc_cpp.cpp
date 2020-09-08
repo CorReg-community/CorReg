@@ -10,7 +10,7 @@ using Eigen::Map;
 using Eigen::MatrixXd;
 using Rcpp::as;
 
-double BicLoc_cpp(const Eigen::MatrixXd &X,const Eigen::MatrixXd &Y,const bool &intercept,const int &methode){
+SEXP BicLoc_cpp(const Eigen::MatrixXd &X,const Eigen::MatrixXd &Y,const bool &intercept,const int &methode){
   
   int size = X.rows();
   int sizecol=X.cols();
