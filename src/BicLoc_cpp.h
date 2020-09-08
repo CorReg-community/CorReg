@@ -3,6 +3,6 @@
 
 #include <RcppEigen.h>
 using namespace Rcpp ;
-RcppExport SEXP BicLoc_cpp(const Eigen::MatrixXd &X,const Eigen::MatrixXd &Y,const bool &intercept,const int &methode) ;
+RcppExport double BicLoc_cpp(const Eigen::MatrixXd &X,const Eigen::MatrixXd &Y,const bool &intercept,const int &methode) ;
 
 #endif

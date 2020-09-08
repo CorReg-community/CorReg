@@ -8,7 +8,7 @@
  */
 
 /* .Call calls */
-extern SEXP BicLoc_cpp(SEXP, SEXP, SEXP, SEXP);
+// extern SEXP BicLoc_cpp(SEXP, SEXP, SEXP, SEXP);// not used in R part
 extern SEXP BicTheta(SEXP, SEXP, SEXP, SEXP);
 extern SEXP BicZ(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP BICZsparse(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);

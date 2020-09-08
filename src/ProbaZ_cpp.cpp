@@ -10,7 +10,7 @@ using Eigen::Map;
 using Eigen::MatrixXd;
 using Rcpp::as;
 
-SEXP ProbaZ_cpp(Eigen::MatrixXd Z){
+double ProbaZ_cpp(Eigen::MatrixXd Z){
    int p=Z.cols();
    int p2=0;
    double logproba=0;
