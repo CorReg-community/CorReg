@@ -23,7 +23,6 @@ extern SEXP rechercheZ_relax(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEX
 extern SEXP rechercheZ_sparse_relax(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-   {"BicLoc_cpp",              (DL_FUNC) &BicLoc_cpp,               4},
    {"BicTheta",                (DL_FUNC) &BicTheta,                 4},
    {"BicZ",                    (DL_FUNC) &BicZ,                     6},
    {"BICZsparse",              (DL_FUNC) &BICZsparse,               8},
