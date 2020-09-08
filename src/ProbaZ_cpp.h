@@ -5,6 +5,6 @@
 #include <math.h>
 #include <Rmath.h>
 using namespace Rcpp ;
-double ProbaZ_cpp(Eigen::MatrixXd Z) ;
+SEXP ProbaZ_cpp(Eigen::MatrixXd Z) ;
 
 #endif
