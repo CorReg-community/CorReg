@@ -1,6 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 README.md
-^\.travis\.yml$
 ^appveyor\.yml$
 ^\.github$
