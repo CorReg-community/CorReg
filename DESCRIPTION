@@ -19,7 +19,7 @@ Description: Linear regression based on a recursive structural equation model
     For more information about the method, read the PhD thesis of Clement Thery (2015) in the link below.
 License: CeCILL
 Copyright: ArcelorMittal
-URL: http://www.correg.org, http://www.theses.fr/2015LIL10060
+URL: https://correg-community.github.io/CorReg, http://www.correg.org, http://www.theses.fr/2015LIL10060
 BugReports: https://github.com/CorReg-community/CorReg/issues
 Imports: Rcpp(>= 0.11.0), lars(>= 1.2), 
         elasticnet(>= 1.1), corrplot(>= 0.73), Matrix(>= 1.1), rpart(>=

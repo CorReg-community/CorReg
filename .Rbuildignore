@@ -3,3 +3,6 @@
 README.md
 ^appveyor\.yml$
 ^\.github$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
