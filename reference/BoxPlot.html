@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,16 +120,16 @@
     <p>classical boxplot function improved with integrated confidence level on the mean for each group ploted on the graph and also ANOVA with p-value and its interpretation given in the legend.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>BoxPlot</span>(
-  <span class='kw'>num</span>,
-  grp = <span class='kw'>NULL</span>,
-  data = <span class='kw'>NULL</span>,
-  AnoVa = <span class='fl'>TRUE</span>,
-  risk = <span class='fl'>0.05</span>,
-  lang = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"fr"</span>),
-  verbose = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>BoxPlot</span><span class='op'>(</span>
+  <span class='va'>num</span>,
+  grp <span class='op'>=</span> <span class='cn'>NULL</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  AnoVa <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  risk <span class='op'>=</span> <span class='fl'>0.05</span>,
+  lang <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"fr"</span><span class='op'>)</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,12 +170,13 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>repart</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>40</span>)
-<span class='kw'>X</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(num = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>1</span>], <span class='fl'>10</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>2</span>], <span class='fl'>11</span>, <span class='fl'>1</span>), <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>repart</span>[<span class='fl'>3</span>], <span class='fl'>10</span>, <span class='fl'>1</span>)),
-               grp = <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span>), <span class='kw'>repart</span>))
+    <pre class="examples"><div class='input'><span class='va'>repart</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>20</span>, <span class='fl'>40</span>, <span class='fl'>40</span><span class='op'>)</span>
+<span class='va'>X</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>num <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>repart</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>repart</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>11</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>repart</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span>, <span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>,
+               grp <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span><span class='op'>)</span>, <span class='va'>repart</span><span class='op'>)</span><span class='op'>)</span>
 
 
-<span class='fu'>BoxPlot</span>(<span class='kw'>X</span><span class='op'>$</span><span class='kw'>num</span>, <span class='kw'>X</span><span class='op'>$</span><span class='kw'>grp</span>, data = <span class='kw'>X</span>, ylab = <span class='st'>"num"</span>, main = <span class='st'>"boxplot with confidence intervals"</span>)</div><div class='img'><img src='BoxPlot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $stats
+<span class='fu'>BoxPlot</span><span class='op'>(</span><span class='va'>X</span><span class='op'>$</span><span class='va'>num</span>, <span class='va'>X</span><span class='op'>$</span><span class='va'>grp</span>, data <span class='op'>=</span> <span class='va'>X</span>, ylab <span class='op'>=</span> <span class='st'>"num"</span>, main <span class='op'>=</span> <span class='st'>"boxplot with confidence intervals"</span><span class='op'>)</span>
+</div><div class='img'><img src='BoxPlot-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $stats
 #&gt;           [,1]      [,2]      [,3]
 #&gt; [1,]  8.546154  8.567889  8.534136
 #&gt; [2,]  9.520118 10.077296  9.565248
@@ -212,6 +213,7 @@
 #&gt; $risk
 #&gt; [1] 0.05
 #&gt; </div><div class='input'><span class='co'># Confidence interval in red with mean in blue.</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -228,7 +230,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

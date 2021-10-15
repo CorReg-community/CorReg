@@ -81,7 +81,7 @@ with a regression on the residuals of the marginal model by the residuals of the
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -95,7 +95,7 @@ with a regression on the residuals of the marginal model by the residuals of the
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -122,27 +122,27 @@ with a regression on the residuals of the marginal model by the residuals of the
 with a regression on the residuals of the marginal model by the residuals of the sub-regressions). Each regression can be computed with variable selection (for example the lasso).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>correg</span>(
-  X = <span class='kw'>NULL</span>,
-  Y = <span class='kw'>NULL</span>,
-  Z = <span class='kw'>NULL</span>,
-  B = <span class='kw'>NULL</span>,
-  compl = <span class='fl'>TRUE</span>,
-  expl = <span class='fl'>FALSE</span>,
-  pred = <span class='fl'>FALSE</span>,
-  select = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"lar"</span>, <span class='st'>"lasso"</span>, <span class='st'>"forward.stagewise"</span>, <span class='st'>"stepwise"</span>, <span class='st'>"elasticnet"</span>, <span class='st'>"NULL"</span>,
-    <span class='st'>"ridge"</span>, <span class='st'>"clere"</span>, <span class='st'>"spikeslab"</span>),
-  criterion = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"MSE"</span>, <span class='st'>"BIC"</span>),
-  X_test = <span class='kw'>NULL</span>,
-  Y_test = <span class='kw'>NULL</span>,
-  intercept = <span class='fl'>TRUE</span>,
-  K = <span class='fl'>10</span>,
-  groupe = <span class='kw'>NULL</span>,
-  Amax = <span class='kw'>NULL</span>,
-  lambda = <span class='fl'>1</span>,
-  alpha = <span class='kw'>NULL</span>,
-  g = <span class='fl'>5</span>
-)</pre>
+    <pre class="usage"><span class='fu'>correg</span><span class='op'>(</span>
+  X <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Y <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Z <span class='op'>=</span> <span class='cn'>NULL</span>,
+  B <span class='op'>=</span> <span class='cn'>NULL</span>,
+  compl <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  expl <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pred <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  select <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"lar"</span>, <span class='st'>"lasso"</span>, <span class='st'>"forward.stagewise"</span>, <span class='st'>"stepwise"</span>, <span class='st'>"elasticnet"</span>, <span class='st'>"NULL"</span>,
+    <span class='st'>"ridge"</span>, <span class='st'>"clere"</span>, <span class='st'>"spikeslab"</span><span class='op'>)</span>,
+  criterion <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"MSE"</span>, <span class='st'>"BIC"</span><span class='op'>)</span>,
+  X_test <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Y_test <span class='op'>=</span> <span class='cn'>NULL</span>,
+  intercept <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  K <span class='op'>=</span> <span class='fl'>10</span>,
+  groupe <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Amax <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lambda <span class='op'>=</span> <span class='fl'>1</span>,
+  alpha <span class='op'>=</span> <span class='cn'>NULL</span>,
+  g <span class='op'>=</span> <span class='fl'>5</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -235,32 +235,36 @@ with a regression on the residuals of the marginal model by the residuals of the
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># dataset generation</span>
-<span class='kw'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span>(n = <span class='fl'>15</span>, p = <span class='fl'>10</span>, ratio = <span class='fl'>0.4</span>, tp1 = <span class='fl'>1</span>, tp2 = <span class='fl'>1</span>, tp3 = <span class='fl'>1</span>, positive = <span class='fl'>0.5</span>,
-                         R2Y = <span class='fl'>0.8</span>, R2 = <span class='fl'>0.9</span>, scale = <span class='fl'>TRUE</span>, max_compl = <span class='fl'>3</span>, lambda = <span class='fl'>1</span>)
+<span class='va'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>15</span>, p <span class='op'>=</span> <span class='fl'>10</span>, ratio <span class='op'>=</span> <span class='fl'>0.4</span>, tp1 <span class='op'>=</span> <span class='fl'>1</span>, tp2 <span class='op'>=</span> <span class='fl'>1</span>, tp3 <span class='op'>=</span> <span class='fl'>1</span>, positive <span class='op'>=</span> <span class='fl'>0.5</span>,
+                         R2Y <span class='op'>=</span> <span class='fl'>0.8</span>, R2 <span class='op'>=</span> <span class='fl'>0.9</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span>, max_compl <span class='op'>=</span> <span class='fl'>3</span>, lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 
-<span class='kw'>X_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_appr</span> <span class='co'># learning sample</span>
-<span class='kw'>Y_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
-<span class='kw'>Y_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
-<span class='kw'>X_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_test</span> <span class='co'># validation sample</span>
-<span class='kw'>TrueZ</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
+<span class='va'>X_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_appr</span> <span class='co'># learning sample</span>
+<span class='va'>Y_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
+<span class='va'>Y_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
+<span class='va'>X_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_test</span> <span class='co'># validation sample</span>
+<span class='va'>TrueZ</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
 
 <span class='co'># Regression coefficients estimation</span>
-<span class='kw'>select</span> <span class='op'>=</span> <span class='st'>"lar"</span> <span class='co'># variable selection with lasso (using lar algorithm)</span>
-<span class='kw'>resY</span> <span class='op'>=</span> <span class='fu'>correg</span>(X = <span class='kw'>X_appr</span>, Y = <span class='kw'>Y_appr</span>, Z = <span class='kw'>TrueZ</span>, compl = <span class='fl'>TRUE</span>, expl = <span class='fl'>TRUE</span>, pred = <span class='fl'>TRUE</span>,
-              select = <span class='kw'>select</span>, K = <span class='fl'>10</span>)
+<span class='va'>select</span> <span class='op'>=</span> <span class='st'>"lar"</span> <span class='co'># variable selection with lasso (using lar algorithm)</span>
+<span class='va'>resY</span> <span class='op'>=</span> <span class='fu'>correg</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Y <span class='op'>=</span> <span class='va'>Y_appr</span>, Z <span class='op'>=</span> <span class='va'>TrueZ</span>, compl <span class='op'>=</span> <span class='cn'>TRUE</span>, expl <span class='op'>=</span> <span class='cn'>TRUE</span>, pred <span class='op'>=</span> <span class='cn'>TRUE</span>,
+              select <span class='op'>=</span> <span class='va'>select</span>, K <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 
 <span class='co'># MSE computation</span>
-<span class='kw'>MSE_complete</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>compl</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># classical model on X</span>
-<span class='kw'>MSE_marginal</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>expl</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># reduced model without correlations</span>
-<span class='kw'>MSE_plugin</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>pred</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># plug-in model</span>
-<span class='kw'>MSE_true</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>base</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># True model</span>
+<span class='va'>MSE_complete</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>compl</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># classical model on X</span>
+<span class='va'>MSE_marginal</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>expl</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># reduced model without correlations</span>
+<span class='va'>MSE_plugin</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>pred</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># plug-in model</span>
+<span class='va'>MSE_true</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># True model</span>
 
 
 <span class='co'># MSE comparison</span>
-<span class='kw'>MSE</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>MSE_complete</span>, <span class='kw'>MSE_marginal</span>, <span class='kw'>MSE_plugin</span>, <span class='kw'>MSE_true</span>)
-<span class='kw'>MSE</span> <span class='co'># estimated structure</span></div><div class='output co'>#&gt;   MSE_complete MSE_marginal MSE_plugin MSE_true
+<span class='va'>MSE</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>MSE_complete</span>, <span class='va'>MSE_marginal</span>, <span class='va'>MSE_plugin</span>, <span class='va'>MSE_true</span><span class='op'>)</span>
+<span class='va'>MSE</span> <span class='co'># estimated structure</span>
+</div><div class='output co'>#&gt;   MSE_complete MSE_marginal MSE_plugin MSE_true
 #&gt; 1     507.7113     507.7113   507.7113 135.2856</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>MSE</span>), main = <span class='st'>"MSE on validation dataset"</span>, sub = <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"select ="</span>, <span class='kw'>select</span>))</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(h = <span class='kw'>MSE_complete</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='correg-1.png' alt='' width='700' height='433' /></div><div class='input'></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>MSE</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"MSE on validation dataset"</span>, sub <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"select ="</span>, <span class='va'>select</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h <span class='op'>=</span> <span class='va'>MSE_complete</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='img'><img src='correg-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -276,7 +280,7 @@ with a regression on the residuals of the marginal model by the residuals of the
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

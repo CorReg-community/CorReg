@@ -83,7 +83,7 @@ then this structure is interpreted and used to reduce dimension and correlations
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,7 +97,7 @@ then this structure is interpreted and used to reduce dimension and correlations
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -140,42 +140,45 @@ See <a href='http://www.theses.fr/2015LIL10060'>http://www.theses.fr/2015LIL1006
     <p>Clement THERY &lt;clement.thery@arcelormittal.com&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span>(<span class='fl'>1</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
 <span class='co'># dataset generation</span>
-<span class='kw'>base</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span>(n = <span class='fl'>15</span>, p = <span class='fl'>10</span>, ratio = <span class='fl'>0.4</span>, tp1 = <span class='fl'>1</span>, tp2 = <span class='fl'>1</span>, tp3 = <span class='fl'>1</span>,
-                          positive = <span class='fl'>0.5</span>, R2Y = <span class='fl'>0.8</span>, R2 = <span class='fl'>0.9</span>, scale = <span class='fl'>TRUE</span>, 
-                          max_compl = <span class='fl'>3</span>, lambda = <span class='fl'>1</span>)
+<span class='va'>base</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>15</span>, p <span class='op'>=</span> <span class='fl'>10</span>, ratio <span class='op'>=</span> <span class='fl'>0.4</span>, tp1 <span class='op'>=</span> <span class='fl'>1</span>, tp2 <span class='op'>=</span> <span class='fl'>1</span>, tp3 <span class='op'>=</span> <span class='fl'>1</span>,
+                          positive <span class='op'>=</span> <span class='fl'>0.5</span>, R2Y <span class='op'>=</span> <span class='fl'>0.8</span>, R2 <span class='op'>=</span> <span class='fl'>0.9</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+                          max_compl <span class='op'>=</span> <span class='fl'>3</span>, lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 
-<span class='kw'>X_appr</span> <span class='op'>&lt;-</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_appr</span> <span class='co'># learning sample</span>
-<span class='kw'>Y_appr</span> <span class='op'>&lt;-</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
-<span class='kw'>Y_test</span> <span class='op'>&lt;-</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
-<span class='kw'>X_test</span> <span class='op'>&lt;-</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_test</span> <span class='co'># validation sample</span>
+<span class='va'>X_appr</span> <span class='op'>&lt;-</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_appr</span> <span class='co'># learning sample</span>
+<span class='va'>Y_appr</span> <span class='op'>&lt;-</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
+<span class='va'>Y_test</span> <span class='op'>&lt;-</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
+<span class='va'>X_test</span> <span class='op'>&lt;-</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_test</span> <span class='co'># validation sample</span>
    
-<span class='kw'>TrueZ</span> <span class='op'>&lt;-</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
+<span class='va'>TrueZ</span> <span class='op'>&lt;-</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
 <span class='co'># Z_i,j=1 means that Xj linearly depends on Xi</span>
    
  
 <span class='co'># density estimation for the MCMC (with Gaussian Mixtures)</span>
-<span class='kw'>density</span> <span class='op'>&lt;-</span> <span class='fu'><a href='density_estimation.html'>density_estimation</a></span>(X = <span class='kw'>X_appr</span>, nbclustmax = <span class='fl'>8</span>, detailed = <span class='fl'>TRUE</span>)
-<span class='kw'>Bic_null_vect</span> <span class='op'>&lt;-</span> <span class='kw'>density</span><span class='op'>$</span><span class='kw'>BIC_vect</span> <span class='co'># vector of the BIC found (1 value per covariate)</span>
+<span class='va'>density</span> <span class='op'>&lt;-</span> <span class='fu'><a href='density_estimation.html'>density_estimation</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, nbclustmax <span class='op'>=</span> <span class='fl'>8</span>, detailed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>Bic_null_vect</span> <span class='op'>&lt;-</span> <span class='va'>density</span><span class='op'>$</span><span class='va'>BIC_vect</span> <span class='co'># vector of the BIC found (1 value per covariate)</span>
    
 <span class='co'># MCMC to find the structure</span>
-<span class='kw'>res</span> <span class='op'>=</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span>(X = <span class='kw'>X_appr</span>, verbose = <span class='fl'>0</span>, reject = <span class='fl'>0</span>, Maxiter = <span class='fl'>900</span>, nbini = <span class='fl'>20</span>,
-                      candidates = <span class='op'>-</span><span class='fl'>1</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>, star = <span class='fl'>TRUE</span>, 
-                      p1max = <span class='fl'>15</span>, clean = <span class='fl'>TRUE</span>)
-<span class='kw'>hatZ</span> <span class='op'>=</span> <span class='kw'>res</span><span class='op'>$</span><span class='kw'>Z_opt</span> <span class='co'># found structure (adjacency matrix)</span>
-<span class='kw'>hatBic</span> <span class='op'>=</span> <span class='kw'>res</span><span class='op'>$</span><span class='kw'>bic_opt</span> <span class='co'># associated BIC</span>
+<span class='va'>res</span> <span class='op'>=</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, verbose <span class='op'>=</span> <span class='fl'>0</span>, reject <span class='op'>=</span> <span class='fl'>0</span>, Maxiter <span class='op'>=</span> <span class='fl'>900</span>, nbini <span class='op'>=</span> <span class='fl'>20</span>,
+                      candidates <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span>, star <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+                      p1max <span class='op'>=</span> <span class='fl'>15</span>, clean <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>hatZ</span> <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>Z_opt</span> <span class='co'># found structure (adjacency matrix)</span>
+<span class='va'>hatBic</span> <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>bic_opt</span> <span class='co'># associated BIC</span>
 
 <span class='co'># BIC comparison between true and found structure</span>
-<span class='kw'>bicopt_vect</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span>(X = <span class='kw'>X_appr</span>, Z = <span class='kw'>hatZ</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>)
-<span class='kw'>bicopt_true</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span>(X = <span class='kw'>X_appr</span>, Z = <span class='kw'>TrueZ</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>bicopt_vect</span>)</div><div class='output co'>#&gt; [1] 259.9427</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>bicopt_true</span>)</div><div class='output co'>#&gt; [1] 268.9612</div><div class='input'>
+<span class='va'>bicopt_vect</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Z <span class='op'>=</span> <span class='va'>hatZ</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span><span class='op'>)</span>
+<span class='va'>bicopt_true</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Z <span class='op'>=</span> <span class='va'>TrueZ</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>bicopt_vect</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 259.9427</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>bicopt_true</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 268.9612</div><div class='input'>
 <span class='co'># Structure comparison</span>
-<span class='kw'>compZ</span> <span class='op'>=</span> <span class='fu'><a href='compare_struct.html'>compare_struct</a></span>(trueZ = <span class='kw'>TrueZ</span>, Zalgo = <span class='kw'>hatZ</span>) <span class='co'># qualitative comparison</span>
+<span class='va'>compZ</span> <span class='op'>=</span> <span class='fu'><a href='compare_struct.html'>compare_struct</a></span><span class='op'>(</span>trueZ <span class='op'>=</span> <span class='va'>TrueZ</span>, Zalgo <span class='op'>=</span> <span class='va'>hatZ</span><span class='op'>)</span> <span class='co'># qualitative comparison</span>
 
 <span class='co'># interpretation of found and true structure ordered by increasing R2</span>
 <span class='co'># &lt;NA&gt;line: name of subregressed covariate</span>
-<span class='fu'><a href='readZ.html'>readZ</a></span>(Z = <span class='kw'>hatZ</span>, crit = <span class='st'>"R2"</span>, X = <span class='kw'>X_appr</span>, output = <span class='st'>"all"</span>, order = <span class='fl'>1</span>) </div><div class='output co'>#&gt; [[1]]
+<span class='fu'><a href='readZ.html'>readZ</a></span><span class='op'>(</span>Z <span class='op'>=</span> <span class='va'>hatZ</span>, crit <span class='op'>=</span> <span class='st'>"R2"</span>, X <span class='op'>=</span> <span class='va'>X_appr</span>, output <span class='op'>=</span> <span class='st'>"all"</span>, order <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> 
+</div><div class='output co'>#&gt; [[1]]
 #&gt;                coefs       var
 #&gt; 1  0.756688931044162        R2
 #&gt; 2               &lt;NA&gt;         4
@@ -215,7 +218,8 @@ See <a href='http://www.theses.fr/2015LIL10060'>http://www.theses.fr/2015LIL1006
 #&gt; 5  -0.157191523221045         3
 #&gt; 6  -0.199826875526643         5
 #&gt; 7 -0.0670800344425359         6
-#&gt; </div><div class='input'><span class='fu'><a href='readZ.html'>readZ</a></span>(Z = <span class='kw'>TrueZ</span>, crit = <span class='st'>"R2"</span>, X = <span class='kw'>X_appr</span>, output = <span class='st'>"all"</span>, order = <span class='fl'>1</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; </div><div class='input'><span class='fu'><a href='readZ.html'>readZ</a></span><span class='op'>(</span>Z <span class='op'>=</span> <span class='va'>TrueZ</span>, crit <span class='op'>=</span> <span class='st'>"R2"</span>, X <span class='op'>=</span> <span class='va'>X_appr</span>, output <span class='op'>=</span> <span class='st'>"all"</span>, order <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;                coefs       var
 #&gt; 1  0.714662171588836        R2
 #&gt; 2               &lt;NA&gt;         4
@@ -252,23 +256,29 @@ See <a href='http://www.theses.fr/2015LIL10060'>http://www.theses.fr/2015LIL1006
 #&gt; 6 -0.210790435701806         5
 #&gt; </div><div class='input'>
 <span class='co'># Regression coefficients estimation</span>
-<span class='kw'>select</span> <span class='op'>=</span> <span class='st'>"NULL"</span> <span class='co'># without variable selection (otherwise,  choose "lar" for example)</span>
-<span class='kw'>resY</span> <span class='op'>=</span> <span class='fu'><a href='correg.html'>correg</a></span>(X = <span class='kw'>X_appr</span>, Y = <span class='kw'>Y_appr</span>, Z = <span class='kw'>hatZ</span>, compl = <span class='fl'>TRUE</span>, expl = <span class='fl'>TRUE</span>, pred = <span class='fl'>TRUE</span>, 
-              select = <span class='kw'>select</span>, K = <span class='fl'>10</span>)
+<span class='va'>select</span> <span class='op'>=</span> <span class='st'>"NULL"</span> <span class='co'># without variable selection (otherwise,  choose "lar" for example)</span>
+<span class='va'>resY</span> <span class='op'>=</span> <span class='fu'><a href='correg.html'>correg</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Y <span class='op'>=</span> <span class='va'>Y_appr</span>, Z <span class='op'>=</span> <span class='va'>hatZ</span>, compl <span class='op'>=</span> <span class='cn'>TRUE</span>, expl <span class='op'>=</span> <span class='cn'>TRUE</span>, pred <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+              select <span class='op'>=</span> <span class='va'>select</span>, K <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 
 <span class='co'># MSE computation</span>
-<span class='kw'>MSE_complete</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>compl</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># classical model on X</span>
-<span class='kw'>MSE_marginal</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>expl</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># reduced model without correlations</span>
-<span class='kw'>MSE_plugin</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>resY</span><span class='op'>$</span><span class='kw'>pred</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># plug-in model</span>
-<span class='kw'>MSE_true</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>base</span><span class='op'>$</span><span class='kw'>A</span>) <span class='co'># True model</span>
+<span class='va'>MSE_complete</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>compl</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># classical model on X</span>
+<span class='va'>MSE_marginal</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>expl</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># reduced model without correlations</span>
+<span class='va'>MSE_plugin</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>resY</span><span class='op'>$</span><span class='va'>pred</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># plug-in model</span>
+<span class='va'>MSE_true</span> <span class='op'>=</span> <span class='fu'><a href='MSE_loc.html'>MSE_loc</a></span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>A</span><span class='op'>)</span> <span class='co'># True model</span>
    
    
 <span class='co'># MSE comparison</span>
-<span class='kw'>MSE</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>MSE_complete</span>, <span class='kw'>MSE_marginal</span>, <span class='kw'>MSE_plugin</span>, <span class='kw'>MSE_true</span>)
-<span class='kw'>MSE</span> <span class='co'># estimated structure</span></div><div class='output co'>#&gt;   MSE_complete MSE_marginal MSE_plugin MSE_true
-#&gt; 1     441.0069     374.0534    391.176 174.9802</div><div class='input'><span class='kw'>compZ</span><span class='op'>$</span><span class='kw'>true_left</span></div><div class='output co'>#&gt; [1] 4</div><div class='input'><span class='kw'>compZ</span><span class='op'>$</span><span class='kw'>false_left</span></div><div class='output co'>#&gt; [1] 0</div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span>(<span class='kw'>MSE</span>), main = <span class='st'>"MSE on validation dataset"</span>,  
-        sub = <span class='st'>"Results obtained without selection method (lasso and other are available)"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span>(h = <span class='kw'>MSE_complete</span>, col = <span class='st'>"red"</span>)</div><div class='img'><img src='CorReg-package-1.png' alt='' width='700' height='433' /></div><div class='input'></div></pre>
+<span class='va'>MSE</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span><span class='va'>MSE_complete</span>, <span class='va'>MSE_marginal</span>, <span class='va'>MSE_plugin</span>, <span class='va'>MSE_true</span><span class='op'>)</span>
+<span class='va'>MSE</span> <span class='co'># estimated structure</span>
+</div><div class='output co'>#&gt;   MSE_complete MSE_marginal MSE_plugin MSE_true
+#&gt; 1     441.0069     374.0534    391.176 174.9802</div><div class='input'><span class='va'>compZ</span><span class='op'>$</span><span class='va'>true_left</span>
+</div><div class='output co'>#&gt; [1] 4</div><div class='input'><span class='va'>compZ</span><span class='op'>$</span><span class='va'>false_left</span>
+</div><div class='output co'>#&gt; [1] 0</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/barplot.html'>barplot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='va'>MSE</span><span class='op'>)</span>, main <span class='op'>=</span> <span class='st'>"MSE on validation dataset"</span>,  
+        sub <span class='op'>=</span> <span class='st'>"Results obtained without selection method (lasso and other are available)"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span>h <span class='op'>=</span> <span class='va'>MSE_complete</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span>
+</div><div class='img'><img src='CorReg-package-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -284,7 +294,7 @@ See <a href='http://www.theses.fr/2015LIL10060'>http://www.theses.fr/2015LIL1006
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

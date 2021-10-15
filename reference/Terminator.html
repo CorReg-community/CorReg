@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
     <p>Destructing values to have missing ones</p>
     </div>
 
-    <pre class="usage"><span class='fu'>Terminator</span>(target = <span class='kw'>NULL</span>, wrath = <span class='fl'>0.1</span>, diag = <span class='fl'>0</span>, Z = <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>Terminator</span><span class='op'>(</span>target <span class='op'>=</span> <span class='cn'>NULL</span>, wrath <span class='op'>=</span> <span class='fl'>0.1</span>, diag <span class='op'>=</span> <span class='fl'>0</span>, Z <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,14 +148,17 @@
     <p>the matrix with missing values.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span>
 
 <span class='co'># add 5% of missing values</span>
-<span class='kw'>datamiss</span> <span class='op'>&lt;-</span> <span class='fu'>Terminator</span>(target = <span class='kw'>data</span>, wrath = <span class='fl'>0.05</span>)
-<span class='fu'><a href='showdata.html'>showdata</a></span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='Terminator-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>datamiss</span> <span class='op'>&lt;-</span> <span class='fu'>Terminator</span><span class='op'>(</span>target <span class='op'>=</span> <span class='va'>data</span>, wrath <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span>
+<span class='fu'><a href='showdata.html'>showdata</a></span><span class='op'>(</span><span class='va'>datamiss</span><span class='op'>)</span> <span class='co'># plot positions of the missing values</span>
+</div><div class='img'><img src='Terminator-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># create a diagonal of missing values</span>
-<span class='kw'>datamiss</span> <span class='op'>&lt;-</span> <span class='fu'>Terminator</span>(target = <span class='kw'>data</span>, diag = <span class='fl'>1</span>)
-<span class='fu'><a href='showdata.html'>showdata</a></span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span></div><div class='img'><img src='Terminator-2.png' alt='' width='700' height='433' /></div><div class='input'>   </div></pre>
+<span class='va'>datamiss</span> <span class='op'>&lt;-</span> <span class='fu'>Terminator</span><span class='op'>(</span>target <span class='op'>=</span> <span class='va'>data</span>, diag <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='showdata.html'>showdata</a></span><span class='op'>(</span><span class='va'>datamiss</span><span class='op'>)</span> <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span>
+</div><div class='img'><img src='Terminator-2.png' alt='' width='700' height='433' /></div><div class='input'>   
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -171,7 +174,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

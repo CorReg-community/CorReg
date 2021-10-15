@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
     <p>Plot the dataset with marks where there are missing value. It allows to have a quick idea of the structure of missing values (Missing at Random or not for example).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>showdata</span>(X = <span class='kw'>X</span>, what = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"miss"</span>, <span class='st'>"correl"</span>), pch = <span class='fl'>7</span>)</pre>
+    <pre class="usage"><span class='fu'>showdata</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X</span>, what <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"miss"</span>, <span class='st'>"correl"</span><span class='op'>)</span>, pch <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,14 +141,18 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
-<span class='kw'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(target = <span class='kw'>data</span>, wrath = <span class='fl'>0.05</span>) <span class='co'># 5% of missing values</span>
-<span class='fu'>showdata</span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values</span></div><div class='img'><img src='showdata-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span>
+<span class='va'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span><span class='op'>(</span>target <span class='op'>=</span> <span class='va'>data</span>, wrath <span class='op'>=</span> <span class='fl'>0.05</span><span class='op'>)</span> <span class='co'># 5% of missing values</span>
+<span class='fu'>showdata</span><span class='op'>(</span><span class='va'>datamiss</span><span class='op'>)</span> <span class='co'># plot positions of the missing values</span>
+</div><div class='img'><img src='showdata-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># missing values with a structure</span>
-<span class='kw'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span>(target = <span class='kw'>data</span>, diag = <span class='fl'>1</span>) <span class='co'># diag of missing values</span>
-<span class='fu'>showdata</span>(<span class='kw'>datamiss</span>) <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span></div><div class='img'><img src='showdata-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='kw'>opar</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(no.readonly = <span class='fl'>TRUE</span>)
-<span class='fu'>showdata</span>(X = <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span>(<span class='kw'>data</span>), what = <span class='st'>"correl"</span>)</div><div class='img'><img src='showdata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>opar</span>)
+<span class='va'>datamiss</span> <span class='op'>=</span> <span class='fu'><a href='Terminator.html'>Terminator</a></span><span class='op'>(</span>target <span class='op'>=</span> <span class='va'>data</span>, diag <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='co'># diag of missing values</span>
+<span class='fu'>showdata</span><span class='op'>(</span><span class='va'>datamiss</span><span class='op'>)</span> <span class='co'># plot positions of the missing values (no full individuals, no full variable)</span>
+</div><div class='img'><img src='showdata-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>opar</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>no.readonly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'>showdata</span><span class='op'>(</span>X <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>, what <span class='op'>=</span> <span class='st'>"correl"</span><span class='op'>)</span>
+</div><div class='img'><img src='showdata-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>opar</span><span class='op'>)</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -165,7 +169,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

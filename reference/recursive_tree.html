@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,20 +120,20 @@
     <p>Decision tree in a recursive way</p>
     </div>
 
-    <pre class="usage"><span class='fu'>recursive_tree</span>(
-  data = <span class='kw'>data</span>,
-  Y = <span class='st'>"Y"</span>,
-  modele = <span class='kw'>NULL</span>,
-  kill = <span class='kw'>NULL</span>,
-  index = <span class='kw'>NULL</span>,
-  verbose = <span class='fl'>TRUE</span>,
-  plot = <span class='fl'>TRUE</span>,
-  main = <span class='kw'>NULL</span>,
-  sub = <span class='kw'>NULL</span>,
-  lang = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"fr"</span>),
-  all = <span class='fl'>FALSE</span>,
-  digits = <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"digits"</span>) <span class='op'>-</span> <span class='fl'>3</span>
-)</pre>
+    <pre class="usage"><span class='fu'>recursive_tree</span><span class='op'>(</span>
+  data <span class='op'>=</span> <span class='va'>data</span>,
+  Y <span class='op'>=</span> <span class='st'>"Y"</span>,
+  modele <span class='op'>=</span> <span class='cn'>NULL</span>,
+  kill <span class='op'>=</span> <span class='cn'>NULL</span>,
+  index <span class='op'>=</span> <span class='cn'>NULL</span>,
+  verbose <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  plot <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  main <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sub <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lang <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"en"</span>, <span class='st'>"fr"</span><span class='op'>)</span>,
+  all <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  digits <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"digits"</span><span class='op'>)</span> <span class='op'>-</span> <span class='fl'>3</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,11 +196,14 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
-<span class='kw'>main</span> <span class='op'>=</span> <span class='st'>"Regression tree of cars consumption (in mpg)"</span>
-<span class='kw'>mytree</span> <span class='op'>=</span> <span class='fu'>recursive_tree</span>(data = <span class='kw'>data</span>, Y = <span class='st'>"mpg"</span>, main = <span class='kw'>main</span>, verbose = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='img'><img src='recursive_tree-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># want to try without cylinder and disp</span>
-<span class='kw'>mytree2</span> <span class='op'>=</span> <span class='fu'>recursive_tree</span>(data = <span class='kw'>data</span>, Y = <span class='st'>"mpg"</span>, kill = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"cyl"</span>, <span class='st'>"disp"</span>),
-modele = <span class='kw'>mytree</span><span class='op'>$</span><span class='kw'>modele</span>, main = <span class='kw'>main</span>, verbose = <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='img'><img src='recursive_tree-2.png' alt='' width='700' height='433' /></div><div class='input'></div></pre>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span>
+<span class='va'>main</span> <span class='op'>=</span> <span class='st'>"Regression tree of cars consumption (in mpg)"</span>
+<span class='va'>mytree</span> <span class='op'>=</span> <span class='fu'>recursive_tree</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data</span>, Y <span class='op'>=</span> <span class='st'>"mpg"</span>, main <span class='op'>=</span> <span class='va'>main</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='img'><img src='recursive_tree-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># want to try without cylinder and disp</span>
+<span class='va'>mytree2</span> <span class='op'>=</span> <span class='fu'>recursive_tree</span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>data</span>, Y <span class='op'>=</span> <span class='st'>"mpg"</span>, kill <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"cyl"</span>, <span class='st'>"disp"</span><span class='op'>)</span>,
+modele <span class='op'>=</span> <span class='va'>mytree</span><span class='op'>$</span><span class='va'>modele</span>, main <span class='op'>=</span> <span class='va'>main</span>, verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='img'><img src='recursive_tree-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -216,7 +219,7 @@ modele = <span class='kw'>mytree</span><span class='op'>$</span><span class='kw'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

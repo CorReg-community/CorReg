@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
     <p>This function computes the MSE (Mean Squared Error) of prediction associated to a vector of coefficients <code>A</code> used to predict a response variable <code>Y</code> by linear regression on <code>X</code>, with an intercept or not.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>MSE_loc</span>(Y = <span class='kw'>Y</span>, X = <span class='kw'>X</span>, A = <span class='kw'>A</span>, intercept = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>MSE_loc</span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y</span>, X <span class='op'>=</span> <span class='va'>X</span>, A <span class='op'>=</span> <span class='va'>A</span>, intercept <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,13 +149,16 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># dataset generation</span>
-<span class='kw'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span>(n = <span class='fl'>15</span>, p = <span class='fl'>5</span>, valid = <span class='fl'>100</span>, scale = <span class='fl'>TRUE</span>)
-<span class='kw'>X_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_appr</span> <span class='co'># learning sample</span>
-<span class='kw'>Y_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_appr</span> <span class='co'># response variable</span>
-<span class='kw'>X_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_test</span> <span class='co'># validation sample</span>
-<span class='kw'>Y_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_test</span> <span class='co'># response variable (validation sample)</span>
-<span class='kw'>A</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span>(<span class='kw'>Y_appr</span> <span class='op'>~</span> <span class='kw'>X_appr</span>)<span class='op'>$</span><span class='kw'>coefficients</span>
-<span class='fu'>MSE_loc</span>(Y = <span class='kw'>Y_appr</span>, X = <span class='kw'>X_appr</span>, A = <span class='kw'>A</span>) <span class='co'># MSE on the learning dataset</span></div><div class='output co'>#&gt; [1] 203.1333</div><div class='input'><span class='fu'>MSE_loc</span>(Y = <span class='kw'>Y_test</span>, X = <span class='kw'>X_test</span>, A = <span class='kw'>A</span>) <span class='co'># MSE on the validation sample</span></div><div class='output co'>#&gt; [1] 1222.347</div><div class='input'></div></pre>
+<span class='va'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>15</span>, p <span class='op'>=</span> <span class='fl'>5</span>, valid <span class='op'>=</span> <span class='fl'>100</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>X_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_appr</span> <span class='co'># learning sample</span>
+<span class='va'>Y_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_appr</span> <span class='co'># response variable</span>
+<span class='va'>X_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_test</span> <span class='co'># validation sample</span>
+<span class='va'>Y_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_test</span> <span class='co'># response variable (validation sample)</span>
+<span class='va'>A</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Y_appr</span> <span class='op'>~</span> <span class='va'>X_appr</span><span class='op'>)</span><span class='op'>$</span><span class='va'>coefficients</span>
+<span class='fu'>MSE_loc</span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_appr</span>, X <span class='op'>=</span> <span class='va'>X_appr</span>, A <span class='op'>=</span> <span class='va'>A</span><span class='op'>)</span> <span class='co'># MSE on the learning dataset</span>
+</div><div class='output co'>#&gt; [1] 203.1333</div><div class='input'><span class='fu'>MSE_loc</span><span class='op'>(</span>Y <span class='op'>=</span> <span class='va'>Y_test</span>, X <span class='op'>=</span> <span class='va'>X_test</span>, A <span class='op'>=</span> <span class='va'>A</span><span class='op'>)</span> <span class='co'># MSE on the validation sample</span>
+</div><div class='output co'>#&gt; [1] 1222.347</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -171,7 +174,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

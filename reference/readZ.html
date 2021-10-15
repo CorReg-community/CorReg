@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,15 +120,15 @@
     <p>This function describes the structure of sub-regression given by an adjacency matrix. It computes the associated regression coefficients and R-squared for each sub-regression.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>readZ</span>(
-  Z = <span class='kw'>Z</span>,
-  B = <span class='kw'>NULL</span>,
-  crit = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"none"</span>, <span class='st'>"R2"</span>, <span class='st'>"F"</span>, <span class='st'>"sigmaX"</span>),
-  varnames = <span class='kw'>NULL</span>,
-  output = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"index"</span>, <span class='st'>"names"</span>, <span class='st'>"all"</span>),
-  X = <span class='kw'>NULL</span>,
-  order = <span class='fl'>1</span>
-)</pre>
+    <pre class="usage"><span class='fu'>readZ</span><span class='op'>(</span>
+  Z <span class='op'>=</span> <span class='va'>Z</span>,
+  B <span class='op'>=</span> <span class='cn'>NULL</span>,
+  crit <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"none"</span>, <span class='st'>"R2"</span>, <span class='st'>"F"</span>, <span class='st'>"sigmaX"</span><span class='op'>)</span>,
+  varnames <span class='op'>=</span> <span class='cn'>NULL</span>,
+  output <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"index"</span>, <span class='st'>"names"</span>, <span class='st'>"all"</span><span class='op'>)</span>,
+  X <span class='op'>=</span> <span class='cn'>NULL</span>,
+  order <span class='op'>=</span> <span class='fl'>1</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,10 +170,12 @@ a subregression. First element is the R-square.Second element is the variable th
 Then comes the list of the explicative variables in the subgression and the associated coefficients (in the first column).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>data</span> <span class='op'>&lt;-</span> <span class='kw'>mtcars</span>
+    <pre class="examples"><div class='input'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>mtcars</span>
 <span class='co'># we first search a sub-regression structure</span>
-<span class='kw'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span>(X = <span class='kw'>data</span>, nbini = <span class='fl'>30</span>, verbose = <span class='fl'>0</span>)</div><div class='output co'>#&gt; convergence atteinte</div><div class='input'><span class='co'># then we can try to interpret it</span>
-<span class='fu'>readZ</span>(Z = <span class='kw'>res</span><span class='op'>$</span><span class='kw'>Z_opt</span>, crit = <span class='st'>"R2"</span>, output = <span class='st'>"all"</span>, X = <span class='kw'>data</span>)</div><div class='output co'>#&gt; [[1]]
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='structureFinder.html'>structureFinder</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>data</span>, nbini <span class='op'>=</span> <span class='fl'>30</span>, verbose <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; convergence atteinte</div><div class='input'><span class='co'># then we can try to interpret it</span>
+<span class='fu'>readZ</span><span class='op'>(</span>Z <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>Z_opt</span>, crit <span class='op'>=</span> <span class='st'>"R2"</span>, output <span class='op'>=</span> <span class='st'>"all"</span>, X <span class='op'>=</span> <span class='va'>data</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;               coefs       var
 #&gt; 1 0.301934038255522        R2
 #&gt; 2              &lt;NA&gt;      carb
@@ -208,6 +210,7 @@ Then comes the list of the explicative variables in the subgression and the asso
 <span class='co'># First line: The adjusted R-squared is given</span>
 <span class='co'># Second line: the name of the covariate that is regressed by others</span>
 <span class='co'># other lines: Coefficients of sub-regression and name of the associated covariate</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -224,7 +227,7 @@ Then comes the list of the explicative variables in the subgression and the asso
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

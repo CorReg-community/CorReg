@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,28 +120,28 @@
     <p>This function computes a random walk based on a full generative model on the dataset. We optimize a BIC-like criterion to find a model of sub-regressions within the covariates. If marginal density are unknown, Gaussian Mixture models are used automatically. We obtain the best structure as an adjacency matrix (binary squared matrix) that corresponds to the Directed Acyclic Graph of dependencies within the covariates.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>structureFinder</span>(
-  X = <span class='kw'>X</span>,
-  Z = <span class='kw'>NULL</span>,
-  Bic_null_vect = <span class='kw'>NULL</span>,
-  candidates = <span class='op'>-</span><span class='fl'>1</span>,
-  reject = <span class='fl'>0</span>,
-  methode = <span class='fl'>1</span>,
-  p1max = <span class='fl'>5</span>,
-  p2max = <span class='kw'>NULL</span>,
-  Maxiter = <span class='fl'>1</span>,
-  plot = <span class='fl'>FALSE</span>,
-  best = <span class='fl'>TRUE</span>,
-  better = <span class='fl'>FALSE</span>,
-  random = <span class='fl'>TRUE</span>,
-  verbose = <span class='fl'>1</span>,
-  nb_opt_max = <span class='kw'>NULL</span>,
-  exact = <span class='fl'>TRUE</span>,
-  nbini = <span class='kw'>NULL</span>,
-  star = <span class='fl'>TRUE</span>,
-  clean = <span class='fl'>TRUE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>structureFinder</span><span class='op'>(</span>
+  X <span class='op'>=</span> <span class='va'>X</span>,
+  Z <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Bic_null_vect <span class='op'>=</span> <span class='cn'>NULL</span>,
+  candidates <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>,
+  reject <span class='op'>=</span> <span class='fl'>0</span>,
+  methode <span class='op'>=</span> <span class='fl'>1</span>,
+  p1max <span class='op'>=</span> <span class='fl'>5</span>,
+  p2max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  Maxiter <span class='op'>=</span> <span class='fl'>1</span>,
+  plot <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  best <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  better <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  random <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  verbose <span class='op'>=</span> <span class='fl'>1</span>,
+  nb_opt_max <span class='op'>=</span> <span class='cn'>NULL</span>,
+  exact <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  nbini <span class='op'>=</span> <span class='cn'>NULL</span>,
+  star <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  clean <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -247,43 +247,50 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># dataset generation</span>
-<span class='kw'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span>(n = <span class='fl'>15</span>, p = <span class='fl'>10</span>, ratio = <span class='fl'>0.4</span>, tp1 = <span class='fl'>1</span>, tp2 = <span class='fl'>1</span>, tp3 = <span class='fl'>1</span>, positive = <span class='fl'>0.5</span>, 
-                         R2Y = <span class='fl'>0.8</span>, R2 = <span class='fl'>0.9</span>, scale = <span class='fl'>TRUE</span>, max_compl = <span class='fl'>3</span>, lambda = <span class='fl'>1</span>)
-<span class='kw'>X_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_appr</span> <span class='co'># learning sample</span>
-<span class='kw'>Y_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
-<span class='kw'>Y_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
-<span class='kw'>X_test</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_test</span> <span class='co'># validation sample</span>
+<span class='va'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>15</span>, p <span class='op'>=</span> <span class='fl'>10</span>, ratio <span class='op'>=</span> <span class='fl'>0.4</span>, tp1 <span class='op'>=</span> <span class='fl'>1</span>, tp2 <span class='op'>=</span> <span class='fl'>1</span>, tp3 <span class='op'>=</span> <span class='fl'>1</span>, positive <span class='op'>=</span> <span class='fl'>0.5</span>, 
+                         R2Y <span class='op'>=</span> <span class='fl'>0.8</span>, R2 <span class='op'>=</span> <span class='fl'>0.9</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span>, max_compl <span class='op'>=</span> <span class='fl'>3</span>, lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>X_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_appr</span> <span class='co'># learning sample</span>
+<span class='va'>Y_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_appr</span> <span class='co'># response variable for the learning sample</span>
+<span class='va'>Y_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Y_test</span> <span class='co'># responsee variable for the validation sample</span>
+<span class='va'>X_test</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_test</span> <span class='co'># validation sample</span>
 
-<span class='kw'>TrueZ</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
+<span class='va'>TrueZ</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>Z</span> <span class='co'># True generative structure (binary adjacency matrix)</span>
 
 <span class='co'># density estimation for the MCMC (with Gaussian Mixtures)</span>
-<span class='kw'>density</span> <span class='op'>=</span> <span class='fu'><a href='density_estimation.html'>density_estimation</a></span>(X = <span class='kw'>X_appr</span>, nbclustmax = <span class='fl'>10</span>, detailed = <span class='fl'>TRUE</span>)
-<span class='kw'>Bic_null_vect</span> <span class='op'>=</span> <span class='kw'>density</span><span class='op'>$</span><span class='kw'>BIC_vect</span> <span class='co'># vector of the BIC found (1 value per covariate)</span>
+<span class='va'>density</span> <span class='op'>=</span> <span class='fu'><a href='density_estimation.html'>density_estimation</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, nbclustmax <span class='op'>=</span> <span class='fl'>10</span>, detailed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>Bic_null_vect</span> <span class='op'>=</span> <span class='va'>density</span><span class='op'>$</span><span class='va'>BIC_vect</span> <span class='co'># vector of the BIC found (1 value per covariate)</span>
 
 <span class='co'># MCMC to find the structure</span>
-<span class='kw'>res</span> <span class='op'>=</span> <span class='fu'>structureFinder</span>(X = <span class='kw'>X_appr</span>, verbose = <span class='fl'>0</span>, reject = <span class='fl'>0</span>, Maxiter = <span class='fl'>900</span>, plot = <span class='fl'>TRUE</span>, 
-                      nbini = <span class='fl'>20</span>, candidates = <span class='op'>-</span><span class='fl'>1</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>, star = <span class='fl'>TRUE</span>, 
-                      p1max = <span class='fl'>15</span>, clean = <span class='fl'>TRUE</span>)
-<span class='kw'>hatZ</span> <span class='op'>=</span> <span class='kw'>res</span><span class='op'>$</span><span class='kw'>Z_opt</span> <span class='co'># found structure (adjacency matrix)</span>
-<span class='kw'>hatBic</span> <span class='op'>=</span> <span class='kw'>res</span><span class='op'>$</span><span class='kw'>bic_opt</span> <span class='co'># associated BIC</span>
+<span class='va'>res</span> <span class='op'>=</span> <span class='fu'>structureFinder</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, verbose <span class='op'>=</span> <span class='fl'>0</span>, reject <span class='op'>=</span> <span class='fl'>0</span>, Maxiter <span class='op'>=</span> <span class='fl'>900</span>, plot <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+                      nbini <span class='op'>=</span> <span class='fl'>20</span>, candidates <span class='op'>=</span> <span class='op'>-</span><span class='fl'>1</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span>, star <span class='op'>=</span> <span class='cn'>TRUE</span>, 
+                      p1max <span class='op'>=</span> <span class='fl'>15</span>, clean <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>hatZ</span> <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>Z_opt</span> <span class='co'># found structure (adjacency matrix)</span>
+<span class='va'>hatBic</span> <span class='op'>=</span> <span class='va'>res</span><span class='op'>$</span><span class='va'>bic_opt</span> <span class='co'># associated BIC</span>
 
 <span class='co'># looking inside the walk</span>
-<span class='kw'>old_par</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>()
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(mar = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>5</span>)<span class='op'>+</span><span class='fl'>.1</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>res</span><span class='op'>$</span><span class='kw'>bic_step</span>, type = <span class='st'>"l"</span>, col = <span class='st'>"red"</span>, ylab = <span class='st'>"BIC"</span>, sub = <span class='st'>"blue: complexity, red: BIC"</span>,
-     main = <span class='st'>"Evolution of BIC and complexity during the walk"</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(new = <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span>(<span class='kw'>res</span><span class='op'>$</span><span class='kw'>complexity_step</span>, type = <span class='st'>"l"</span>, col = <span class='st'>"blue"</span>, xaxt = <span class='st'>"n"</span>, yaxt = <span class='st'>"n"</span>, xlab = <span class='st'>""</span>, ylab = <span class='st'>""</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span>(<span class='fl'>4</span>)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span>(<span class='st'>"Complexity"</span>, side = <span class='fl'>4</span>, line = <span class='fl'>3</span>)</div><div class='img'><img src='structureFinder-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># legend("topleft", col = c("red", "blue"), lty = 1, legend = c("BIC", "Complexity"))</span>
+<span class='va'>old_par</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>.1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>bic_step</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"red"</span>, ylab <span class='op'>=</span> <span class='st'>"BIC"</span>, sub <span class='op'>=</span> <span class='st'>"blue: complexity, red: BIC"</span>,
+     main <span class='op'>=</span> <span class='st'>"Evolution of BIC and complexity during the walk"</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>new <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>$</span><span class='va'>complexity_step</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"blue"</span>, xaxt <span class='op'>=</span> <span class='st'>"n"</span>, yaxt <span class='op'>=</span> <span class='st'>"n"</span>, xlab <span class='op'>=</span> <span class='st'>""</span>, ylab <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/axis.html'>axis</a></span><span class='op'>(</span><span class='fl'>4</span><span class='op'>)</span>
+</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span><span class='st'>"Complexity"</span>, side <span class='op'>=</span> <span class='fl'>4</span>, line <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+</div><div class='img'><img src='structureFinder-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># legend("topleft", col = c("red", "blue"), lty = 1, legend = c("BIC", "Complexity"))</span>
 
 <span class='co'># BIC comparison between true and found structure</span>
-<span class='kw'>bicopt_vect</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span>(X = <span class='kw'>X_appr</span>, Z = <span class='kw'>hatZ</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>)
-<span class='kw'>bicopt_vrai</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span>(X = <span class='kw'>X_appr</span>, Z = <span class='kw'>TrueZ</span>, Bic_null_vect = <span class='kw'>Bic_null_vect</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>bicopt_vect</span>)</div><div class='output co'>#&gt; [1] 260.6646</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='kw'>bicopt_vrai</span>)</div><div class='output co'>#&gt; [1] 283.5545</div><div class='input'>
+<span class='va'>bicopt_vect</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Z <span class='op'>=</span> <span class='va'>hatZ</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span><span class='op'>)</span>
+<span class='va'>bicopt_vrai</span> <span class='op'>=</span> <span class='fu'><a href='BicZ.html'>BicZ</a></span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, Z <span class='op'>=</span> <span class='va'>TrueZ</span>, Bic_null_vect <span class='op'>=</span> <span class='va'>Bic_null_vect</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>bicopt_vect</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 260.6646</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>bicopt_vrai</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 283.5545</div><div class='input'>
 <span class='co'># Structure comparison</span>
-<span class='kw'>compZ</span> <span class='op'>=</span> <span class='fu'><a href='compare_struct.html'>compare_struct</a></span>(trueZ = <span class='kw'>TrueZ</span>, Zalgo = <span class='kw'>hatZ</span>) <span class='co'># qualitative comparison</span>
+<span class='va'>compZ</span> <span class='op'>=</span> <span class='fu'><a href='compare_struct.html'>compare_struct</a></span><span class='op'>(</span>trueZ <span class='op'>=</span> <span class='va'>TrueZ</span>, Zalgo <span class='op'>=</span> <span class='va'>hatZ</span><span class='op'>)</span> <span class='co'># qualitative comparison</span>
 
 <span class='co'># interpretation of found and true structure ordered by increasing R2</span>
 <span class='co'># &lt;NA&gt;line: name of subregressed covariate</span>
-<span class='fu'><a href='readZ.html'>readZ</a></span>(Z = <span class='kw'>hatZ</span>, crit = <span class='st'>"R2"</span>, X = <span class='kw'>X_appr</span>, output = <span class='st'>"all"</span>, order = <span class='fl'>1</span>)</div><div class='output co'>#&gt; [[1]]
+<span class='fu'><a href='readZ.html'>readZ</a></span><span class='op'>(</span>Z <span class='op'>=</span> <span class='va'>hatZ</span>, crit <span class='op'>=</span> <span class='st'>"R2"</span>, X <span class='op'>=</span> <span class='va'>X_appr</span>, output <span class='op'>=</span> <span class='st'>"all"</span>, order <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;               coefs       var
 #&gt; 1 0.609344847971411        R2
 #&gt; 2              &lt;NA&gt;         1
@@ -331,7 +338,8 @@
 #&gt; 6 -0.068699178740286         5
 #&gt; 7  0.318491463347631         6
 #&gt; 8 -0.309718668098592         8
-#&gt; </div><div class='input'><span class='fu'><a href='readZ.html'>readZ</a></span>(Z = <span class='kw'>TrueZ</span>, crit = <span class='st'>"R2"</span>, X = <span class='kw'>X_appr</span>, output = <span class='st'>"all"</span>, order = <span class='fl'>1</span>)</div><div class='output co'>#&gt; [[1]]
+#&gt; </div><div class='input'><span class='fu'><a href='readZ.html'>readZ</a></span><span class='op'>(</span>Z <span class='op'>=</span> <span class='va'>TrueZ</span>, crit <span class='op'>=</span> <span class='st'>"R2"</span>, X <span class='op'>=</span> <span class='va'>X_appr</span>, output <span class='op'>=</span> <span class='st'>"all"</span>, order <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;                coefs       var
 #&gt; 1  0.730596543850315        R2
 #&gt; 2               &lt;NA&gt;         7
@@ -367,7 +375,9 @@
 #&gt; 5  0.319945972379733         6
 #&gt; 6  -0.34220693812877         8
 #&gt; </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span>(<span class='kw'>old_par</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span><span class='va'>old_par</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cin" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cra" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "csi" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "cxy" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "din" cannot be set</span></div><div class='output co'>#&gt; <span class='warning'>Warning: graphical parameter "page" cannot be set</span></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -384,7 +394,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

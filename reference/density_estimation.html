@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -94,7 +94,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/CorReg-community/CorReg/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -120,18 +120,18 @@
     <p>Estimates the density of each covariates with gaussian mixture models and then gives the associated BIC.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>density_estimation</span>(
-  X = <span class='kw'>X</span>,
-  nbclustmax = <span class='fl'>10</span>,
-  nbclustmin = <span class='fl'>1</span>,
-  verbose = <span class='fl'>FALSE</span>,
-  detailed = <span class='fl'>FALSE</span>,
-  max = <span class='fl'>TRUE</span>,
-  package = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mclust"</span>, <span class='st'>"Rmixmod"</span>),
-  nbini = <span class='fl'>20</span>,
-  matshape = <span class='fl'>FALSE</span>,
-  <span class='kw'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>density_estimation</span><span class='op'>(</span>
+  X <span class='op'>=</span> <span class='va'>X</span>,
+  nbclustmax <span class='op'>=</span> <span class='fl'>10</span>,
+  nbclustmin <span class='op'>=</span> <span class='fl'>1</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  detailed <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  max <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  package <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"mclust"</span>, <span class='st'>"Rmixmod"</span><span class='op'>)</span>,
+  nbini <span class='op'>=</span> <span class='fl'>20</span>,
+  matshape <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -189,13 +189,17 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># dataset generation</span>
-<span class='kw'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span>(n = <span class='fl'>150</span>, p = <span class='fl'>10</span>, valid = <span class='fl'>0</span>, ratio = <span class='fl'>0.4</span>, tp1 = <span class='fl'>1</span>, tp2 = <span class='fl'>1</span>, tp3 = <span class='fl'>1</span>, 
-                         positive = <span class='fl'>0.5</span>, R2Y = <span class='fl'>0.8</span>, R2 = <span class='fl'>0.9</span>, scale = <span class='fl'>TRUE</span>, max_compl = <span class='fl'>3</span>, 
-                         lambda = <span class='fl'>1</span>)
-<span class='kw'>X_appr</span> <span class='op'>=</span> <span class='kw'>base</span><span class='op'>$</span><span class='kw'>X_appr</span> <span class='co'># learning sample</span>
-<span class='kw'>density</span> <span class='op'>=</span> <span class='fu'>density_estimation</span>(X = <span class='kw'>X_appr</span>, detailed = <span class='fl'>TRUE</span>) <span class='co'># estimation of the marginal densities</span>
-<span class='kw'>density</span><span class='op'>$</span><span class='kw'>BIC_vect</span> <span class='co'># vector of the BIC (one per variable)</span></div><div class='output co'>#&gt;  [1] 449.3303 168.6177 428.1307 426.0546 421.3208 437.8150 427.5890 248.5422
-#&gt;  [9] 184.2984 210.7557</div><div class='input'><span class='kw'>density</span><span class='op'>$</span><span class='kw'>BIC</span> <span class='co'># global value of the BIC (sum of the BICs)</span></div><div class='output co'>#&gt; [1] 3402.455</div><div class='input'><span class='kw'>density</span><span class='op'>$</span><span class='kw'>nbclust</span> <span class='co'># vector of the numbers of components.</span></div><div class='output co'>#&gt;  [1] 1 1 1 1 1 1 2 1 1 1</div><div class='input'><span class='kw'>density</span><span class='op'>$</span><span class='kw'>details</span> <span class='co'># matrices that describe each Gaussian Mixture (proportions, means and variances)</span></div><div class='output co'>#&gt; [[1]]
+<span class='va'>base</span> <span class='op'>=</span> <span class='fu'><a href='mixture_generator.html'>mixture_generator</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>150</span>, p <span class='op'>=</span> <span class='fl'>10</span>, valid <span class='op'>=</span> <span class='fl'>0</span>, ratio <span class='op'>=</span> <span class='fl'>0.4</span>, tp1 <span class='op'>=</span> <span class='fl'>1</span>, tp2 <span class='op'>=</span> <span class='fl'>1</span>, tp3 <span class='op'>=</span> <span class='fl'>1</span>, 
+                         positive <span class='op'>=</span> <span class='fl'>0.5</span>, R2Y <span class='op'>=</span> <span class='fl'>0.8</span>, R2 <span class='op'>=</span> <span class='fl'>0.9</span>, scale <span class='op'>=</span> <span class='cn'>TRUE</span>, max_compl <span class='op'>=</span> <span class='fl'>3</span>, 
+                         lambda <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>X_appr</span> <span class='op'>=</span> <span class='va'>base</span><span class='op'>$</span><span class='va'>X_appr</span> <span class='co'># learning sample</span>
+<span class='va'>density</span> <span class='op'>=</span> <span class='fu'>density_estimation</span><span class='op'>(</span>X <span class='op'>=</span> <span class='va'>X_appr</span>, detailed <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='co'># estimation of the marginal densities</span>
+<span class='va'>density</span><span class='op'>$</span><span class='va'>BIC_vect</span> <span class='co'># vector of the BIC (one per variable)</span>
+</div><div class='output co'>#&gt;  [1] 449.3303 168.6177 428.1307 426.0546 421.3208 437.8150 427.5890 248.5422
+#&gt;  [9] 184.2984 210.7557</div><div class='input'><span class='va'>density</span><span class='op'>$</span><span class='va'>BIC</span> <span class='co'># global value of the BIC (sum of the BICs)</span>
+</div><div class='output co'>#&gt; [1] 3402.455</div><div class='input'><span class='va'>density</span><span class='op'>$</span><span class='va'>nbclust</span> <span class='co'># vector of the numbers of components.</span>
+</div><div class='output co'>#&gt;  [1] 1 1 1 1 1 1 2 1 1 1</div><div class='input'><span class='va'>density</span><span class='op'>$</span><span class='va'>details</span> <span class='co'># matrices that describe each Gaussian Mixture (proportions, means and variances)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;      prop   meansvect  varvect i
 #&gt; [1,]    1 -0.08230836 1.095105 1
 #&gt; 
@@ -235,7 +239,8 @@
 #&gt; [[10]]
 #&gt;      prop meansvect   varvect  i
 #&gt; [1,]    1 0.9177486 0.2232089 10
-#&gt; </div><div class='input'></div></pre>
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -251,7 +256,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
